@@ -33,6 +33,19 @@ async function loadAppointments() {
   }
 }
 
+async function loadAutomobiles() {
+  const response = await fetch("http://localhost:8100/api/automobiles/");
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App autos={data.autos} />
+      </React.StrictMode>
+    );
+  } else {
+    console.log(response);
+  }
+}
 
 async function loadTechnicians() {
   const response = await fetch("http://localhost:8080/api/technicians/");
@@ -48,5 +61,7 @@ async function loadTechnicians() {
   }
 }
 
+loadManufacturers();
+loadAutomobiles();
 loadAppointments();
 loadTechnicians();

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AppointmentList(props) {
+    console.log('beginning', props)
 
     return (
         <table className="table">
@@ -17,20 +18,18 @@ function AppointmentList(props) {
                 </tr>
             </thead>
             <tbody>
+                {console.log('just before map', props.data.appointments)}
                 {props.data.appointments.map(appointment => {
                     return (
                         <tr key={ appointment.id }>
                             <td>{ appointment.automobile.vin }</td>
+                            <td>{ appointment.customer_name }</td>
                             <td>{ appointment.date }</td>
-                            <td>{ appointment.time }</td>
-                            <td>{ appointment.technician }</td>
+                            <td>{ appointment.date }</td>
+                            <td>{ appointment.technician.name }</td>
                             <td>{ appointment.reason }</td>
-                            <td className="cancel">
-                                <button>Cancel</button>
-                            </td>
-                            <td className="finished">
-                                <button>Finished</button>
-                            </td>
+                            <td><button>Cancel</button></td>
+                            <td><button>Finished</button></td>
                         </tr>
                     );
                 })}
