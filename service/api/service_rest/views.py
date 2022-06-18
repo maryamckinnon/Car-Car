@@ -14,23 +14,6 @@ class AutomobileVOEncoder(ModelEncoder):
         "vin"
     ]
 
-
-class AppointmentEncoder(ModelEncoder):
-    model = Appointment
-    properties = [
-        "id",
-        "vin",
-        "owner",
-        "date",
-        "technician",
-        "reason"
-    ]
-    encoders = {
-        "date": ModelEncoder(),
-        "vin": AutomobileVOEncoder(),
-    }
-
-
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
@@ -38,6 +21,21 @@ class TechnicianEncoder(ModelEncoder):
         "name",
         "employee_number"
     ]
+
+class AppointmentEncoder(ModelEncoder):
+    model = Appointment
+    properties = [
+        "id",
+        "automobile",
+        "owner",
+        "date",
+        "technician",
+        "reason"
+    ]
+    encoders = {
+        "technician": TechnicianEncoder(),
+        "automobile": AutomobileVOEncoder(),
+    }
 
 
 @require_http_methods(["GET", "POST"])
@@ -56,7 +54,6 @@ def api_list_appointments(request):
             content["technician"] = technician
             automobile_id = content["automobile_id"]
             automobile = AutomobileVO.objects.get(id=automobile_id)
-            content["automobile"] = automobile
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
@@ -71,6 +68,28 @@ def api_list_appointments(request):
             return response
 
 
+@require_http_methods(["GET","DELETE"])
+def api_show_appointments(request, pk):
+    if request.method == "GET":
+        appointment = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )
+    else:
+        try:
+            appointment = Appointment.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
+
+
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":
@@ -78,7 +97,6 @@ def api_list_technicians(request):
         return JsonResponse(
             {"technicians": technicians},
             encoder=TechnicianEncoder,
-
         )
     else:
         content = json.loads(request.body)
