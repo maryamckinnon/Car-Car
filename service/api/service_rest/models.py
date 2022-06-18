@@ -15,7 +15,7 @@ class Technician(models.Model):
 class Appointment(models.Model):
     date = models.DateTimeField()
     reason = models.CharField(max_length=200)
-    owner = models.CharField(max_length=200)
+    customer_name = models.CharField(max_length=200)
     technician = models.ForeignKey(
         Technician,
         related_name="appointment",

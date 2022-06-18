@@ -27,7 +27,7 @@ class AppointmentEncoder(ModelEncoder):
     properties = [
         "id",
         "automobile",
-        "owner",
+        "customer_name",
         "date",
         "technician",
         "reason"
