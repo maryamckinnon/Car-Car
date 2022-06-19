@@ -19,7 +19,7 @@ function AppointmentList(props) {
             </thead>
             <tbody>
                 {console.log('just before map', props.data.appointments)}
-                {props.data.appointments.map(appointment => {
+                {/* {props.data.appointments.map(appointment => {
                     return (
                         <tr key={ appointment.id }>
                             <td>{ appointment.automobile.vin }</td>
@@ -32,7 +32,7 @@ function AppointmentList(props) {
                             <td><button>Finished</button></td>
                         </tr>
                     );
-                })}
+                })} */}
             </tbody>
         </table>
     );

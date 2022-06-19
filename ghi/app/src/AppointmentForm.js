@@ -8,8 +8,8 @@ class AppointmentForm extends React.Component {
         customerName: '',
         date: '',
         time: '',
-        technician: '',
         reason: '',
+        technicians: [],
       };
       this.handleVinChange = this.handleVinChange.bind(this);
       this.handleCustomerNameChange = this.handleCustomerNameChange.bind(this);
@@ -19,6 +19,17 @@ class AppointmentForm extends React.Component {
       this.handleReasonChange = this.handleReasonChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    async componentDidMount() {
+        const url = 'http://localhost:8080/api/technicians/';
+      
+        const response = await fetch(url);
+  
+        if (response.ok) {
+          const data = await response.json();
+          this.setState({technicians: data.technicians});
+        }
+      }
 
     handleVinChange(event) {
       const value = event.target.value;
@@ -55,6 +66,7 @@ class AppointmentForm extends React.Component {
       const data = {...this.state};
       data.customer_name = data.customerName;
       delete data.customerName;
+      delete data.technicians;
       console.log("data", data);
 
       const appointmentUrl = 'http://localhost:8080/api/appointments/';
@@ -96,44 +108,40 @@ class AppointmentForm extends React.Component {
                         <label htmlFor="vin">VIN</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleCustomerNameChange} placeholder="customerName" 
-                        required type="text" name="customerName" 
-                        id="customerName" className="form-control" value={this.state.customerName}/>
-                        <label htmlFor="customerName">Customer Name</label>
+                        <input onChange={this.handleCustomerNameChange} placeholder="customer_name" 
+                        required type="text" name="customer_name" 
+                        id="customer_name" className="form-control" value={this.state.customerName}/>
+                        <label htmlFor="customer-name">Customer Name</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input onChange={this.handleDateChange} placeholder="Date" required 
                         type="date" name="date" id="date" className="form-control" value={this.state.date}/>
                         <label htmlFor="date">Date</label>
-                    {/* </div>
-                    <div className="mb-3">
-                        <label htmlFor="description" className="form-label">Description</label>
-                        <textarea className="form-control" name="description" id="time"
-                        onChange={this.handleTime} value={this.state.time}>
-                        </textarea>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input onChange={this.handleMaxPresentationsChange} placeholder="Max_presentations" 
-                        required type="number" name="max_presentations" 
-                        id="max_presentations" className="form-control" value={this.state.maxPresentations}/>
-                        <label htmlFor="max_presentations">Maximum Presentations</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input onChange={this.handleMaxAttendeesChange} placeholder="Max_attendees" 
-                        required type="number" name="max_attendees" 
-                        id="max_attendees" className="form-control" value={this.state.maxAttendees}/>
-                        <label htmlFor="max_attendees">Maximum Attendees</label>
                     </div>
                     <div className="mb-3">
-                        <select onChange={this.handleLocationChange} required id="location" 
-                        className="form-select" name="location" value={this.state.location}>
-                        <option value="">Location</option>
-                        {this.state.locations.map(location => {
-                            return (
-                                <option key={location.id} value={location.id}> {location.name} </option>
-                            );
-                        })}
-                        </select> */}
+                        <label htmlFor="time" className="form-label">Time</label>
+                        <input onChange={this.handleTimeChange} className="form-control" 
+                        name="time" id="time" required type="time" placeholder="time"
+                        value={this.state.time}/>
+                    </div>
+                    <div className="mb-3">
+                    <select required id="technician" className="form-select" name="technician" 
+                    onChange={this.handleTechnicianChange} value={this.state.technician}>
+                      <option value="">Choose a technician</option>
+                      {this.state.technicians.map(technician => {
+                        return (
+                          <option key={technician.id} value={technician.name}>
+                            {technician.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                    <div className="form-floating mb-3">
+                        <input onChange={this.handleReasonChange} placeholder="reason" 
+                        required type="text" name="reason" 
+                        id="reason" className="form-control" value={this.state.reason}/>
+                        <label htmlFor="reason">Reason</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
                     </form>
@@ -144,4 +152,4 @@ class AppointmentForm extends React.Component {
     }
 }
 
-export default ManufacturerForm;
+export default AppointmentForm;
