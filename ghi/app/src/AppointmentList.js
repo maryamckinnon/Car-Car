@@ -4,7 +4,9 @@ function AppointmentList(props) {
     console.log('beginning', props)
 
     return (
-        <table className="table">
+        <div>
+        <h1>Service appointments</h1>
+        <table className="table table-striped">
             <thead>
                 <tr>
                     <th>VIN</th>
@@ -19,7 +21,7 @@ function AppointmentList(props) {
             </thead>
             <tbody>
                 {console.log('just before map', props.data.appointments)}
-                {/* {props.data.appointments.map(appointment => {
+                {props.data.appointments.map(appointment => {
                     return (
                         <tr key={ appointment.id }>
                             <td>{ appointment.automobile.vin }</td>
@@ -32,9 +34,10 @@ function AppointmentList(props) {
                             <td><button>Finished</button></td>
                         </tr>
                     );
-                })} */}
+                })}
             </tbody>
         </table>
+        </div>
     );
 
 }

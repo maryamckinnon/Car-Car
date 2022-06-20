@@ -45,7 +45,7 @@ class AutomobileForm extends React.Component {
             <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
-                <h1>Create a manufacturer</h1>
+                <h1>Create an automobile</h1>
                 <form onSubmit={this.handleSubmit} id="create-location-form">
                   <div className="form-floating mb-3">
                     <input onChange={this.handleNameChange} placeholder="Name" required type="text" 
@@ -61,4 +61,4 @@ class AutomobileForm extends React.Component {
     }
 }
 
-export default ManufacturerForm;
+export default AutomobileForm;

@@ -1,77 +1,42 @@
 import React from 'react';
+import AppointmentForm from './AppointmentForm';
 
-class AppointmentForm extends React.Component {
+
+class AppointmentHistory extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
         vin: '',
-        customerName: '',
-        date: '',
-        time: '',
-        reason: '',
-        technicians: [],
+        appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
-      this.handleCustomerNameChange = this.handleCustomerNameChange.bind(this);
-      this.handleDateChange = this.handleDateChange.bind(this);
-      this.handleTimeChange = this.handleTimeChange.bind(this);
-      this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
-      this.handleReasonChange = this.handleReasonChange.bind(this);
+      this.handleAppointmentChange = this.handleAppointmentChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async componentDidMount() {
-        const url = 'http://localhost:8080/api/technicians/';
-      
-        const response = await fetch(url);
+        const response = await fetch("http://localhost:8080/api/appointments/");
   
         if (response.ok) {
           const data = await response.json();
-          this.setState({technicians: data.technicians});
+          this.setState({vin: data.vin});
+          this.setState({appointment: data.appointment})
         }
-      }
+    }
 
     handleVinChange(event) {
       const value = event.target.value;
       this.setState({vin: value})
     }
 
-    handleCustomerNameChange(event) {
-        const value = event.target.value;
-        this.setState({customerName: value})
-    }
-
-    handleDateChange(event) {
-        const value = event.target.value;
-        this.setState({date: value})
-    }
-
-    handleTimeChange(event) {
-        const value = event.target.value;
-        this.setState({time: value})
-    }
-    
-    handleTechnicianChange(event) {
-        const value = event.target.value;
-        this.setState({technician: value})
-    }
-
-    handleReasonChange(event) {
-        const value = event.target.value;
-        this.setState({reason: value})
-    }
-
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
-      data.customer_name = data.customerName;
-      delete data.customerName;
-      delete data.technicians;
       console.log("data", data);
 
       const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
-          method: "post",
+          method: "get",
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
@@ -84,11 +49,6 @@ class AppointmentForm extends React.Component {
 
           const cleared = {
             vin: '',
-            customerName: '',
-            date: '',
-            time: '',
-            technician: '',
-            reason: '',
           };
           this.setState(cleared);
         }
@@ -99,7 +59,6 @@ class AppointmentForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Enter a service appointment</h1>
                     <form onSubmit={this.handleSubmit} id="create-conference-form">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleVinChange} placeholder="Vin" 
@@ -152,4 +111,4 @@ class AppointmentForm extends React.Component {
     }
 }
 
-export default AppointmentForm;
+export default AppointmentHistory;

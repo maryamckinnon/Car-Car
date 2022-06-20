@@ -33,4 +33,4 @@ function ModelList(props) {
 
 }
 
-export default AutomobileList;
+export default ModelList;
