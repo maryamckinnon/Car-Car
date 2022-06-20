@@ -23,7 +23,7 @@ function App(props) {
       <Nav />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          {/* <Route path="manufacturers" element={<ManufacturerList data={props}/>} /> 
+          <Route path="manufacturers" element={<ManufacturerList data={props}/>} /> 
           <Route path="manufacturers">
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
@@ -34,15 +34,15 @@ function App(props) {
           <Route path="automobiles" element={<AutomobileList data={props}/>} />
           <Route path="automobiles">
             <Route path="new" element={<AutomobileForm />} />
-          </Route> */}
+          </Route>
           <Route path="appointments" element={<AppointmentList data={props}/>} />
           <Route path="appointments">
             <Route path="new" element={<AppointmentForm />} />
             <Route path="details" element={<AppointmentHistory data={props}/>} />
           </Route>
-          {/* <Route path="technicians">
+          <Route path="technicians">
             <Route path="new" element={<TechnicianForm />} />
-          </Route> */}
+          </Route>
         </Routes>
     </BrowserRouter>
   );

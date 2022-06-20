@@ -31,11 +31,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //     root.render(
 //       <React.StrictMode>
 //         <App
-//           manufacturers={data.manufacturers}
-//           appointments={data.appointments} 
-//           autos={data.autos}
-//           technicians={data.technicians}
-//           models={data.models}
+//           manufacturers={data}
+//           appointments={data} 
+//           autos={data}
+//           technicians={data}
+//           models={data}
 //           />
 //       </React.StrictMode>
 //     )

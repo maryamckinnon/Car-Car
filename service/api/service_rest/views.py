@@ -14,6 +14,7 @@ class AutomobileVOEncoder(ModelEncoder):
         "vin"
     ]
 
+
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
@@ -26,16 +27,19 @@ class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
         "id",
-        "automobile",
+        "vin",
         "customer_name",
         "date",
         "technician",
-        "reason"
+        "reason",
     ]
     encoders = {
         "technician": TechnicianEncoder(),
-        "automobile": AutomobileVOEncoder(),
     }
+
+    def get_extra_data(self, o):
+        count = AutomobileVO.objects.filter(vin=o.vin).count()
+        return {"vip": count > 0}
 
 
 @require_http_methods(["GET", "POST"])
@@ -44,7 +48,7 @@ def api_list_appointments(request):
         appointments = Appointment.objects.all()
         return JsonResponse(
             {"appointments": appointments},
-            encoder=AppointmentEncoder,
+            encoder=AppointmentEncoder
         )
     else:
         content = json.loads(request.body)

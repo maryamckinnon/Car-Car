@@ -1,5 +1,6 @@
 import React from 'react';
-import AppointmentForm from './AppointmentForm';
+import SearchBar from './SearchBar';
+import AppointmentList from './AppointmentList';
 
 
 class AppointmentHistory extends React.Component {
@@ -7,11 +8,9 @@ class AppointmentHistory extends React.Component {
       super(props)
       this.state = {
         vin: '',
-        appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
-      this.handleAppointmentChange = this.handleAppointmentChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleSearch = this.handleSearch.bind(this);
     }
 
     async componentDidMount() {
@@ -20,7 +19,6 @@ class AppointmentHistory extends React.Component {
         if (response.ok) {
           const data = await response.json();
           this.setState({vin: data.vin});
-          this.setState({appointment: data.appointment})
         }
     }
 
@@ -29,7 +27,7 @@ class AppointmentHistory extends React.Component {
       this.setState({vin: value})
     }
 
-    async handleSubmit(event) {
+    async handleSearch(event) {
       event.preventDefault();
       const data = {...this.state};
       console.log("data", data);
@@ -58,15 +56,16 @@ class AppointmentHistory extends React.Component {
         return (
             <div className="row">
                 <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <form onSubmit={this.handleSubmit} id="create-conference-form">
+                    <form onSubmit={this.handleSubmit} id="search-appointments">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleVinChange} placeholder="Vin" 
-                        required type="text" name="vin" 
+                        type="search" name="vin" 
                         id="vin" className="form-control" value={this.state.vin}/>
-                        <label htmlFor="vin">VIN</label>
+                        <label htmlFor="vin">Enter VIN</label><button type="button" className="btn btn-primary">
+                        <i className="fas fa-search">Search</i>
+                        </button>
                     </div>
-                    <div className="form-floating mb-3">
+                    {/* <div className="form-floating mb-3">
                         <input onChange={this.handleCustomerNameChange} placeholder="customer_name" 
                         required type="text" name="customer_name" 
                         id="customer_name" className="form-control" value={this.state.customerName}/>
@@ -102,11 +101,10 @@ class AppointmentHistory extends React.Component {
                         id="reason" className="form-control" value={this.state.reason}/>
                         <label htmlFor="reason">Reason</label>
                     </div>
-                    <button className="btn btn-primary">Create</button>
+                    <button className="btn btn-primary">Create</button> */}
                     </form>
                 </div>
                 </div>
-            </div>
         );
     }
 }
