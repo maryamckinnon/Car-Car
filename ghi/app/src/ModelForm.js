@@ -30,7 +30,7 @@ class ModelForm extends React.Component {
       this.setState({name: value})
     }
 
-    handleNameChange(event) {
+    handlePictureUrlChange(event) {
         const value = event.target.value;
         this.setState({pictureUrl: value})
     }
@@ -75,7 +75,7 @@ class ModelForm extends React.Component {
             <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
-                <h1>Create a new location</h1>
+                <h1>Create a vehicle model</h1>
                 <form onSubmit={this.handleSubmit} id="create-model-form">
                   <div className="form-floating mb-3">
                     <input onChange={this.handleNameChange} placeholder="Name" required type="text" 
@@ -86,11 +86,11 @@ class ModelForm extends React.Component {
                     <input onChange={this.handlePictureUrlChange} placeholder="picture url" 
                     required type="url" name="picture url" 
                     id="picture url" className="form-control" value={this.state.roomCount}/>
-                    <label htmlFor="picture url">Picture</label>
+                    <label htmlFor="picture url">Picture URL</label>
                   </div>
                   <div className="mb-3">
                     <select required id="manufacturer" className="form-select" name="manufacturer" 
-                    onChange={this.handleManufactuerChange} value={this.state.manufacturer}>
+                    onChange={this.handleManufacturerChange} value={this.state.manufacturer}>
                       <option value="">Choose a manufacturer</option>
                       {this.state.manufacturers.map(manufacturer => {
                         return (

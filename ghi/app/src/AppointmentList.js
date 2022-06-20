@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 function AppointmentList(props) {
     console.log('beginning', props)
 
+    const enUSFormatter = new Intl.DateTimeFormat('en-US')
+    
+    // const Delete = (del) => {
+    //     const delData = data.filter((tbd) => {
+    //       return del !== tbd.id;
+    //     });
+    //     setTableData(delData);
+    //   };
 
     return (
         <div className="appointment-list">
@@ -27,12 +35,16 @@ function AppointmentList(props) {
                                 <tr key={ appointment.id }>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
-                                    <td>{ appointment.date }</td>
-                                    <td>{ appointment.date }</td>
+                                    <td>{ enUSFormatter.format(appointment.d) }</td>
+                                    <td>{ enUSFormatter.format(appointment.t) }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
-                                    <td>{ appointment.vip }</td>
-                                    <td><button>Cancel</button></td>
+                                    <td>{ String(appointment.vip) }</td>
+                                    <td>
+                                        {/* <button className="btn btn-danger" onClick={() => Delete(appointment.id)}>
+                                            <i className="fa-solid fa-trash"></i>
+                                        </button>; */}
+                                    </td>
                                     <td><button>Finished</button></td>
                                 </tr>
                             );

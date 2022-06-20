@@ -4,7 +4,7 @@ function AutomobileList(props) {
     console.log('beginning', props)
 
     return (
-        <table className="table">
+        <table className="table table-striped">
             <thead>
                 <tr>
                     <th>VIN</th>
