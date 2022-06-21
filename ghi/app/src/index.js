@@ -101,19 +101,19 @@ async function loadAppointments() {
 //   }
 // }
 
-// async function loadTechnicians() {
-//   const response = await fetch("http://localhost:8080/api/technicians/");
-//   if (response.ok) {
-//     const data = await response.json();
-//     root.render(
-//       <React.StrictMode>
-//         <App technicians={data.technicians} />
-//       </React.StrictMode>
-//     );
-//   } else {
-//     console.log(response);
-//   }
-// }
+async function loadTechnicians() {
+  const response = await fetch("http://localhost:8080/api/technicians/");
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App technicians={data.technicians} />
+      </React.StrictMode>
+    );
+  } else {
+    console.log(response);
+  }
+}
 
 // loadModels();
 // loadManufacturers();

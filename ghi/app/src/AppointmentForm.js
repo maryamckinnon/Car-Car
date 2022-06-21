@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class AppointmentForm extends React.Component {
     constructor(props) {
       super(props)
@@ -29,7 +30,7 @@ class AppointmentForm extends React.Component {
           const data = await response.json();
           this.setState({technicians: data.technicians});
         }
-      }
+    }
 
     handleVinChange(event) {
       const value = event.target.value;
@@ -76,22 +77,23 @@ class AppointmentForm extends React.Component {
           headers: {
             'Content-Type': 'application/json',
           },
-        };
-        const response = await fetch(appointmentUrl, fetchConfig);
-        if (response.ok) {
-          const newAppointment = await response.json();
-          console.log(newAppointment);
+      };
 
-          const cleared = {
-            vin: '',
-            customerName: '',
-            date: '',
-            time: '',
-            technician: '',
-            reason: '',
-          };
-          this.setState(cleared);
-        }
+      const response = await fetch(appointmentUrl, fetchConfig);
+      if (response.ok) {
+        const newAppointment = await response.json();
+        console.log(newAppointment);
+
+        const cleared = {
+          vin: '',
+          customerName: '',
+          date: '',
+          time: '',
+          technician: '',
+          reason: '',
+        };
+        this.setState(cleared);
+      }
     }
     
     render() {
@@ -130,7 +132,7 @@ class AppointmentForm extends React.Component {
                       <option value="">Choose a technician</option>
                       {this.state.technicians.map(technician => {
                         return (
-                          <option key={technician.id} value={technician.name}>
+                          <option key={technician.id} value={technician.id}>
                             {technician.name}
                           </option>
                         );

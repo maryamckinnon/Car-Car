@@ -6,7 +6,7 @@ const SearchBar = () => (
       <input
           type="text"
           id="header-search"
-          placeholder="Search blog posts"
+          placeholder="Search VIN numbers"
           name="s" 
       />
       <button type="submit">Search</button>

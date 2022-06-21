@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 
 function AppointmentList(props) {
     console.log('beginning', props)
-
-    const enUSFormatter = new Intl.DateTimeFormat('en-US')
     
-    // const Delete = (del) => {
-    //     const delData = data.filter((tbd) => {
-    //       return del !== tbd.id;
-    //     });
-    //     setTableData(delData);
-    //   };
+    const deleteRow = (appointment) => {
+        const data = this.state.data.filter(i => i.id !== appointment.id)
+        console.log("delete", data)
+        this.setState({data})
+    }
 
     return (
         <div className="appointment-list">
@@ -35,16 +32,16 @@ function AppointmentList(props) {
                                 <tr key={ appointment.id }>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
-                                    <td>{ enUSFormatter.format(appointment.d) }</td>
-                                    <td>{ enUSFormatter.format(appointment.t) }</td>
+                                    <td>{ new Date(appointment.date).toLocaleDateString() }</td>
+                                    <td>{ appointment.time }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
                                     <td>{ String(appointment.vip) }</td>
-                                    <td>
-                                        {/* <button className="btn btn-danger" onClick={() => Delete(appointment.id)}>
-                                            <i className="fa-solid fa-trash"></i>
-                                        </button>; */}
-                                    </td>
+                                    {/* <td>
+                                        <button className="btn btn-danger" onClick={this.deleteRow.bind(this, appointment.id)}>
+                                            <i className="fa-solid fa-trash">Cancel</i>
+                                        </button>
+                                    </td> */}
                                     <td><button>Finished</button></td>
                                 </tr>
                             );
@@ -57,3 +54,8 @@ function AppointmentList(props) {
 }
 
 export default AppointmentList;
+
+// delete(item){
+//     const data = this.state.data.filter(i => i.id !== item.id)
+//     this.setState({data})
+//   }

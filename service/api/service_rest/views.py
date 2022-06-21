@@ -30,6 +30,7 @@ class AppointmentEncoder(ModelEncoder):
         "vin",
         "customer_name",
         "date",
+        "time",
         "technician",
         "reason",
     ]
@@ -53,24 +54,21 @@ def api_list_appointments(request):
     else:
         content = json.loads(request.body)
         try:
-            technician_id = content["technician_id"]
-            technician = Technician.objects.get(pk=technician_id)
+            id = content["technician"]
+            technician = Technician.objects.get(pk=id)
             content["technician"] = technician
-            automobile_id = content["automobile_id"]
-            automobile = AutomobileVO.objects.get(id=automobile_id)
-            appointment = Appointment.objects.create(**content)
+
+        except Appointment.DoesNotExist:
             return JsonResponse(
+                {"message": "Could not create the appointment"},
+                status = 400,
+            )
+        appointment = Appointment.objects.create(**content)
+        return JsonResponse(
                 appointment,
                 encoder=AppointmentEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the appointment"}
-            )
-            response.status_code = 400
-            return response
-
 
 @require_http_methods(["GET","DELETE"])
 def api_show_appointments(request, pk):
