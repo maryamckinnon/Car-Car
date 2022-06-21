@@ -42,7 +42,6 @@ class AppointmentHistory extends React.Component {
       const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
           method: "get",
-          body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -52,11 +51,6 @@ class AppointmentHistory extends React.Component {
           const results = await response.json();
           console.log(results);
 
-          const cleared = {
-            vin: '',
-            appointment: ''
-          };
-          this.setState(cleared);
         }
     }
 
@@ -73,30 +67,37 @@ class AppointmentHistory extends React.Component {
                   <button type="button" className="btn btn-outline-primary">search</button>
               </div>
             </form>
-            
             </div>
-          <h1>Service Appointments</h1>
-          {/* {this.state.appointments.filter(appointment => 
-          appointment.vin === this.state.vin).map(filteredAppointment => {
-            return (
-              {filteredAppointment.vin}
-            )
-          })} */}
-          {this.state.appointments.filter(appointment => 
-            appointment.vin === this.state.vin).map(appointment => {
-              return (
-                <table>
+          <div className="appointment-list">
+            <h1>Service history</h1>
+                <table className="table table-striped">
                   <thead>
                     <tr>
                       <th>VIN</th>
                       <th>Customer name</th>
-                      <th>
-                    </th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Technician</th>
+                      <th>Reason</th>
+                    </tr>
                   </thead>
-                </table>={appointment.id} value={appointment.vin}>{appointment.vin}</li>
-              )
+                  <tbody>
+                  {this.state.appointments.filter(appointment => 
+                  appointment.vin === this.state.vin).map(appointment => {
+                  return (
+                    <tr key={ appointment.id }>
+                      <td>{ appointment.vin }</td>
+                      <td>{ appointment.customer_name }</td>
+                      <td>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
+                      <td>{ appointment.time }</td>
+                      <td>{ appointment.technician.name }</td>
+                      <td>{ appointment.reason }</td>
+                    </tr>
+                );
             })}
-        
+            </tbody>
+          </table>
+          </div>
         </div>
       );
   }

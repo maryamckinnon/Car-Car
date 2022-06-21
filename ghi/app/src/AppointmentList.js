@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 function AppointmentList(props) {
     console.log('beginning', props)
     
-    const deleteRow = (appointment) => {
-        const data = this.state.data.filter(i => i.id !== appointment.id)
-        console.log("delete", data)
-        this.setState({data})
-    }
+    // const deleteRow = (index) => {
+    //     const rows = this.state.data.filter(i => i.id !== appointment.id)
+    //     console.log("delete", data)
+    //     this.setState({data})
+    // }
+
+    // const options = { hour12: false};
 
     return (
         <div className="appointment-list">
@@ -27,13 +29,13 @@ function AppointmentList(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log('just before map', props.data.appointments)}
-                        {props.data.appointments.map(appointment => {
+                        {console.log('just before map', props.appointments)}
+                        {props.appointments && props.appointments.map(appointment => {
                             return (
                                 <tr key={ appointment.id }>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
-                                    <td>{ new Date(appointment.date).toLocaleDateString() }</td>
+                                    <td>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
                                     <td>{ appointment.time }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
@@ -43,6 +45,7 @@ function AppointmentList(props) {
                                             <i className="fa-solid fa-trash">Cancel</i>
                                         </button>
                                     </td> */}
+                                    <td><button>Cancel</button></td>
                                     <td><button>Finished</button></td>
                                 </tr>
                             );
