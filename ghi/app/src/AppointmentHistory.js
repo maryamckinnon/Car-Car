@@ -49,8 +49,8 @@ class AppointmentHistory extends React.Component {
         };
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
-          const listAppointments = await response.json();
-          console.log(listAppointments);
+          const results = await response.json();
+          console.log(results);
 
           const cleared = {
             vin: '',
@@ -76,12 +76,24 @@ class AppointmentHistory extends React.Component {
             
             </div>
           <h1>Service Appointments</h1>
+          {/* {this.state.appointments.filter(appointment => 
+          appointment.vin === this.state.vin).map(filteredAppointment => {
+            return (
+              {filteredAppointment.vin}
+            )
+          })} */}
           {this.state.appointments.filter(appointment => 
-          appointment.vin === this.state.vin)}
-          {console.log(this.state.appointments.filter(appointment => 
-            appointment.vin === this.state.vin)).map(appointment => {
+            appointment.vin === this.state.vin).map(appointment => {
               return (
-                {appointment}
+                <table>
+                  <thead>
+                    <tr>
+                      <th>VIN</th>
+                      <th>Customer name</th>
+                      <th>
+                    </th>
+                  </thead>
+                </table>={appointment.id} value={appointment.vin}>{appointment.vin}</li>
               )
             })}
         
