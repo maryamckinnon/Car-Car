@@ -6,7 +6,7 @@ class ModelForm extends React.Component {
       this.state = {
         name: '',
         pictureUrl: '',
-        manufacturerId: '',
+        manufacturers: [],
       };
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this);
@@ -14,16 +14,16 @@ class ModelForm extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // async componentDidMount() {
-    //     const url = 'http://localhost:8100/api/manufacturers/';
+    async componentDidMount() {
+        const url = 'http://localhost:8100/api/manufacturers/';
       
-    //     const response = await fetch(url);
+        const response = await fetch(url);
   
-    //     if (response.ok) {
-    //       const data = await response.json();
-    //       this.setState({manufacturers: data.manufacturers});
-    //     }
-    // }
+        if (response.ok) {
+          const data = await response.json();
+          this.setState({manufacturers: data.manufacturers});
+        }
+    }
 
     handleNameChange(event) {
       const value = event.target.value;
@@ -47,6 +47,7 @@ class ModelForm extends React.Component {
       data.manufacturer_id = data.manufacturerId
       delete data.pictureUrl;
       delete data.manufacturerId;
+      delete data.manufacturers;
       console.log("data", data);
 
       const modelUrl = 'http://localhost:8100/api/models/';
@@ -64,8 +65,8 @@ class ModelForm extends React.Component {
 
         const cleared = {
           name: '',
-          pictureUrl: '',
-          manufacturerId: '',
+          picture_url: '',
+          manufacturer_id: '',
         }
         this.setState(cleared);
       }
@@ -86,18 +87,18 @@ class ModelForm extends React.Component {
                   <div className="form-floating mb-3">
                     <input onChange={this.handlePictureUrlChange} placeholder="picture url" 
                     required type="url" name="picture url" 
-                    id="picture url" className="form-control" value={this.state.pictureUrl}/>
+                    id="picture url" className="form-control" value={this.state.picture_url}/>
                     <label htmlFor="picture url">Picture URL</label>
                   </div>
-                  <div className="form-floating mb-3">
+                  {/* <div className="form-floating mb-3">
                     <input onChange={this.handleManufacturerIdChange} placeholder="manufacturer id" 
                     required type="text" name="manufacturer id" 
                     id="manufacturer id" className="form-control" value={this.state.manufacturerId}/>
                     <label htmlFor="manufacturer id">Manufacturer</label>
-                  </div>
-                  {/* <div className="mb-3">
+                  </div> */}
+                  <div className="mb-3">
                     <select required id="manufacturer" className="form-select" name="manufacturer" 
-                    onChange={this.handleManufacturerChange} value={this.state.manufacturer}>
+                    onChange={this.handleManufacturerIdChange} value={this.state.manufacturer_id}>
                       <option value="">Choose a manufacturer</option>
                       {this.state.manufacturers.map(manufacturer => {
                         return (
@@ -107,7 +108,7 @@ class ModelForm extends React.Component {
                         );
                       })}
                     </select>
-                  </div> */}
+                  </div>
                   <button className="btn btn-primary">Create</button>
                 </form>
               </div>

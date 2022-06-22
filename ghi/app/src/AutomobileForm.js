@@ -7,7 +7,7 @@ class AutomobileForm extends React.Component {
         vin: '',
         color: '',
         year: '',
-        modelId: '',
+        models: [],
       };
       this.handleVinChange = this.handleVinChange.bind(this);
       this.handleColorChange = this.handleColorChange.bind(this);
@@ -16,16 +16,16 @@ class AutomobileForm extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // async componentDidMount() {
-    //   const url = 'http://localhost:8100/api/models/';
+    async componentDidMount() {
+      const url = 'http://localhost:8100/api/models/';
     
-    //   const response = await fetch(url);
+      const response = await fetch(url);
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     this.setState({models: data.models});
-    //   }
-    // }
+      if (response.ok) {
+        const data = await response.json();
+        this.setState({models: data.models});
+      }
+    }
 
     handleVinChange(event) {
       const value = event.target.value;
@@ -52,6 +52,7 @@ class AutomobileForm extends React.Component {
       const data = {...this.state};
       data.model_id = data.modelId;
       delete data.modelId;
+      delete data.models
       console.log("data", data);
 
       const autoUrl = 'http://localhost:8100/api/automobiles/';
@@ -72,7 +73,7 @@ class AutomobileForm extends React.Component {
             vin: '',
             color: '',
             year: '',
-            modelId: '',
+            model_id: '',
           };
           this.setState(cleared);
       }
@@ -102,22 +103,23 @@ class AutomobileForm extends React.Component {
                       type="text" name="year" id="year" className="form-control" value={this.state.year}/>
                       <label htmlFor="year">Year</label>
                   </div>
-                  <div className="form-floating mb-3">
+                  {/* <div className="form-floating mb-3">
                       <input onChange={this.handleModelIdChange} placeholder="model_id" required 
                       type="text" name="model id" id="model id" className="form-control" value={this.state.modelId}/>
                       <label htmlFor="model id">Model</label>
                   </div>
-                  {/* </div>
-                  <div className="mb-3"> */}
-                      {/* <select onChange={this.handleModelIdChange} required id="model" 
-                      className="form-select" name="model" value={this.state.modelId}>
+                  </div> */}
+                  <div className="mb-3">
+                      <select onChange={this.handleModelIdChange} required id="model" 
+                      className="form-select" name="model" value={this.state.model_id}>
                       <option value="">Model</option>
                       {this.state.models.map(model => {
                           return (
                               <option key={model.id} value={model.id}> {model.name} </option>
                           );
                       })}
-                      </select> */}
+                      </select>
+                  </div>
                   <button className="btn btn-primary">Create</button>
                 </form>
           </div>

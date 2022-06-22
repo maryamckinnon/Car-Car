@@ -78,6 +78,7 @@ class AppointmentHistory extends React.Component {
                       <th>Time</th>
                       <th>Technician</th>
                       <th>Reason</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,6 +92,7 @@ class AppointmentHistory extends React.Component {
                       <td>{ appointment.time }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
+                      <td>{ appointment.status.name }</td>
                     </tr>
                 );
             })}
