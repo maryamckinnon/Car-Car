@@ -19,7 +19,7 @@ function ModelList(props) {
                         <tr key={ model.id }>
                             <td>{ model.name }</td>
                             <td>{ model.manufacturer.name }</td>
-                            <td><img src={ model.picture_url }></img></td>
+                            <td><img src={ model.picture_url } height={100}></img></td>
                         </tr>
                     );
                 })}

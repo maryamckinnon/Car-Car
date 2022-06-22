@@ -57,7 +57,7 @@ class App extends React.Component {
     const response = await fetch("http://localhost:8100/api/models/");
     if(response.ok) {
       const data = await response.json();
-      this.setState({vehicleModels: data.vehicleModels});
+      this.setState({models: data.models});
     }
   }
 
