@@ -7,14 +7,25 @@ class AutomobileForm extends React.Component {
         vin: '',
         color: '',
         year: '',
-        models: [],
+        modelId: '',
       };
       this.handleVinChange = this.handleVinChange.bind(this);
       this.handleColorChange = this.handleColorChange.bind(this);
       this.handleYearChange = this.handleYearChange.bind(this);
-      this.handleModelChange = this.handleModelChange.bind(this);
+      this.handleModelIdChange = this.handleModelIdChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    // async componentDidMount() {
+    //   const url = 'http://localhost:8100/api/models/';
+    
+    //   const response = await fetch(url);
+
+    //   if (response.ok) {
+    //     const data = await response.json();
+    //     this.setState({models: data.models});
+    //   }
+    // }
 
     handleVinChange(event) {
       const value = event.target.value;
@@ -31,27 +42,29 @@ class AutomobileForm extends React.Component {
       this.setState({year: value})
     }
 
-    handleModelChange(event) {
+    handleModelIdChange(event) {
       const value = event.target.value;
-      this.setState({model: value})
+      this.setState({modelId: value})
     }
 
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
-      delete data.models
+      data.model_id = data.modelId;
+      delete data.modelId;
       console.log("data", data);
 
       const autoUrl = 'http://localhost:8100/api/automobiles/';
-        const fetchConfig = {
+      const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
           },
-        };
-        const response = await fetch(autoUrl, fetchConfig);
-        if (response.ok) {
+      };
+        
+      const response = await fetch(autoUrl, fetchConfig);
+      if (response.ok) {
           const newAuto = await response.json();
           console.log(newAuto);
 
@@ -59,10 +72,10 @@ class AutomobileForm extends React.Component {
             vin: '',
             color: '',
             year: '',
-            models: [],
+            modelId: '',
           };
           this.setState(cleared);
-        }
+      }
     }
     
     render() {
@@ -89,17 +102,22 @@ class AutomobileForm extends React.Component {
                       type="text" name="year" id="year" className="form-control" value={this.state.year}/>
                       <label htmlFor="year">Year</label>
                   </div>
-                  <div className="mb-3">
-                      <select onChange={this.handleModelChange} required id="model" 
-                      className="form-select" name="model" value={this.state.model}>
+                  <div className="form-floating mb-3">
+                      <input onChange={this.handleModelIdChange} placeholder="model_id" required 
+                      type="text" name="model id" id="model id" className="form-control" value={this.state.modelId}/>
+                      <label htmlFor="model id">Model</label>
+                  </div>
+                  {/* </div>
+                  <div className="mb-3"> */}
+                      {/* <select onChange={this.handleModelIdChange} required id="model" 
+                      className="form-select" name="model" value={this.state.modelId}>
                       <option value="">Model</option>
                       {this.state.models.map(model => {
                           return (
-                              <option key={model.id} value={model.href}> {model.name} </option>
+                              <option key={model.id} value={model.id}> {model.name} </option>
                           );
                       })}
-                      </select>
-                  </div>
+                      </select> */}
                   <button className="btn btn-primary">Create</button>
                 </form>
           </div>
