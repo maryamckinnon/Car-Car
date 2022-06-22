@@ -64,7 +64,6 @@ class AppointmentHistory extends React.Component {
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search" aria-label="Search" 
                   aria-describedby="search-addon" />
-                  <button type="button" className="btn btn-outline-primary">search</button>
               </div>
             </form>
             </div>
@@ -79,6 +78,7 @@ class AppointmentHistory extends React.Component {
                       <th>Time</th>
                       <th>Technician</th>
                       <th>Reason</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,6 +92,7 @@ class AppointmentHistory extends React.Component {
                       <td>{ appointment.time }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
+                      <td>{ appointment.status.name }</td>
                     </tr>
                 );
             })}

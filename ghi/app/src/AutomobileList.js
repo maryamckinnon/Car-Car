@@ -4,6 +4,8 @@ function AutomobileList(props) {
     console.log('beginning', props)
 
     return (
+        <div>
+        <h1>Automobile Inventory</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -15,8 +17,8 @@ function AutomobileList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log('just before map', props.data.autos)}
-                {props.data.autos.map(auto => {
+                {console.log('just before map', props.autos)}
+                {props.autos.map(auto => {
                     return (
                         <tr key={ auto.id }>
                             <td>{ auto.vin }</td>
@@ -29,6 +31,7 @@ function AutomobileList(props) {
                 })}
             </tbody>
         </table>
+        </div>
     );
 
 }

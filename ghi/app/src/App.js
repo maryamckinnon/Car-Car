@@ -49,7 +49,7 @@ class App extends React.Component {
     const response = await fetch("http://localhost:8100/api/automobiles/");
     if(response.ok) {
       const data = await response.json();
-      this.setState({automobiles: data.automobiles});
+      this.setState({autos: data.autos});
     }
   }
 
@@ -62,23 +62,40 @@ class App extends React.Component {
   }
 
   async loadManufacturers() {
-    const response = await fetch("http://localhost:8100/api/models");
+    const response = await fetch("http://localhost:8100/api/manufacturers/");
     if(response.ok) {
       const data = await response.json();
       this.setState({manufacturers: data.manufacturers})
     }
   }
 
-  async cancelAppointment(e) {
-    const filteredAppointments = this.state.appointments.filter(appointment => appointment !== e.target.value)
-    this.setState({appointment: filteredAppointments});
+  async cancelAppointment(appointment) {
+    if (window.confirm("Do you want to cancel this appointment?")) {
+      const appointmentUrl = `http://localhost:8080/api/appointments/${appointment.id}/canceled/`
+      const fetchConfig = {
+        method: "put",
+      }
+    const response = await fetch(appointmentUrl, fetchConfig);
+    if (response.ok) {
+        const newAppointments = this.state.appointments.filter((app) => appointment.id !== app.id)
+        this.setState({appointments: newAppointments})
+    }
+    } 
+  }
+
+  async finishAppointment(appointment) {
+    if (window.confirm("Confirm appointment is finished")) {
+      const appointmentUrl = `http://localhost:8080/api/appointments/${appointment.id}/finished/`
+      const fetchConfig = {
+        method: "put",
+      }
+    const response = await fetch(appointmentUrl, fetchConfig);
+    if (response.ok) {
+      const newAppointments = this.state.appointments.filter((app) => appointment.id !== app.id)
+      this.setState({appointments: newAppointments})
+    }
     }
   }
-
-  async finishAppointment() {
-
-  }
-
 
 
   render() {
@@ -87,8 +104,8 @@ class App extends React.Component {
       <Nav />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="manufacturers"/> 
-            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers}/>}>
+          <Route path="manufacturers"> 
+            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers}/> } />
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
           <Route path="models">
@@ -100,7 +117,8 @@ class App extends React.Component {
             <Route path="new" element={<AutomobileForm />} />
           </Route> 
           <Route path="appointments">
-            <Route path="" element={<AppointmentList appointments={this.state.appointments}/>} />
+            <Route path="" element={<AppointmentList appointments={this.state.appointments} 
+            cancel={this.cancelAppointment} finish={this.finishAppointment} />} />
             <Route path="new" element={<AppointmentForm />} />
             <Route path="details" element={<AppointmentHistory appointments={this.state.appointments}/>} />
           </Route>
@@ -109,9 +127,8 @@ class App extends React.Component {
           </Route>
         </Routes>
       </BrowserRouter>
-    )
+    );
   }
 }
-
 
 export default App;

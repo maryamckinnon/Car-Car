@@ -7,23 +7,19 @@ function ModelList(props) {
         <table className="table">
             <thead>
                 <tr>
-                    <th>VIN</th>
-                    <th>Color</th>
-                    <th>Year</th>
-                    <th>Model</th>
+                    <th>Name</th>
                     <th>Manufacturer</th>
+                    <th>Picture</th>
                 </tr>
             </thead>
             <tbody>
-                {console.log('just before map', props.data.autos)}
-                {props.data.autos.map(auto => {
+                {console.log('just before map', props.models)}
+                {props.models && props.models.map(model => {
                     return (
-                        <tr key={ auto.id }>
-                            <td>{ auto.vin }</td>
-                            <td>{ auto.color }</td>
-                            <td>{ auto.year }</td>
-                            <td>{ auto.model.name }</td>
-                            <td>{ auto.model.manufacturer.name }</td>
+                        <tr key={ model.id }>
+                            <td>{ model.name }</td>
+                            <td>{ model.manufacturer.name }</td>
+                            <td><img src={ model.picture_url }></img></td>
                         </tr>
                     );
                 })}

@@ -40,17 +40,16 @@ class AppointmentEncoder(ModelEncoder):
         "time",
         "technician",
         "reason",
+        "status"
     ]
     encoders = {
         "technician": TechnicianEncoder(),
+        "status": StatusEncoder()
     }
 
     def get_extra_data(self, o):
         count = AutomobileVO.objects.filter(vin=o.vin).count()
         return {"vip": count > 0}
-
-    def get_extra_data(self, o):
-        return {"status": o.status.name}
 
 
 @require_http_methods(["GET", "POST"])
@@ -84,7 +83,7 @@ def api_list_appointments(request):
 @require_http_methods(["PUT"])
 def api_finish_appointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
-    appointment.finished()
+    appointment.finish()
     return JsonResponse(
         appointment,
         encoder=AppointmentEncoder,
@@ -101,8 +100,6 @@ def api_cancel_appointment(request, pk):
         encoder=AppointmentEncoder,
         safe=False
     )
-
-
 
 
 @require_http_methods(["GET","DELETE"])
