@@ -3,14 +3,6 @@ import React, { useState } from 'react';
 
 function AppointmentList(props) {
     console.log('beginning', props)
-    
-    // const deleteRow = (index) => {
-    //     const rows = this.state.data.filter(i => i.id !== appointment.id)
-    //     console.log("delete", data)
-    //     this.setState({data})
-    // }
-
-    // const options = { hour12: false};
 
     return (
         <div className="appointment-list">

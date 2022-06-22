@@ -2,9 +2,16 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from common.json import ModelEncoder
-from .models import AutomobileVO, Technician, Appointment
+from .models import AutomobileVO, Technician, Appointment, Status
 import json
 # Create your views here.
+
+class StatusEncoder(ModelEncoder):
+    model = Status
+    properties = [
+        "id",
+        "name"
+    ]
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
@@ -42,6 +49,9 @@ class AppointmentEncoder(ModelEncoder):
         count = AutomobileVO.objects.filter(vin=o.vin).count()
         return {"vip": count > 0}
 
+    def get_extra_data(self, o):
+        return {"status": o.status.name}
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
@@ -69,6 +79,31 @@ def api_list_appointments(request):
                 encoder=AppointmentEncoder,
                 safe=False,
             )
+
+
+@require_http_methods(["PUT"])
+def api_finish_appointment(request, pk):
+    appointment = Appointment.objects.get(id=pk)
+    appointment.finished()
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False,
+    )
+
+
+@require_http_methods(["PUT"])
+def api_cancel_appointment(request, pk):
+    appointment = Appointment.objects.get(id=pk)
+    appointment.cancel()
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False
+    )
+
+
+
 
 @require_http_methods(["GET","DELETE"])
 def api_show_appointments(request, pk):

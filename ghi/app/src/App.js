@@ -26,7 +26,16 @@ class App extends React.Component {
     this.loadAutomobiles = this.loadAutomobiles.bind(this);
     this.loadVehicleModels = this.loadVehicleModels.bind(this);
     this.loadManufacturers = this.loadManufacturers.bind(this);
+    this.cancelAppointment = this.cancelAppointment.bind(this);
+    this.finishAppointment = this.finishAppointment.bind(this);
     }
+  
+  async componentDidMount() {
+    this.loadAppointments()
+    this.loadAutomobiles()
+    this.loadVehicleModels()
+    this.loadManufacturers()
+  }
 
   async loadAppointments() {
     const response = await fetch("http://localhost:8080/api/appointments/");
@@ -60,12 +69,17 @@ class App extends React.Component {
     }
   }
 
-  async componentDidMount() {
-    this.loadAppointments()
-    this.loadAutomobiles()
-    this.loadVehicleModels()
-    this.loadManufacturers()
+  async cancelAppointment(e) {
+    const filteredAppointments = this.state.appointments.filter(appointment => appointment !== e.target.value)
+    this.setState({appointment: filteredAppointments});
+    }
   }
+
+  async finishAppointment() {
+
+  }
+
+
 
   render() {
     return (
