@@ -9,8 +9,13 @@ import json
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = []
+    properties = [
+        "vin"
+    ]
 
+
+class SalesPerson(ModelEncoder):
+    model = SalesPerson
 
 def api_sales_person(request):
     
