@@ -6,38 +6,39 @@ class AppointmentHistory extends React.Component {
       super(props)
       this.state = {
         vin: '',
-        appointments: []
+        // appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
-      this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
+      // this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        const response = await fetch("http://localhost:8080/api/appointments/");
+    // async componentDidMount() {
+    //     const response = await fetch("http://localhost:8080/api/appointments/");
   
-        if (response.ok) {
-          const data = await response.json();
-          this.setState({appointments: data.appointments});
-        }
-    }
+    //     if (response.ok) {
+    //       const data = await response.json();
+    //       this.setState({appointments: data.appointments});
+    //     }
+    // }
 
     handleVinChange(event) {
       const value = event.target.value;
       this.setState({vin: value})
     }
 
-    handleAppointmentChange(event) {
-      const value = event.target.value;
-      this.setState({appointment: value})
-    }
+    // handleAppointmentChange(event) {
+    //   const value = event.target.value;
+    //   this.setState({appointment: value})
+    // }
 
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
       console.log("data", data);
 
-      const appointmentUrl = 'http://localhost:8080/api/appointments/';
+      const vin = data.appointments.vin
+      const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
         const fetchConfig = {
           method: "get",
           headers: {
@@ -82,8 +83,7 @@ class AppointmentHistory extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                  {this.state.appointments.filter(appointment => 
-                  appointment.vin === this.state.vin && appointment.status.id !== 1).map(appointment => {
+                  {this.state.appointments.map(appointment => {
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>
