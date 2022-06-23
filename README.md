@@ -6,6 +6,7 @@ Team:
 * Person 2 - Jacob - Auto Sales
 
 ## Design
+There are two main aggregate roots, one being "service" and the other being "sales". These are both considered aggregate roots because they are completely separate and not dependent on one another. Within "service," 
 
 ## Service microservice
 

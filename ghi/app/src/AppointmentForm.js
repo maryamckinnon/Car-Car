@@ -93,8 +93,10 @@ class AppointmentForm extends React.Component {
           reason: '',
         };
         this.setState(cleared);
+        this.props.load();
       }
     }
+
     
     render() {
         return (
