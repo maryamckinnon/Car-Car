@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { renderMatches } from 'react-router-dom';
-import AppointmentList from './AppointmentList';
+import React from 'react';
 
 
 class AppointmentHistory extends React.Component {
@@ -12,7 +10,7 @@ class AppointmentHistory extends React.Component {
       };
       this.handleVinChange = this.handleVinChange.bind(this);
       this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
-      this.handleSearch = this.handleSearch.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async componentDidMount() {
@@ -34,7 +32,7 @@ class AppointmentHistory extends React.Component {
       this.setState({appointment: value})
     }
 
-    async handleSearch(event) {
+    async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
       console.log("data", data);
@@ -45,30 +43,32 @@ class AppointmentHistory extends React.Component {
           headers: {
             'Content-Type': 'application/json',
           },
-        };
-        const response = await fetch(appointmentUrl, fetchConfig);
-        if (response.ok) {
-          const results = await response.json();
-          console.log(results);
+      };
+      const response = await fetch(appointmentUrl, fetchConfig);
+      if (response.ok) {
+        const newAppointmentList = await response.json();
+        console.log(newAppointmentList);
 
-        }
+      }
     }
 
     render() {
       return (
         <div>
           <div className="input-group">
-            <form onSubmit={this.handleSearch} id="search-vin">
-              <div className="form-outline">
+            <form onSubmit={this.handleSubmit} className="search-bar" id="search-vin">
+              <div className="form-floating-mb-3">
                 <input type="search" id="form1" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
                   aria-describedby="search-addon" />
               </div>
+              <button className="btn btn-primary">Search</button>
             </form>
             </div>
           <div className="appointment-list">
             <h1>Service history</h1>
+            {/* note: service history includes only canceled and finished appointments */}
                 <table className="table table-striped">
                   <thead>
                     <tr>
@@ -83,7 +83,7 @@ class AppointmentHistory extends React.Component {
                   </thead>
                   <tbody>
                   {this.state.appointments.filter(appointment => 
-                  appointment.vin === this.state.vin).map(appointment => {
+                  appointment.vin === this.state.vin && appointment.status.id !== 1).map(appointment => {
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>
