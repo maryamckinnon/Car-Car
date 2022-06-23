@@ -11,8 +11,8 @@ function ManufacturerList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log(props.data.manufacturers)}
-                {props.data.manufacturers.map(manufacturer => {
+                {console.log(props.manufacturers)}
+                {props.manufacturers.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>
                             <td>{ manufacturer.name }</td>

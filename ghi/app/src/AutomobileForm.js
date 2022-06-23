@@ -4,59 +4,127 @@ class AutomobileForm extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        name: '',
+        vin: '',
+        color: '',
+        year: '',
+        models: [],
       };
-      this.handleNameChange = this.handleNameChange.bind(this);
+      this.handleVinChange = this.handleVinChange.bind(this);
+      this.handleColorChange = this.handleColorChange.bind(this);
+      this.handleYearChange = this.handleYearChange.bind(this);
+      this.handleModelIdChange = this.handleModelIdChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleNameChange(event) {
+    async componentDidMount() {
+      const url = 'http://localhost:8100/api/models/';
+    
+      const response = await fetch(url);
+
+      if (response.ok) {
+        const data = await response.json();
+        this.setState({models: data.models});
+      }
+    }
+
+    handleVinChange(event) {
       const value = event.target.value;
-      this.setState({name: value})
+      this.setState({vin: value})
+    }
+
+    handleColorChange(event) {
+      const value = event.target.value;
+      this.setState({color: value})
+    }
+
+    handleYearChange(event) {
+      const value = event.target.value;
+      this.setState({year: value})
+    }
+
+    handleModelIdChange(event) {
+      const value = event.target.value;
+      this.setState({modelId: value})
     }
 
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
+      data.model_id = data.modelId;
+      delete data.modelId;
+      delete data.models
       console.log("data", data);
 
-      const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
-        const fetchConfig = {
+      const autoUrl = 'http://localhost:8100/api/automobiles/';
+      const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
           },
-        };
-        const response = await fetch(manufacturerUrl, fetchConfig);
-        if (response.ok) {
-          const newManufacturer = await response.json();
-          console.log(newManufacturer);
+      };
+        
+      const response = await fetch(autoUrl, fetchConfig);
+      if (response.ok) {
+          const newAuto = await response.json();
+          console.log(newAuto);
 
           const cleared = {
-            name: '',
+            vin: '',
+            color: '',
+            year: '',
+            model_id: '',
           };
           this.setState(cleared);
-        }
+      }
     }
     
     render() {
         return (
-            <div className="row">
+          <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
-                <h1>Create an automobile</h1>
-                <form onSubmit={this.handleSubmit} id="create-location-form">
+                <h1>Add an automobile to inventory</h1>
+                  <form onSubmit={this.handleSubmit} id="create-auto-form">
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleNameChange} placeholder="Name" required type="text" 
-                    name="name" id="name" className="form-control" value={this.state.name}/>
-                    <label htmlFor="name">Name</label>
+                      <input onChange={this.handleVinChange} placeholder="Vin" 
+                      required type="text" name="vin" 
+                      id="vin" className="form-control" value={this.state.vin}/>
+                      <label htmlFor="vin">VIN</label>
+                  </div>
+                  <div className="form-floating mb-3">
+                      <input onChange={this.handleColorChange} placeholder="Color" 
+                      required type="text" name="color" 
+                      id="color" className="form-control" value={this.state.color}/>
+                      <label htmlFor="color">Color</label>
+                  </div>
+                  <div className="form-floating mb-3">
+                      <input onChange={this.handleYearChange} placeholder="Year" required 
+                      type="text" name="year" id="year" className="form-control" value={this.state.year}/>
+                      <label htmlFor="year">Year</label>
+                  </div>
+                  {/* <div className="form-floating mb-3">
+                      <input onChange={this.handleModelIdChange} placeholder="model_id" required 
+                      type="text" name="model id" id="model id" className="form-control" value={this.state.modelId}/>
+                      <label htmlFor="model id">Model</label>
+                  </div>
+                  </div> */}
+                  <div className="mb-3">
+                      <select onChange={this.handleModelIdChange} required id="model" 
+                      className="form-select" name="model" value={this.state.model_id}>
+                      <option value="">Model</option>
+                      {this.state.models.map(model => {
+                          return (
+                              <option key={model.id} value={model.id}> {model.name} </option>
+                          );
+                      })}
+                      </select>
                   </div>
                   <button className="btn btn-primary">Create</button>
                 </form>
-              </div>
-            </div>
           </div>
+          </div>
+      </div>
         );
     }
 }
