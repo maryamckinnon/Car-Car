@@ -6,7 +6,9 @@ Team:
 * Person 2 - Jacob - Auto Sales
 
 ## Design
-There are two main aggregate roots, one being "service" and the other being "sales". These are both considered aggregate roots because they are completely separate and not dependent on one another. Within "service," 
+Based on the high dependency of "Auto Sales" on "Inventory", those should be in one bounded context with the the aggregate root being the "Inventory" and the "Auto Sales" being an aggregate. This was decided because "Inventory" can exist on its own while "Auto Sales" is directly dependent on "Inventory" in order to function. "Automobile Services" can function on its own, so it's a 
+
+The aggregate root in this project would be the inventory microservice with the aggregates being sales and service since both sales and service are dependent on the automobile inventory. 
 
 ## Service microservice
 
