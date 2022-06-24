@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from common.json import ModelEncoder
 from .models import AutomobileVO, SalesPerson, Customer, SalesRecord
 from django.http import JsonResponse
