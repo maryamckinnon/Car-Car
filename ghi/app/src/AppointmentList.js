@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 function AppointmentList(props) {
@@ -16,7 +16,7 @@ function AppointmentList(props) {
                             <th>Time</th>
                             <th>Technician</th>
                             <th>Reason</th>
-                            <th>Purchased from dealership</th>
+                            <th>VIP</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,10 +31,11 @@ function AppointmentList(props) {
                                     <td>{ appointment.time }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
-                                    <td>{ String(appointment.vip) }</td>
+                                    <td>{ (appointment.vip)? "YES":"NO" }</td>
                                     <td>
-                                        <button className="cancel" onClick={() => props.cancel(appointment)}>Cancel</button>
-                                        <button className="finish" onClick={() => props.finish(appointment)}>Finish</button>
+                                        <button className="btn btn-danger" onClick={() => props.cancel(appointment)}>Cancel</button>
+
+                                        <button className="btn btn-success" onClick={() => props.finish(appointment)}>Finish</button>
                                     </td>
                                 </tr>
                             );
@@ -47,8 +48,3 @@ function AppointmentList(props) {
 }
 
 export default AppointmentList;
-
-// delete(item){
-//     const data = this.state.data.filter(i => i.id !== item.id)
-//     this.setState({data})
-//   }

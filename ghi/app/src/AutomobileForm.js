@@ -76,6 +76,7 @@ class AutomobileForm extends React.Component {
             model_id: '',
           };
           this.setState(cleared);
+          this.props.load();
       }
     }
     
@@ -103,12 +104,6 @@ class AutomobileForm extends React.Component {
                       type="text" name="year" id="year" className="form-control" value={this.state.year}/>
                       <label htmlFor="year">Year</label>
                   </div>
-                  {/* <div className="form-floating mb-3">
-                      <input onChange={this.handleModelIdChange} placeholder="model_id" required 
-                      type="text" name="model id" id="model id" className="form-control" value={this.state.modelId}/>
-                      <label htmlFor="model id">Model</label>
-                  </div>
-                  </div> */}
                   <div className="mb-3">
                       <select onChange={this.handleModelIdChange} required id="model" 
                       className="form-select" name="model" value={this.state.model_id}>

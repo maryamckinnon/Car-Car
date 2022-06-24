@@ -102,26 +102,14 @@ def api_cancel_appointment(request, pk):
     )
 
 
-@require_http_methods(["GET","DELETE"])
-def api_show_appointments(request, pk):
-    if request.method == "GET":
-        appointment = Appointment.objects.get(id=pk)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
-    else:
-        try:
-            appointment = Appointment.objects.get(id=pk)
-            appointment.delete()
-            return JsonResponse(
-                appointment,
-                encoder=AppointmentEncoder,
-                safe=False,
-            )
-        except Appointment.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+@require_http_methods(["GET"])
+def api_show_appointments(request, vin):
+    appointment = Appointment.objects.filter(vin=vin)
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False,
+    )
 
 
 @require_http_methods(["GET", "POST"])

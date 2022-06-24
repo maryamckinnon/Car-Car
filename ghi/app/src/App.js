@@ -105,21 +105,21 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="manufacturers"> 
-            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers}/> } />
-            <Route path="new" element={<ManufacturerForm />} />
+            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers} /> } />
+            <Route path="new" element={<ManufacturerForm load={this.loadManufacturers}/>} />
           </Route>
           <Route path="models">
             <Route path="" element={<ModelList models={this.state.models}/> } />
-            <Route path="new" element={<ModelForm />} />
+            <Route path="new" element={<ModelForm load={this.loadVehicleModels}/>} />
           </Route>
           <Route path="automobiles">
             <Route path="" element={<AutomobileList autos={this.state.autos}/>} />
-            <Route path="new" element={<AutomobileForm />} />
+            <Route path="new" element={<AutomobileForm load={this.loadAutomobiles}/>} />
           </Route> 
           <Route path="appointments">
             <Route path="" element={<AppointmentList appointments={this.state.appointments} 
             cancel={this.cancelAppointment} finish={this.finishAppointment} />} />
-            <Route path="new" element={<AppointmentForm />} />
+            <Route path="new" element={<AppointmentForm load={this.loadAppointments}/>} />
             <Route path="details" element={<AppointmentHistory appointments={this.state.appointments}/>} />
           </Route>
           <Route path="technicians">

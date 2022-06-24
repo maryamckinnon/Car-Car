@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { renderMatches } from 'react-router-dom';
-import AppointmentList from './AppointmentList';
+import React from 'react';
 
 
 class AppointmentHistory extends React.Component {
@@ -11,59 +9,49 @@ class AppointmentHistory extends React.Component {
         appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
-      this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
-      this.handleSearch = this.handleSearch.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        const response = await fetch("http://localhost:8080/api/appointments/");
-  
-        if (response.ok) {
-          const data = await response.json();
-          this.setState({appointments: data.appointments});
-        }
-    }
 
     handleVinChange(event) {
       const value = event.target.value;
       this.setState({vin: value})
     }
 
-    handleAppointmentChange(event) {
-      const value = event.target.value;
-      this.setState({appointment: value})
-    }
 
-    async handleSearch(event) {
+    async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
-      console.log("data", data);
 
-      const appointmentUrl = 'http://localhost:8080/api/appointments/';
+      const vin = this.state.vin
+      const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
         const fetchConfig = {
           method: "get",
           headers: {
             'Content-Type': 'application/json',
           },
-        };
-        const response = await fetch(appointmentUrl, fetchConfig);
-        if (response.ok) {
-          const results = await response.json();
-          console.log(results);
-
+      };
+      const response = await fetch(appointmentUrl, fetchConfig);
+      if (response.ok) {
+        const results = await response.json()
+        this.setState({appointments: results})
+        if (results.length === 0){
+          alert("No matches were found")
         }
+      }
     }
+
 
     render() {
       return (
         <div>
-          <div className="input-group">
-            <form onSubmit={this.handleSearch} id="search-vin">
-              <div className="form-outline">
-                <input type="search" id="form1" 
+          <div>
+            <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
+              <div className="search-bar">
+                <input type="search" id="search-bar" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
-                  aria-describedby="search-addon" />
+                  aria-describedby="search-addon" /><button className="btn btn-primary">Search</button>
               </div>
             </form>
             </div>
@@ -82,8 +70,8 @@ class AppointmentHistory extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                  {this.state.appointments.filter(appointment => 
-                  appointment.vin === this.state.vin).map(appointment => {
+                    {/* specifically returns finished and canceled appointments only */}
+                  {this.state.appointments.filter(appointment => appointment.status.id !== 1).map(appointment => {
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>

@@ -69,6 +69,7 @@ class ModelForm extends React.Component {
           manufacturer_id: '',
         }
         this.setState(cleared);
+        this.props.load();
       }
     }
     

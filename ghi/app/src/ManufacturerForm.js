@@ -37,6 +37,7 @@ class ManufacturerForm extends React.Component {
             name: '',
           };
           this.setState(cleared);
+          this.props.load();
         }
     }
     
