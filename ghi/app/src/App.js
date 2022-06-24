@@ -12,6 +12,8 @@ import AppointmentHistory from './AppointmentHistory';
 import TechnicianForm from './TechnicianForm';
 import ModelForm from './ModelForm';
 import Nav from './Nav';
+import SalesPersonForm from './SalesPersonForm';
+import CustomerForm from './CustomerForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -124,6 +126,12 @@ class App extends React.Component {
           </Route>
           <Route path="technicians">
             <Route path="new" element={<TechnicianForm />} />
+          </Route>
+          <Route path="sales-person">
+            <Route path="new" element={<SalesPersonForm />} />
+          </Route>
+          <Route path="customers">
+            <Route path="new" element={<CustomerForm />} />
           </Route>
         </Routes>
       </BrowserRouter>
