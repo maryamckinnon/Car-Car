@@ -38,8 +38,8 @@ class AppointmentHistory extends React.Component {
         if (results.length === 0){
           alert("No matches were found")
         }
+        }
       }
-    }
 
 
     render() {
@@ -48,7 +48,7 @@ class AppointmentHistory extends React.Component {
           <div>
             <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
               <div className="search-bar">
-                <input type="search" id="search-bar" 
+                <input required type="search" id="search-bar" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
                   aria-describedby="search-addon" /><button className="btn btn-primary">Search</button>
