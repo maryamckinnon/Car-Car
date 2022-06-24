@@ -9,34 +9,19 @@ class AppointmentHistory extends React.Component {
         appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
-      // this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // async componentDidMount() {
-    //     const vin = this.state.vin
-    //     const response = await fetch(`http://localhost:8080/api/appointments/${vin}`);
-  
-    //     if (response.ok) {
-    //       const data = await response.json();
-    //       this.setState({appointments: data.appointments});
-    //     }
-    // }
 
     handleVinChange(event) {
       const value = event.target.value;
       this.setState({vin: value})
     }
 
-    // handleAppointmentChange(event) {
-    //   const value = event.target.value;
-    //   this.setState({appointment: value})
-    // }
 
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
-      console.log("data", data);
 
       const vin = this.state.vin
       const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
@@ -49,23 +34,25 @@ class AppointmentHistory extends React.Component {
       const response = await fetch(appointmentUrl, fetchConfig);
       if (response.ok) {
         const results = await response.json()
-        console.log("results", results)
         this.setState({appointments: results})
+        if (results.length === 0){
+          alert("No matches were found")
+        }
       }
     }
+
 
     render() {
       return (
         <div>
-          <div className="input-group">
-            <form onSubmit={this.handleSubmit} className="search-bar" id="search-vin">
-              <div className="form-floating-mb-3">
-                <input type="search" id="form1" 
+          <div>
+            <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
+              <div className="search-bar">
+                <input type="search" id="search-bar" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
-                  aria-describedby="search-addon" />
+                  aria-describedby="search-addon" /><button className="btn btn-primary">Search</button>
               </div>
-              <button className="btn btn-primary">Search</button>
             </form>
             </div>
           <div className="appointment-list">
@@ -83,7 +70,8 @@ class AppointmentHistory extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                  {this.state.appointments.map(appointment => {
+                    {/* specifically returns finished and canceled appointments only */}
+                  {this.state.appointments.filter(appointment => appointment.status.id !== 1).map(appointment => {
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>

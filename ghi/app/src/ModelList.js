@@ -4,7 +4,7 @@ function ModelList(props) {
     console.log('beginning', props)
 
     return (
-        <table className="table">
+        <table className="table table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
