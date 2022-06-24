@@ -6,7 +6,7 @@ class AppointmentHistory extends React.Component {
       super(props)
       this.state = {
         vin: '',
-        // appointments: []
+        appointments: []
       };
       this.handleVinChange = this.handleVinChange.bind(this);
       // this.handleAppointmentChange = this.handleAppointmentChange.bind(this)
@@ -14,7 +14,8 @@ class AppointmentHistory extends React.Component {
     }
 
     // async componentDidMount() {
-    //     const response = await fetch("http://localhost:8080/api/appointments/");
+    //     const vin = this.state.vin
+    //     const response = await fetch(`http://localhost:8080/api/appointments/${vin}`);
   
     //     if (response.ok) {
     //       const data = await response.json();
@@ -37,7 +38,7 @@ class AppointmentHistory extends React.Component {
       const data = {...this.state};
       console.log("data", data);
 
-      const vin = data.appointments.vin
+      const vin = this.state.vin
       const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
         const fetchConfig = {
           method: "get",
@@ -47,9 +48,9 @@ class AppointmentHistory extends React.Component {
       };
       const response = await fetch(appointmentUrl, fetchConfig);
       if (response.ok) {
-        const newAppointmentList = await response.json();
-        console.log(newAppointmentList);
-
+        const results = await response.json()
+        console.log("results", results)
+        this.setState({appointments: results})
       }
     }
 
@@ -69,7 +70,6 @@ class AppointmentHistory extends React.Component {
             </div>
           <div className="appointment-list">
             <h1>Service history</h1>
-            {/* note: service history includes only canceled and finished appointments */}
                 <table className="table table-striped">
                   <thead>
                     <tr>
