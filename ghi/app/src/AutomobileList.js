@@ -1,7 +1,6 @@
 import React from 'react';
 
 function AutomobileList(props) {
-    console.log('beginning', props)
 
     return (
         <div>
@@ -17,7 +16,6 @@ function AutomobileList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log('just before map', props.autos)}
                 {props.autos.map(auto => {
                     return (
                         <tr key={ auto.id }>

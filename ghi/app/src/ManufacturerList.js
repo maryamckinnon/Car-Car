@@ -2,9 +2,6 @@ import React from 'react';
 
 
 function ManufacturerList(props) {
-    console.log(props)
-
-
 
     return (
         <table className="table table-striped">
@@ -14,7 +11,6 @@ function ManufacturerList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log(props.manufacturers)}
                 {props.manufacturers.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>

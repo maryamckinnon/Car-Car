@@ -53,7 +53,6 @@ class AutomobileForm extends React.Component {
       data.model_id = data.modelId;
       delete data.modelId;
       delete data.models
-      console.log("data", data);
 
       const autoUrl = 'http://localhost:8100/api/automobiles/';
       const fetchConfig = {

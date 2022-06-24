@@ -68,7 +68,6 @@ class AppointmentForm extends React.Component {
       data.customer_name = data.customerName;
       delete data.customerName;
       delete data.technicians;
-      console.log("data", data);
 
       const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
@@ -82,7 +81,6 @@ class AppointmentForm extends React.Component {
       const response = await fetch(appointmentUrl, fetchConfig);
       if (response.ok) {
         const newAppointment = await response.json();
-        console.log(newAppointment);
 
         const cleared = {
           vin: '',
