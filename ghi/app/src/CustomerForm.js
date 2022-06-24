@@ -1,6 +1,6 @@
 import React from 'react'
 
-class CustomerForm extends React.component {
+class CustomerForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,7 +33,6 @@ class CustomerForm extends React.component {
         const data = {...this.state};
         data.phone_number = data.phoneNumber;
         delete data.phoneNumber;
-        console.log("data", data);
 
         const customerUrl = 'http://localhost:8090/api/customers/';
         const fetchConfig = {
@@ -47,7 +46,6 @@ class CustomerForm extends React.component {
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
             const newCustomer = await response.json();
-            console.log(newCustomer);
 
             const cleared = {
                 name: '',

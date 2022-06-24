@@ -26,7 +26,6 @@ class SalesPersonForm extends React.Component {
         const data = {...this.state};
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
-        console.log("data", data);
 
         const salesPersonUrl = 'http://localhost:8090/api/sales-people/';
         const fetchConfig = {
@@ -40,7 +39,6 @@ class SalesPersonForm extends React.Component {
         const response = await fetch(salesPersonUrl, fetchConfig);
         if (response.ok) {
             const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
 
             const cleared = {
                 name: '',

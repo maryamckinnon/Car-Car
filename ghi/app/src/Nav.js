@@ -49,10 +49,10 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/customers/new">Add a potential customer</NavLink>
             </li>
-            {/* <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/sales/new">Create a sale record</NavLink>
-            </li>
             <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/sales-records/new">Create a sale record</NavLink>
+            </li>
+            {/* <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/sales/">Sales</NavLink>
             </li>
             <li className="nav-item">

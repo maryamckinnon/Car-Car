@@ -9,6 +9,7 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin",
+        "id",
     ]
 
 
@@ -34,11 +35,17 @@ class CustomerEncoder(ModelEncoder):
 class SalesRecordEncoder(ModelEncoder):
     model = SalesRecord
     properties = [
+        "automobile",
         "sales_person",
         "customer",
         "sales_price",
         "id",
     ]
+    encoders = {
+        "automobile": AutomobileVOEncoder(),
+        "sales_person": SalesPersonEncoder(),
+        "customer": CustomerEncoder()
+    }
 
 
 @require_http_methods(["GET"])
@@ -62,7 +69,7 @@ def sales_person_list(request):
         )
     else:
         content = json.loads(request.body)
-        sales_person = SalesPerson.create(**content)
+        sales_person = SalesPerson.objects.create(**content)
         return JsonResponse(
             sales_person,
             encoder=SalesPersonEncoder,
@@ -124,7 +131,7 @@ def sales_record_list(request):
         content = {
             **content,
             "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-            "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
+            "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
             "customer": Customer.objects.get(pk=content["customer"])
         }
         sales_record = SalesRecord.objects.create(**content)
