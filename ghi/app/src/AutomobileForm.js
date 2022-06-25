@@ -66,7 +66,6 @@ class AutomobileForm extends React.Component {
       const response = await fetch(autoUrl, fetchConfig);
       if (response.ok) {
           const newAuto = await response.json();
-          console.log(newAuto);
 
           const cleared = {
             vin: '',

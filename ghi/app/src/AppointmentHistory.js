@@ -70,8 +70,7 @@ class AppointmentHistory extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* specifically returns finished and canceled appointments only */}
-                  {this.state.appointments.filter(appointment => appointment.status.id !== 1).map(appointment => {
+                  {this.state.appointments.map(appointment => {
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>
