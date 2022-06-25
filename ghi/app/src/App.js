@@ -15,17 +15,21 @@ import Nav from './Nav';
 import SalesPersonForm from './SalesPersonForm';
 import CustomerForm from './CustomerForm';
 import SalesRecordForm from './SalesRecordForm';
+import SalesRecordList from './SalesRecordList';
+import SalesRecordFiltered from './SalesRecordFiltered';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state={
       appointments: [],
+      sales_records: [],
       autos: [],
       models: [],
       manufacturers: []
     };
     this.loadAppointments = this.loadAppointments.bind(this);
+    this.loadSalesRecords = this.loadSalesRecords.bind(this);
     this.loadAutomobiles = this.loadAutomobiles.bind(this);
     this.loadVehicleModels = this.loadVehicleModels.bind(this);
     this.loadManufacturers = this.loadManufacturers.bind(this);
@@ -35,6 +39,7 @@ class App extends React.Component {
   
   async componentDidMount() {
     this.loadAppointments()
+    this.loadSalesRecords()
     this.loadAutomobiles()
     this.loadVehicleModels()
     this.loadManufacturers()
@@ -45,6 +50,14 @@ class App extends React.Component {
     if(response.ok) {
       const data = await response.json();
       this.setState({appointments: data.appointments});
+    }
+  }
+
+  async loadSalesRecords() {
+    const response = await fetch("http://localhost:8090/api/sales-records/");
+    if(response.ok) {
+      const data = await response.json();
+      this.setState({sales_records: data.sales_records});
     }
   }
 
@@ -135,6 +148,8 @@ class App extends React.Component {
             <Route path="new" element={<CustomerForm />} />
           </Route>
           <Route path="sales-records">
+            <Route path="" element={<SalesRecordList sales_records={this.state.sales_records}/>} />
+            <Route path="filtered" element={<SalesRecordFiltered sales_records={this.state.sales_records}/>} />
             <Route path="new" element={<SalesRecordForm />} />
           </Route>
         </Routes>

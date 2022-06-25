@@ -52,12 +52,12 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/sales-records/new">Create a sale record</NavLink>
             </li>
-            {/* <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/sales/">Sales</NavLink>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/sales-records/">All Sales Records</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/salesperson/details/">Sales person history</NavLink>
-            </li> */}
+              <NavLink className="nav-link" aria-current="page" to="/sales-records/filtered/">Filtered Sales Records</NavLink>
+            </li>
           </ul>
         </div>
       </div>
