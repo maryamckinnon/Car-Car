@@ -2,7 +2,6 @@ import React from 'react';
 
 
 function AppointmentList(props) {
-    console.log('beginning', props)
 
     return (
         <div className="appointment-list">
@@ -21,7 +20,6 @@ function AppointmentList(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log('just before map', props.appointments)}
                         {props.appointments && props.appointments.filter(appointment => appointment.status.id === 1).map(appointment => {
                             return (
                                 <tr key={ appointment.id }>

@@ -53,7 +53,6 @@ class AutomobileForm extends React.Component {
       data.model_id = data.modelId;
       delete data.modelId;
       delete data.models
-      console.log("data", data);
 
       const autoUrl = 'http://localhost:8100/api/automobiles/';
       const fetchConfig = {
@@ -67,7 +66,6 @@ class AutomobileForm extends React.Component {
       const response = await fetch(autoUrl, fetchConfig);
       if (response.ok) {
           const newAuto = await response.json();
-          console.log(newAuto);
 
           const cleared = {
             vin: '',

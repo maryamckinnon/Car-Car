@@ -48,7 +48,6 @@ class ModelForm extends React.Component {
       delete data.pictureUrl;
       delete data.manufacturerId;
       delete data.manufacturers;
-      console.log("data", data);
 
       const modelUrl = 'http://localhost:8100/api/models/';
       const fetchConfig = {
@@ -61,7 +60,6 @@ class ModelForm extends React.Component {
       const response = await fetch(modelUrl, fetchConfig);
       if (response.ok) {
         const newModel = await response.json();
-        console.log(newModel);
 
         const cleared = {
           name: '',
@@ -91,12 +89,6 @@ class ModelForm extends React.Component {
                     id="picture url" className="form-control" value={this.state.picture_url}/>
                     <label htmlFor="picture url">Picture URL</label>
                   </div>
-                  {/* <div className="form-floating mb-3">
-                    <input onChange={this.handleManufacturerIdChange} placeholder="manufacturer id" 
-                    required type="text" name="manufacturer id" 
-                    id="manufacturer id" className="form-control" value={this.state.manufacturerId}/>
-                    <label htmlFor="manufacturer id">Manufacturer</label>
-                  </div> */}
                   <div className="mb-3">
                     <select required id="manufacturer" className="form-select" name="manufacturer" 
                     onChange={this.handleManufacturerIdChange} value={this.state.manufacturer_id}>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ModelList(props) {
-    console.log('beginning', props)
 
     return (
         <table className="table table-striped">
@@ -13,7 +12,6 @@ function ModelList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log('just before map', props.models)}
                 {props.models && props.models.map(model => {
                     return (
                         <tr key={ model.id }>
