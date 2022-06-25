@@ -5,6 +5,8 @@ Team:
 * Person 1 - Mary - Automobile Service
 * Person 2 - Jacob - Auto Sales
 
+NOTE: For our lists, errors will occur if the database is empty
+
 ## Design
 In general, in Domain-driven design, microservices are typically their own bounded contexts it seems, which is why they're able to be split up into microservices in the first place. "Sales," "Services," and "Inventory" are each their own separate microservices, meaning that they are able to function on their own in some capacity, meaning they could possibly each be their own bounded context. However, "Sales" is directly dependent on "Inventory" because one can't sell cars without knowing what cars are in the inventory to sell, so putting them together in one bounded context makes sense. "Services," on the other hand, is not directly dependent on "Inventory" in order to fully function, so it can be in it's own bounded context.
 
