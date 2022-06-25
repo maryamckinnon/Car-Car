@@ -17,7 +17,7 @@ With the bounded context of "Services," automobiles are considered value objects
 
 
 ## Service microservice
-The models that will are necessary for "Services" include Technician, Appointment, AutomobileVO, and a Status model (to handle the status of appointments -- scheduled, canceled, and finished). Appointment has two ForeignKeys, one to Status and the other to Technicians, each of which demonstrating a one-to-many relationship with Appointment. I wrote two functions within the Appointment model in order to define when an appointment is considered finished vs canceled, with the default status when an appointment is created being "scheduled." 
+The models that are necessary for "Services" include Technician, Appointment, AutomobileVO, and a Status model (to handle the status of appointments -- scheduled, canceled, and finished). Appointment has two ForeignKeys, one to Status and the other to Technicians, each of which demonstrating a one-to-many relationship with Appointment. I wrote two functions within the Appointment model in order to define when an appointment is considered finished vs canceled, with the default status when an appointment is created being "scheduled." 
 
 The AutomobileVO model represents the Automobile model from "Inventory," but is labeled as a value object since within "Services," this class is considered immutable (since we can't change the VIN of an automobile that already exists). AutomobileVO will poll data from "Inventory" via "poller.py". The data that we need from the inventory microservice is the VIN number so that we can compare VIN numbers in "Inventory" to VIN numbers in the Appointment model within "Services" to determine if a customer is a "VIP".
 
@@ -25,3 +25,6 @@ The AutomobileVO model represents the Automobile model from "Inventory," but is 
 ## Sales microservice
 Explain your models and integration with the inventory
 microservice, here.
+The models I usesd for the Sales microservice are AutomobileVO, SalesPerson, Customer, and SalesRecord. All of my models are relatively simple other than SalesRecord which has three foreign keys, one for each of the other models. AutomobileVO has a one to one relationship with SalesRecord. Customer has a one to many relationship with SalesRecord. SalesPerson has a one to many relationship with SalesRecord. 
+
+The AutomobileVO represents the Automobile model from the Inventory microservice, and it is a value object which means it's immutable. We pull the automobiles from inventory using our poller.
