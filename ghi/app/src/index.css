@@ -12,7 +12,10 @@ code {
     monospace;
 }
 
-.search-vin{
-  width: 40%;
+.search-bar{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
   height: auto;
 }

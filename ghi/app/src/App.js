@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import MainPage from './MainPage';
 import AutomobileList from './AutomobileList';
 import AutomobileForm from './AutomobileForm';
@@ -18,6 +18,7 @@ import SalesRecordForm from './SalesRecordForm';
 import SalesRecordList from './SalesRecordList';
 import SalesRecordFiltered from './SalesRecordFiltered';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -35,6 +36,9 @@ class App extends React.Component {
     this.loadManufacturers = this.loadManufacturers.bind(this);
     this.cancelAppointment = this.cancelAppointment.bind(this);
     this.finishAppointment = this.finishAppointment.bind(this);
+    this.deleteManufacturer = this.deleteManufacturer.bind(this);
+    this.deleteModel = this.deleteModel.bind(this);
+    this.deleteAutomobile = this.deleteAutomobile.bind(this);
     }
   
   async componentDidMount() {
@@ -113,6 +117,49 @@ class App extends React.Component {
     }
   }
 
+  async deleteManufacturer (manufacturer) {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      const manufacturerUrl = `http://localhost:8100/api/manufacturers/${manufacturer.id}/`
+      const fetchConfig = {
+        method: "delete",
+      }
+    const response = await fetch(manufacturerUrl, fetchConfig);
+    if (response.ok) {
+      const newManufacturers = this.state.manufacturers.filter((man) => manufacturer.id !== man.id)
+      this.setState({manufacturers: newManufacturers})
+    }
+    }
+  }
+
+  async deleteModel (model) {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      const modelUrl = `http://localhost:8100/api/models/${model.id}/`
+      const fetchConfig = {
+        method: "delete",
+      }
+    const response = await fetch(modelUrl, fetchConfig);
+    if (response.ok) {
+      const newModels = this.state.models.filter((mod) => model.id !== mod.id)
+      this.setState({models: newModels})
+    }
+    }
+  }
+
+  async deleteAutomobile (auto) {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      const autoUrl = `http://localhost:8100/api/automobiles/${auto.id}/`
+      const fetchConfig = {
+        method: "delete",
+      }
+      const response = await fetch(autoUrl, fetchConfig);
+      if (response.ok) {
+        const newAutos = this.state.models.filter((car) => car.id !== auto.id)
+        this.setState({autos: newAutos})
+      }
+    }
+  }
+
+
 
   render() {
     return (
@@ -121,15 +168,15 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="manufacturers"> 
-            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers} /> } />
+            <Route path="" element={<ManufacturerList manufacturers={this.state.manufacturers} delete={this.deleteManufacturer}/> } />
             <Route path="new" element={<ManufacturerForm load={this.loadManufacturers}/>} />
           </Route>
           <Route path="models">
-            <Route path="" element={<ModelList models={this.state.models}/> } />
+            <Route path="" element={<ModelList models={this.state.models} delete={this.deleteModel}/>} />
             <Route path="new" element={<ModelForm load={this.loadVehicleModels}/>} />
           </Route>
           <Route path="automobiles">
-            <Route path="" element={<AutomobileList autos={this.state.autos}/>} />
+            <Route path="" element={<AutomobileList autos={this.state.autos} delete={this.deleteAutomobile} />} />
             <Route path="new" element={<AutomobileForm load={this.loadAutomobiles}/>} />
           </Route> 
           <Route path="appointments">

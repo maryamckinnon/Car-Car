@@ -8,6 +8,7 @@ function ManufacturerList(props) {
             <thead>
                 <tr>
                     <th>Manufacturer</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -15,6 +16,7 @@ function ManufacturerList(props) {
                     return (
                         <tr key={ manufacturer.id }>
                             <td>{ manufacturer.name }</td>
+                            <td><button className="btn btn-danger" onClick={() => props.delete(manufacturer)}>Delete</button></td>
                         </tr>
                     );
                 })}
