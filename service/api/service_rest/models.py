@@ -1,5 +1,4 @@
 from django.db import models
-# from common.utils import ChoiceEnum
 
 # Create your models here.
 
