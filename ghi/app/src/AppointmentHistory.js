@@ -48,11 +48,12 @@ class AppointmentHistory extends React.Component {
         <div>
           <div>
             <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
-              <div className="search-bar">
+              <div className="input-group">
                 <input required type="search" id="search-bar" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
-                  aria-describedby="search-addon" /><button className="btn btn-primary">Search</button>
+                  aria-describedby="search-addon" ></input> 
+                <button className="btn btn-primary">Search</button>
               </div>
             </form>
             </div>

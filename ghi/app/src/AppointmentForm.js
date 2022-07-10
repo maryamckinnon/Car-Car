@@ -77,7 +77,7 @@ class AppointmentForm extends React.Component {
                     <div className="form-floating mb-3">
                         <input onChange={this.handleChange} placeholder="customer_name" 
                         required type="text" name="customer_name" 
-                        id="customer_name" className="form-control" value={this.state.customerName}/>
+                        id="customer_name" className="form-control" value={this.state.customer_name}/>
                         <label htmlFor="customer-name">Customer Name</label>
                     </div>
                     <div className="form-floating mb-3">

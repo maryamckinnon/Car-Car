@@ -17,6 +17,7 @@ import CustomerForm from './CustomerForm';
 import SalesRecordForm from './SalesRecordForm';
 import SalesRecordList from './SalesRecordList';
 import SalesRecordFiltered from './SalesRecordFiltered';
+import './index.css';
 
 
 class App extends React.Component {

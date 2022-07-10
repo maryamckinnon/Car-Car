@@ -13,6 +13,7 @@ export default function SalesRecordList({ sales_records }) {
                         <div className="form-group">
                             <div className="input-group">
                                 <input onChange={event => setSearch(event.target.value)} className="form-control" type="text" placeholder="Search by Sales Person" />
+                                <button className="btn btn-primary">Search</button>
                             </div>
                         </div>
                     </form>
@@ -28,9 +29,8 @@ export default function SalesRecordList({ sales_records }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {sales_records
-                            .filter(record => record.sales_person.name.includes(search))
-                            ?.map(record => {
+                        {sales_records.filter(record => record.sales_person.name.includes(search))
+                            .map(record => {
                                 return (
                                     <tr key={record.id}>
                                         <td>{record.sales_person.name}</td>
