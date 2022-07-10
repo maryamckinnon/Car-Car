@@ -1,10 +1,5 @@
 # CarCar
 
-Team:
-
-* Person 1 - Mary - Automobile Service
-* Person 2 - Jacob - Auto Sales
-
 NOTE: For our lists, errors will occur if the database is empty
 NOTE: Status default is set to 1 for appointments. 1 = "SCHEDULED", 2 = "FINISHED", 3 = CANCELED"
 
