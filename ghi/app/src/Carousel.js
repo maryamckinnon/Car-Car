@@ -1,7 +1,8 @@
 import { Carousel } from "react-bootstrap";
 import red from "./images/red.jpg";
-import blue from "./images/blue.jpg";
+// import blue from "./images/blue.jpg";
 import white from "./images/white.jpg";
+import silver from "./images/silver.jpg";
 
 function CarouselFade() {
   return (
@@ -17,7 +18,7 @@ function CarouselFade() {
         <img
           className="d-block"
           style={{ overflow: "hidden" }}
-          src={blue}
+          src={silver}
           alt="First slide"
         />
       </Carousel.Item>
