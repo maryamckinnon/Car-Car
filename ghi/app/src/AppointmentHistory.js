@@ -47,28 +47,29 @@ class AppointmentHistory extends React.Component {
       return (
         <div>
           <div>
+            <h1>SERVICE HISTORY</h1>
             <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
               <div className="input-group">
                 <input required type="search" id="search-bar" 
                   onChange={this.handleVinChange} value={this.state.vin} 
                   className="form-control rounded" placeholder="Search VIN" aria-label="Search" 
-                  aria-describedby="search-addon" ></input> 
+                  aria-describedby="search-addon"></input> 
                 <button className="btn btn-primary">Search</button>
               </div>
             </form>
             </div>
           <div className="appointment-list">
-            <h1>Service history</h1>
-                <table className="table">
+            
+                <table className="table" style={{marginTop: 75}}>
                   <thead>
                     <tr>
                       <th>VIN</th>
-                      <th>Customer name</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Technician</th>
-                      <th>Reason</th>
-                      <th>Status</th>
+                      <th>CUSTOMER</th>
+                      <th>DATE</th>
+                      <th>TIME</th>
+                      <th>TECHNICIAN</th>
+                      <th>REASON</th>
+                      <th>STATUS</th>
                     </tr>
                   </thead>
                   <tbody>

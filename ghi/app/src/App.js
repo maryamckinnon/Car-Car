@@ -11,12 +11,13 @@ import AppointmentForm from './AppointmentForm';
 import AppointmentHistory from './AppointmentHistory';
 import TechnicianForm from './TechnicianForm';
 import ModelForm from './ModelForm';
-import Nav from './Nav';
+import Nav from './components/Nav';
 import SalesPersonForm from './SalesPersonForm';
 import CustomerForm from './CustomerForm';
 import SalesRecordForm from './SalesRecordForm';
 import SalesRecordList from './SalesRecordList';
 import SalesRecordFiltered from './SalesRecordFiltered';
+import Footer from "./components/Footer";
 import './index.css';
 
 
@@ -201,6 +202,7 @@ class App extends React.Component {
             <Route path="new" element={<SalesRecordForm />} />
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     );
   }

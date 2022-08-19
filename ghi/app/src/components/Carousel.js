@@ -1,8 +1,7 @@
 import { Carousel } from "react-bootstrap";
-import red from "./images/red.jpg";
-// import blue from "./images/blue.jpg";
-import white from "./images/white.jpg";
-import silver from "./images/silver.jpg";
+import red from "../images/red.jpg";
+import white from "../images/white.jpg";
+import silver from "../images/silver.jpg";
 
 function CarouselFade() {
   return (
@@ -11,7 +10,7 @@ function CarouselFade() {
         <Carousel.Caption>
           <div className="text-center">
             <h1 className="display-5 fw-bold text-on-image" style={{fontSize: "25px"}}>
-              The premiere solution for automobile dealership management
+            The premiere solution for automobile dealership management
             </h1>
           </div>
         </Carousel.Caption>
@@ -27,7 +26,7 @@ function CarouselFade() {
         <Carousel.Caption>
           <div className="text-center">
             <h1 className="display-5 fw-bold text-on-image" style={{fontSize: "25px"}}>
-              The premiere solution for automobile dealership management
+            The premiere solution for automobile dealership management
             </h1>
           </div>
         </Carousel.Caption>

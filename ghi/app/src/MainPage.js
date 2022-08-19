@@ -1,4 +1,4 @@
-import CarouselFade from "./Carousel.js";
+import CarouselFade from "./components/Carousel.js";
 
 function MainPage() {
   return (
