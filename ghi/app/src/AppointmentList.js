@@ -17,7 +17,7 @@ function AppointmentList(props) {
                             <th>Technician</th>
                             <th>Reason</th>
                             <th>VIP</th>
-                            <th>Cancel</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +25,7 @@ function AppointmentList(props) {
                             return (
                                 <tr key={ appointment.id }>
                                     <td>
-                                        <button className="btn btn-success" onClick={() => props.finish(appointment)}>FINISH</button>
+                                        <button className="btn btn-success" onClick={() => props.finish(appointment)}>✔</button>
                                     </td>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
@@ -33,9 +33,9 @@ function AppointmentList(props) {
                                     <td>{ appointment.time }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
-                                    <td>{ (appointment.vip)? "✔" :"" }</td>
+                                    <td>{ (appointment.vip)? "⭐" :"" }</td>
                                     <td>
-                                        <button className="btn btn-danger" onClick={() => props.cancel(appointment)}>X</button>
+                                        <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => props.cancel(appointment)}>X</button>
                                     </td>
                                 </tr>
                             );

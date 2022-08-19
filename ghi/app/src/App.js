@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import MainPage from './MainPage';
 import AutomobileList from './AutomobileList';
 import AutomobileForm from './AutomobileForm';

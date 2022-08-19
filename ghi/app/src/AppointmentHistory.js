@@ -42,7 +42,7 @@ class AppointmentHistory extends React.Component {
         }
       }
 
-
+      
     render() {
       return (
         <div>
@@ -59,7 +59,7 @@ class AppointmentHistory extends React.Component {
             </div>
           <div className="appointment-list">
             <h1>Service history</h1>
-                <table className="table table-striped">
+                <table className="table">
                   <thead>
                     <tr>
                       <th>VIN</th>
@@ -81,7 +81,7 @@ class AppointmentHistory extends React.Component {
                       <td>{ appointment.time }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
-                      <td>{ appointment.status.name }</td>
+                      <td>{appointment.status.name } </td>
                     </tr>
                 );
             })}
