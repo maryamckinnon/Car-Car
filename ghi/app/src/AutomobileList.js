@@ -27,7 +27,7 @@ function AutomobileList(props) {
                             <td>{ auto.year }</td>
                             <td>{ auto.model.name }</td>
                             <td>{ auto.model.manufacturer.name }</td>
-                            <td><button className="btn btn-danger" onClick={() => props.delete(auto)}>Delete</button></td>
+                            <td><button className="btn btn-danger" onClick={() => props.delete(auto)}>X</button></td>
                         </tr>
                     );
                 })}

@@ -1,7 +1,20 @@
 # CarCar
 
-NOTE: For our lists, errors will occur if the database is empty
 NOTE: Status default is set to 1 for appointments. 1 = "SCHEDULED", 2 = "FINISHED", 3 = CANCELED"
+
+
+## Intended market
+
+The expected intended market is car dealerships looking for a program to assist in managing automobile inventory, service appointments, and sales.
+
+
+## Functionality
+
+* Users can add or remove manufacturer names, vehicle models, and specific automobiles to the database to track inventory
+* Users can view lists of manufacturers, vehicle models, and automobiles in the inventory
+* Users can add service appointments to the database, see the list of all upcoming appointments, and the history of all appointments (scheduled, canceled, and upcoming) based on a specific VIN number
+* Users can add sales records and track sales history
+
 
 ## Design
 In general, in Domain-driven design, microservices are typically their own bounded contexts it seems, which is why they're able to be split up into microservices in the first place. "Sales," "Services," and "Inventory" are each their own separate microservices, meaning that they are able to function on their own in some capacity, meaning they could possibly each be their own bounded context. However, "Sales" is directly dependent on "Inventory" because one can't sell cars without knowing what cars are in the inventory to sell, so putting them together in one bounded context makes sense. "Services," on the other hand, is not directly dependent on "Inventory" in order to fully function, so it can be in it's own bounded context.
