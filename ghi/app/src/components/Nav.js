@@ -32,10 +32,10 @@ function Nav() {
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Manage Services</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <NavLink className="dropdown-item" aria-current="page" to="/technicians/new/">Enter a technician</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/technicians/new/">Add a technician</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/appointments/">Service appointments</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/appointments/new/">Enter a service appointment</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/appointments/details/">Service history</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/appointments/new/">Add a service appointment</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/appointments/details/">Appointment history</NavLink>
               </ul>              
             </li>
             <li className="nav-item dropdown">
@@ -44,9 +44,9 @@ function Nav() {
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" aria-current="page" to="/sales-person/new">Add a sales person</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/customers/new">Add a potential customer</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/sales-records/">All Sales Records</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/sales-records/">All sales records</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/sales-records/new">Add a sale record</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/sales-records/filtered/">Filtered Sales Records</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/sales-records/filtered/">Search sales records</NavLink>
               </ul>              
             </li>
           </ul>

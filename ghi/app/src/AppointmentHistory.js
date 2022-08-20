@@ -47,7 +47,7 @@ class AppointmentHistory extends React.Component {
       return (
         <div>
           <div>
-            <h1>SERVICE HISTORY</h1>
+            <h1>Service History</h1>
             <form onSubmit={this.handleSubmit} id="search-vin" className="search-bar">
               <div className="input-group">
                 <input required type="search" id="search-bar" 
@@ -82,7 +82,7 @@ class AppointmentHistory extends React.Component {
                       <td>{ appointment.time }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
-                      <td>{appointment.status.name } </td>
+                      <td>{ appointment.status.name } </td>
                     </tr>
                 );
             })}

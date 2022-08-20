@@ -11,11 +11,11 @@ function AppointmentList(props) {
                         <tr>
                             <th></th>
                             <th>VIN</th>
-                            <th>Customer name</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Technician</th>
-                            <th>Reason</th>
+                            <th>CUSTOMER</th>
+                            <th>DATE</th>
+                            <th>TIME</th>
+                            <th>TECHNICIAN</th>
+                            <th>REASON</th>
                             <th>VIP</th>
                             <th></th>
                         </tr>

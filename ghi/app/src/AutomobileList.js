@@ -1,11 +1,12 @@
 import React from 'react';
+import Card from "react-bootstrap";
 
 function AutomobileList(props) {
 
     return (
         <div>
         <h1>Automobile Inventory</h1>
-        <p>Automobiles currently in inventory: { props.autos.length }</p>
+        <p>Total count: { props.autos.length }</p>
         <table className="table table-striped">
             <thead>
                 <tr>

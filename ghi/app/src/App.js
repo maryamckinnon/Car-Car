@@ -178,7 +178,7 @@ class App extends React.Component {
             <Route path="new" element={<ModelForm load={this.loadVehicleModels}/>} />
           </Route>
           <Route path="automobiles">
-            <Route path="" element={<AutomobileList autos={this.state.autos} delete={this.deleteAutomobile} />} />
+            <Route path="" element={<AutomobileList autos={this.state.autos} models={this.state.models} manufacturers={this.state.manufacturers} delete={this.deleteAutomobile} />} />
             <Route path="new" element={<AutomobileForm load={this.loadAutomobiles}/>} />
           </Route> 
           <Route path="appointments">

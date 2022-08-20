@@ -1,13 +1,16 @@
 import React from 'react';
+import ManufacturerForm from "./ManufacturerForm";
 
 
 function ManufacturerList(props) {
 
     return (
+        <>
+        <h1> Manufacturers </h1>
         <table className="table table-striped">
             <thead>
                 <tr>
-                    <th>Manufacturer</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -16,12 +19,13 @@ function ManufacturerList(props) {
                     return (
                         <tr key={ manufacturer.id }>
                             <td>{ manufacturer.name }</td>
-                            <td><button className="btn btn-danger" onClick={() => props.delete(manufacturer)}>Delete</button></td>
+                            <td><button className="btn btn-danger" onClick={() => props.delete(manufacturer)}>X</button></td>
                         </tr>
                     );
                 })}
             </tbody>
         </table>
+        </>
     );
 }
 
