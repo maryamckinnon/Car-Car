@@ -17,6 +17,10 @@ The expected intended market is car dealerships looking for a program to assist 
 
 
 ## Design
+* [GHI](docs/ghi.md)
+
+
+## More About Design
 In general, in Domain-driven design, microservices are typically their own bounded contexts it seems, which is why they're able to be split up into microservices in the first place. "Sales," "Services," and "Inventory" are each their own separate microservices, meaning that they are able to function on their own in some capacity, meaning they could possibly each be their own bounded context. However, "Sales" is directly dependent on "Inventory" because one can't sell cars without knowing what cars are in the inventory to sell, so putting them together in one bounded context makes sense. "Services," on the other hand, is not directly dependent on "Inventory" in order to fully function, so it can be in it's own bounded context.
 
 Within the bounded context of "Sales" and "Inventory," the aggregate root would be automobiles since it's the common thread between the two microservices and it's what everything within "Inventory" and "Sales" is dependent on. One can't have an inventory without an automobile and an automobile sales person can't sell anything without having automobiles in stock to sell. In this case, automobiles are an entity because they have properties that can be changed and technically have a "life cycle" since they transition from being in inventory to being sold. Descriptors of the automobile that are included within this bounded context include the manufacturer, vehicle model, VIN number, etc., each of which are value objects since they're immutable once created.
