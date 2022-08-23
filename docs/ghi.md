@@ -31,6 +31,3 @@ This is the page where all upcoming service appointments are listed. The technic
 This is where an employee can add an automobile to the inventory database.
 
 ![add automobile](wireframes/addautomobile.png)
-
-
-## 
