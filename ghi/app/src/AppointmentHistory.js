@@ -60,7 +60,7 @@ class AppointmentHistory extends React.Component {
             </div>
           <div className="appointment-list">
             
-                <table className="table" style={{marginTop: 75}}>
+                <table className="table" style={{marginTop: 75, marginBottom:'200px'}}>
                   <thead>
                     <tr>
                       <th>VIN</th>
@@ -82,7 +82,7 @@ class AppointmentHistory extends React.Component {
                       <td>{ appointment.time }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
-                      <td>{ appointment.status.name } </td>
+                      <td>{ appointment.status.name }</td>
                     </tr>
                 );
             })}

@@ -21,11 +21,9 @@ function Nav() {
                 aria-expanded="false">Manage Inventory</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/">Manufacturers</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/new/">Add a manufacturer</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/models/">Vehicle models</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/models/new/">Add a vehicle model</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/models/new/">Add vehicle models</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/automobiles/">Automobiles</NavLink>
-                <NavLink className="dropdown-item" aria-current="page" to="/automobiles/new">Add an automobile</NavLink>
               </ul>              
             </li>
             <li className="nav-item dropdown">

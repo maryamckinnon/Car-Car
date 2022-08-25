@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from "react-bootstrap";
+import AutomobileForm from './AutomobileForm';
 
 function AutomobileList(props) {
 
@@ -33,6 +34,7 @@ function AutomobileList(props) {
                 })}
             </tbody>
         </table>
+        <AutomobileForm />
         </div>
     );
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ManufacturerForm from "./ManufacturerForm";
+import { useNavigate } from 'react-router-dom';
 
 
 function ManufacturerList(props) {
@@ -7,7 +8,7 @@ function ManufacturerList(props) {
     return (
         <>
         <h1> Manufacturers </h1>
-        <table className="table table-striped">
+        <table className="table" style={{width:'400px'}}>
             <thead>
                 <tr>
                     <th></th>
@@ -21,10 +22,12 @@ function ManufacturerList(props) {
                             <td>{ manufacturer.name }</td>
                             <td><button className="btn btn-danger" onClick={() => props.delete(manufacturer)}>X</button></td>
                         </tr>
+                        
                     );
                 })}
             </tbody>
         </table>
+        <ManufacturerForm />
         </>
     );
 }

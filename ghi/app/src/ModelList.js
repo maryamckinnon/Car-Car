@@ -3,8 +3,12 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import noimage from "./images/noimage.png";
+import ModelForm from './ModelForm';
+import { useNavigate } from 'react-router-dom';
 
 function ModelList(props) {
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -32,6 +36,7 @@ function ModelList(props) {
                 })}
             </tbody>
         </table>
+        <button className='btn btn-primary' style={{fontWeight:'bolder', marginLeft:'180px'}} onClick={() => (navigate('/models/new/'))}>Add Model</button>
         </>
     );
 

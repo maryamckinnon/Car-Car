@@ -6,7 +6,7 @@ function AppointmentList(props) {
     return (
         <div className="appointment-list">
             <h1>Service appointments</h1>
-                <table className="table table-striped">
+                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px'}}>
                     <thead>
                         <tr>
                             <th></th>
@@ -33,7 +33,7 @@ function AppointmentList(props) {
                                     <td>{ appointment.time }</td>
                                     <td>{ appointment.technician.name }</td>
                                     <td>{ appointment.reason }</td>
-                                    <td>{ (appointment.vip)? "⭐" :"" }</td>
+                                    <td>{ (appointment.vip)? "👑" :"" }</td>
                                     <td>
                                         <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => props.cancel(appointment)}>X</button>
                                     </td>
