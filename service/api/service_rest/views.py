@@ -37,7 +37,6 @@ class AppointmentEncoder(ModelEncoder):
         "vin",
         "customer_name",
         "date",
-        "time",
         "technician",
         "reason",
         "status"
