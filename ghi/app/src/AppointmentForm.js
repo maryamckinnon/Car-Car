@@ -2,46 +2,73 @@ import React from 'react';
 
 
 class AppointmentForm extends React.Component {
-    initialState = {
-      vin: '',
-      customer_name: '',
-      date: '',
-      time: '',
-      reason: '',
-    }
     constructor(props) {
       super(props)
+      const curTime = new Date().toISOString();
       this.state = {
-        ...this.initialState,
+        vin: '',
+        customerName: '',
+        date: curTime.slice(0,16),
+        reason: '',
         technicians: [],
-      };
+      }
 
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleVinChange = this.handleVinChange.bind(this);
+      this.handleCustomerNameChange = this.handleCustomerNameChange.bind(this);
+      this.handleDateChange = this.handleDateChange.bind(this);
+      this.handleReasonChange = this.handleReasonChange.bind(this);
+      this.handleTechnicianChange = this.handleTechnicianChange.bind(this);
     }
 
     async componentDidMount() {
-        const url = 'http://localhost:8080/api/technicians/';
+        const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
       
         const response = await fetch(url);
   
         if (response.ok) {
           const data = await response.json();
           this.setState({technicians: data.technicians});
-        }
+        } else {
+          console.error("error")
+      }
+
     }
 
-    handleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({[name]: value})
+    handleVinChange(event) {
+      const value = event.target.value;
+      this.setState({vin: value.toUpperCase()})
+    }
+
+    handleCustomerNameChange(event) {
+      const value = event.target.value;
+      this.setState({customer_name: value})
+    }
+
+    handleDateChange(event) {
+      const value = event.target.value;
+      this.setState({date: value})
+    }
+
+    handleReasonChange(event) {
+      const value = event.target.value;
+      this.setState({reason: value})
+    }
+
+    handleTechnicianChange(event) {
+      const value = event.target.value;
+      this.setState({technician: value})
     }
 
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
+      const schedule = new Date(data.scheduledTime);
+      data.date = schedule.toISOString();
+      delete data.customerName;
       delete data.technicians;
 
-      const appointmentUrl = 'http://localhost:8080/api/appointments/';
+      const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
         const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),
@@ -52,12 +79,20 @@ class AppointmentForm extends React.Component {
 
       const response = await fetch(appointmentUrl, fetchConfig);
       if (response.ok) {
-        const newAppointment = await response.json();
-        console.log(newAppointment)
+        const cleared = {
+          vin: "",
+          customerName: "",
+          date: new Date().toISOString().slice(0, 16),
+          reason: "",
+          technician: "",
+          message: `Your appointment is scheduled, ${data.customerName}!`
+      };
+      this.setState(cleared);
 
-        this.setState({...this.initialState});
-        this.props.load();
-      }
+      } else {
+        console.error('There was an error. Please try again')
+    }
+
     }
 
     
@@ -75,25 +110,19 @@ class AppointmentForm extends React.Component {
                         <label htmlFor="vin">VIN</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleChange} placeholder="customer_name" 
+                        <input onChange={this.handleCustomerNameChange} placeholder="customer_name" 
                         required type="text" name="customer_name" 
-                        id="customer_name" className="form-control" value={this.state.customer_name}/>
+                        id="customerName" className="form-control" value={this.state.customerName}/>
                         <label htmlFor="customer-name">Customer Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleChange} placeholder="Date" required 
-                        type="date" name="date" id="date" className="form-control" value={this.state.date}/>
-                        <label htmlFor="date">Date</label>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="time" className="form-label">Time</label>
-                        <input onChange={this.handleChange} className="form-control" 
-                        name="time" id="time" required type="time" placeholder="time"
-                        value={this.state.time}/>
+                        <input onChange={this.handleDateChange} placeholder="Date" required 
+                        type="datetime-local" name="date" id="date" className="form-control" value={this.state.date}/>
+                        <label htmlFor="date">Date and time</label>
                     </div>
                     <div className="mb-3">
                     <select required id="technician" className="form-select" name="technician" 
-                    onChange={this.handleChange} value={this.state.technician}>
+                    onChange={this.handleTechnicianChange} value={this.state.technician}>
                       <option value="">Choose a technician</option>
                       {this.state.technicians.map(technician => {
                         return (
@@ -105,7 +134,7 @@ class AppointmentForm extends React.Component {
                     </select>
                   </div>
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleChange} placeholder="reason" 
+                        <input onChange={this.handleReasonChange} placeholder="reason" 
                         required type="text" name="reason" 
                         id="reason" className="form-control" value={this.state.reason}/>
                         <label htmlFor="reason">Reason</label>
