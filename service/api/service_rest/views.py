@@ -55,7 +55,7 @@ class AppointmentEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
-        appointments = Appointment.objects.all()
+        appointments = Appointment.objects.all().order_by("date")
         return JsonResponse(
             {"appointments": appointments},
             encoder=AppointmentEncoder
@@ -131,7 +131,7 @@ def api_list_technicians(request):
             )
         except:
             response = JsonResponse(
-                {"message: Could not create technician"}
+                {"message": "Could not input technician"}
             )
             response.status_code = 400
             return response
