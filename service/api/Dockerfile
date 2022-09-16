@@ -1,0 +1,12 @@
+FROM python:3.10-bullseye
+RUN python -m pip install --upgrade pip
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+COPY manage.py manage.py
+COPY service_project service_project
+COPY common common
+COPY service_rest service_rest
+
+RUN pip install -r requirements.txt
+CMD python manage.py migrate && gunicorn service_project.wsgi --bind 0.0.0.0:$PORT --log-file -
