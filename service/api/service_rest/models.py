@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -33,8 +34,7 @@ class Appointment(models.Model):
         appointment.save()
         return appointment
 
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateTimeField(default=timezone.now)
     reason = models.CharField(max_length=200)
     customer_name = models.CharField(max_length=200)
     technician = models.ForeignKey(
