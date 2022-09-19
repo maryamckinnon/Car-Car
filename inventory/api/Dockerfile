@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 COPY manage.py manage.py
-COPY authentication authentication
 COPY common common
 COPY inventory_project inventory_project
 COPY inventory_rest inventory_rest

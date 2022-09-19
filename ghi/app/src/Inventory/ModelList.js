@@ -2,7 +2,7 @@ import React from 'react';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import noimage from "./images/noimage.png";
+// import noimage from "./images/noimage.png";
 import ModelForm from './ModelForm';
 import { useNavigate } from 'react-router-dom';
 

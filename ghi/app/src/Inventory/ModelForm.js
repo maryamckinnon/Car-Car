@@ -15,7 +15,7 @@ class ModelForm extends React.Component {
     }
 
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/manufacturers/';
+        const url = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/`;
       
         const response = await fetch(url);
   
@@ -49,7 +49,7 @@ class ModelForm extends React.Component {
       delete data.manufacturerId;
       delete data.manufacturers;
 
-      const modelUrl = 'http://localhost:8100/api/models/';
+      const modelUrl = `${process.env.REACT_APP_INVENTORY_API}/api/models/`;
       const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),

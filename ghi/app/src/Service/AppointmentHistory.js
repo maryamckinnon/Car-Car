@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import '../index.css';
 
 
 class AppointmentHistory extends React.Component {
@@ -25,7 +25,7 @@ class AppointmentHistory extends React.Component {
       const data = {...this.state};
 
       const vin = this.state.vin
-      const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
+      const appointmentUrl = `localhost:8080/api/appointments/${vin}`;
         const fetchConfig = {
           method: "get",
           headers: {

@@ -7,7 +7,7 @@ class AppointmentForm extends React.Component {
       const curTime = new Date().toISOString();
       this.state = {
         vin: '',
-        customerName: '',
+        customer_name: '',
         date: curTime.slice(0,16),
         reason: '',
         technicians: [],
@@ -22,7 +22,7 @@ class AppointmentForm extends React.Component {
     }
 
     async componentDidMount() {
-        const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
+        const url = "http://localhost:8080/api/technicians/";
       
         const response = await fetch(url);
   
@@ -37,7 +37,7 @@ class AppointmentForm extends React.Component {
 
     handleVinChange(event) {
       const value = event.target.value;
-      this.setState({vin: value.toUpperCase()})
+      this.setState({vin: value})
     }
 
     handleCustomerNameChange(event) {
@@ -63,12 +63,12 @@ class AppointmentForm extends React.Component {
     async handleSubmit(event) {
       event.preventDefault();
       const data = {...this.state};
-      const schedule = new Date(data.scheduledTime);
+      const schedule = new Date(data.date);
       data.date = schedule.toISOString();
       delete data.customerName;
       delete data.technicians;
 
-      const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
+      const appointmentUrl = "http://localhost:8080/api/appointments/";
         const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),
@@ -79,20 +79,11 @@ class AppointmentForm extends React.Component {
 
       const response = await fetch(appointmentUrl, fetchConfig);
       if (response.ok) {
-        const cleared = {
-          vin: "",
-          customerName: "",
-          date: new Date().toISOString().slice(0, 16),
-          reason: "",
-          technician: "",
-          message: `Your appointment is scheduled, ${data.customerName}!`
-      };
-      this.setState(cleared);
+        const newAppointment = await response.json();
+        console.log(newAppointment)
 
-      } else {
-        console.error('There was an error. Please try again')
-    }
-
+        this.setState({...this.initialState});
+      }
     }
 
     
@@ -104,7 +95,7 @@ class AppointmentForm extends React.Component {
                     <h1>Add a service appointment</h1>
                     <form onSubmit={this.handleSubmit} id="create-conference-form">
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleChange} placeholder="Vin" 
+                        <input onChange={this.handleVinChange} placeholder="Vin" 
                         required type="text" name="vin" 
                         id="vin" className="form-control" value={this.state.vin}/>
                         <label htmlFor="vin">VIN</label>

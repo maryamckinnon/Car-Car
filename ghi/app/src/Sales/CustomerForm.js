@@ -1,14 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-class TechnicianForm extends React.Component {
+class CustomerForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            employeeNumber: '',
+            address: '',
+            phoneNumber: '',
         };
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmployeeNumberChange = this.handleEmployeeNumberChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
+        this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleNameChange(event) {
@@ -16,44 +18,51 @@ class TechnicianForm extends React.Component {
         this.setState({name: value})
     }
 
-    handleEmployeeNumberChange(event) {
+    handleAddressChange(event) {
         const value = event.target.value;
-        this.setState({employeeNumber: value})
+        this.setState({address: value})
+    }
+
+    handlePhoneNumberChange(event) {
+        const value = event.target.value;
+        this.setState({phoneNumber: value})
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        data.employee_number = data.employeeNumber;
-        delete data.employeeNumber;
+        data.phone_number = data.phoneNumber;
+        delete data.phoneNumber;
 
-        const technicianUrl = "http://localhost:8080/api/technicians/";
+        const customerUrl = `${process.env.REACT_APP_SALES_API}/api/customers/`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
         };
-        
-        const response = await fetch(technicianUrl, fetchConfig);
+
+        const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
-            const newTechnician = await response.json();
+            const newCustomer = await response.json();
 
             const cleared = {
                 name: '',
-                employeeNumber: '',
+                address: '',
+                phoneNumber: '',
             }
             this.setState(cleared)
         }
     }
+
 
     render() {
         return (
             <div className="row">
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Enter a technician</h1>
+                    <h1>Enter a customer</h1>
                     <form onSubmit={this.handleSubmit} id="create-hat-form">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleNameChange} placeholder="Name" 
@@ -62,10 +71,16 @@ class TechnicianForm extends React.Component {
                         <label htmlFor="name">Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input onChange={this.handleEmployeeNumberChange} placeholder="employeeNumber" 
-                        required type="text" name="employeeNumber" 
-                        id="employeeNumber" className="form-control" value={this.state.employeeNumber}/>
-                        <label htmlFor="employeeNumber">Employee Number</label>
+                        <input onChange={this.handleAddressChange} placeholder="Address" 
+                        required type="text" name="address" 
+                        id="address" className="form-control" value={this.state.address}/>
+                        <label htmlFor="address">Address</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input onChange={this.handlePhoneNumberChange} placeholder="phoneNumber" 
+                        required type="text" name="phoneNumber" 
+                        id="phoneNumber" className="form-control" value={this.state.phoneNumber}/>
+                        <label htmlFor="phoneNumber">Phone Number</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
                     </form>
@@ -74,7 +89,6 @@ class TechnicianForm extends React.Component {
             </div>
         );
     }
-
 }
 
-export default TechnicianForm;
+export default CustomerForm;

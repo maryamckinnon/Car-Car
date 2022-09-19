@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SalesPersonForm extends React.Component {
+class TechnicianForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -27,7 +27,7 @@ class SalesPersonForm extends React.Component {
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
 
-        const salesPersonUrl = 'http://localhost:8090/api/sales-people/';
+        const technicianUrl = "http://localhost:8080/api/technicians/";
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -35,26 +35,28 @@ class SalesPersonForm extends React.Component {
                 "Content-Type": "application/json",
             },
         };
-
-        const response = await fetch(salesPersonUrl, fetchConfig);
+        
+        const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
-            const newSalesPerson = await response.json();
+            const newTechnician = await response.json();
 
             const cleared = {
                 name: '',
                 employeeNumber: '',
             }
             this.setState(cleared)
-        }
-    }
+        }  else {
+            console.error(response.status)
+        };
 
+    }
 
     render() {
         return (
             <div className="row">
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Enter a sales person</h1>
+                    <h1>Enter a technician</h1>
                     <form onSubmit={this.handleSubmit} id="create-hat-form">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleNameChange} placeholder="Name" 
@@ -75,6 +77,8 @@ class SalesPersonForm extends React.Component {
             </div>
         );
     }
+
 }
 
-export default SalesPersonForm;
+export default TechnicianForm;
+

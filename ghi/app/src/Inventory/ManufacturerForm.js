@@ -19,7 +19,7 @@ class ManufacturerForm extends React.Component {
       event.preventDefault();
       const data = {...this.state};
 
-      const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
+      const manufacturerUrl = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/`;
         const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),

@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import dj_database_url
-from pathlib import Path
 from datetime import timedelta
 import os
+import dj_database_url
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,15 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h_*^s%*58o(szd%qaz!(^ky%nah+=yw+d=mkp_)01(r1@*$2t%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", True)
+DEBUG = not os.environ.get("DEBUG")
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
-    'inventory_rest.apps.InventoryRestConfig',
-    'djwto'
+    "inventory_rest.apps.InventoryRestConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,11 +52,11 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "inventory-api",
-    "127.0.0.1",
-    "[::1]",
-    os.environ.get("DEPLOYED_HOST", "localhost"),
+  ".localhost",
+  "127.0.0.1",
+  "inventory-api",
+  "[::1]",
+  os.environ.get("DEPLOYED_HOST", "localhost"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -69,12 +68,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 
 DJWTO_MODE = "TWO-COOKIES"
-DJWTO_CSRF = False
-DJWTO_ACCESS_TOKEN_LIFETIME = timedelta(days=1)
-DJWTO_SAME_SITE = "LAX" if DEBUG else "NONE"
+DJWTO_ACCESS_TOKEN_LIFETIME = None
+
 
 ROOT_URLCONF = 'inventory_project.urls'
 
@@ -144,3 +143,27 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+# 'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),  #
+# }
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+#     'ROTATE_REFRESH_TOKENS': True,
+#     'BLACKLIST_AFTER_ROTATION': True,
+#     'ALGORITHM': 'HS256',
+#     'SIGNING_KEY': SECRET_KEY,
+#     'VERIFYING_KEY': None,
+#     'AUTH_HEADER_TYPES': ('JWT',),
+#     'USER_ID_FIELD': 'id',
+#     'USER_ID_CLAIM': 'user_id',
+#     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+#     'TOKEN_TYPE_CLAIM': 'token_type',
+# }
+
