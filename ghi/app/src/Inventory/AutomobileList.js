@@ -1,14 +1,26 @@
 import React from 'react';
-import Card from "react-bootstrap";
-import AutomobileForm from './AutomobileForm';
 
-function AutomobileList(props) {
+function AutomobileList() {
+
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+      const url = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => setData(json['autos']))
+        .catch((error) => console.log(error));
+    }, []);
+
+    React.useEffect(() => {
+    }, [data]);
 
     return (
         <div>
         <h1>Automobile Inventory</h1>
-        <p>Total count: { props.autos.length }</p>
-        <table className="table table-striped">
+        <p>Inventory Count: {data.length}</p>
+        <table className="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>VIN</th>
@@ -16,28 +28,24 @@ function AutomobileList(props) {
                     <th>Year</th>
                     <th>Model</th>
                     <th>Manufacturer</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                {props.autos.map(auto => {
+                {data.map(automobile => {
                     return (
-                        <tr key={ auto.id }>
-                            <td>{ auto.vin }</td>
-                            <td>{ auto.color }</td>
-                            <td>{ auto.year }</td>
-                            <td>{ auto.model.name }</td>
-                            <td>{ auto.model.manufacturer.name }</td>
-                            <td><button className="btn btn-danger" onClick={() => props.delete(auto)}>X</button></td>
+                        <tr key={automobile.id}>
+                            <td>{ automobile.vin }</td>
+                            <td>{ automobile.color }</td>
+                            <td>{ automobile.year }</td>
+                            <td>{ automobile.model.name }</td>
+                            <td>{ automobile.model.manufacturer.name }</td>
                         </tr>
-                    );
+                        );
                 })}
             </tbody>
         </table>
-        <AutomobileForm />
         </div>
     );
-
 }
 
 export default AutomobileList;

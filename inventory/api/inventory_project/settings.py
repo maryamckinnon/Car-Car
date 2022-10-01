@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h_*^s%*58o(szd%qaz!(^ky%nah+=yw+d=mkp_)01(r1@*$2t%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not os.environ.get("DEBUG")
+DEBUG = True
 
 
 # Application definition
@@ -52,21 +52,21 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-  ".localhost",
+  "localhost",
   "127.0.0.1",
   "inventory-api",
-  "[::1]",
-  os.environ.get("DEPLOYED_HOST", "localhost"),
+#   "[::1]",
+#   os.environ.get("localhost"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    os.environ.get("CORS_HOST", "http://localhost:3001"),
+    # os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    os.environ.get("CORS_HOST", "http://localhost:3001"),
+    # os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
 
 CORS_ALLOW_CREDENTIALS = True

@@ -2,10 +2,10 @@ stages:
   - build
   - deploy
 
-variables:
-  REACT_APP_INVENTORY_API: https://${HEROKU_INVENTORY_API_APP}.herokuapp.com
-  REACT_APP_SALES_API: https://${HEROKU_SALES_API_APP}.herokuapp.com
-  REACT_APP_SERVICE_API: https://${HEROKU_SERVICE_API_APP}.herokuapp.com
+# variables:
+#   REACT_APP_INVENTORY_API: https://${HEROKU_INVENTORY_API_APP}.herokuapp.com
+#   REACT_APP_SALES_API: https://${HEROKU_SALES_API_APP}.herokuapp.com
+#   REACT_APP_SERVICE_API: https://${HEROKU_SERVICE_API_APP}.herokuapp.com
 
 build-inventory-api-image-job:
   rules:
