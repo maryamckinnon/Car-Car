@@ -4,10 +4,13 @@ class ModelForm extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
+        showSuccess: "d-none",
+        showForm: "shadow p-4 mt-4",
         name: '',
         pictureUrl: '',
         manufacturers: [],
       };
+      this.handleReset = this.handleReset.bind(this);
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this);
       this.handleManufacturerIdChange = this.handleManufacturerIdChange.bind(this);
@@ -15,14 +18,23 @@ class ModelForm extends React.Component {
     }
 
     async componentDidMount() {
-        const url = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/`;
+        const url = 'http://localhost:8100/api/manufacturers/';
       
         const response = await fetch(url);
   
         if (response.ok) {
           const data = await response.json();
           this.setState({manufacturers: data.manufacturers});
+        } else {
+          console.error('invalid request')
         }
+    }
+
+    handleReset(event) {
+      this.setState({
+          showSuccess: "d-none",
+          showForm: "shadow p-4 mt-4",
+      });
     }
 
     handleNameChange(event) {
@@ -44,12 +56,14 @@ class ModelForm extends React.Component {
       event.preventDefault();
       const data = {...this.state};
       data.picture_url = data.pictureUrl;
-      data.manufacturer_id = data.manufacturerId
+      data.manufacturer_id = data.manufacturerId;
+      delete data.showSuccess;
+      delete data.showForm;
       delete data.pictureUrl;
       delete data.manufacturerId;
       delete data.manufacturers;
 
-      const modelUrl = `${process.env.REACT_APP_INVENTORY_API}/api/models/`;
+      const modelUrl = 'http://localhost:8100/api/models/';
       const fetchConfig = {
           method: "post",
           body: JSON.stringify(data),
@@ -59,15 +73,17 @@ class ModelForm extends React.Component {
       };
       const response = await fetch(modelUrl, fetchConfig);
       if (response.ok) {
-        const newModel = await response.json();
-
         const cleared = {
           name: '',
           picture_url: '',
           manufacturer_id: '',
+          showForm: 'shadow p-4 mt-4 d-none',
+          showSuccess: '',
+          message: 'Model has been added'
         }
         this.setState(cleared);
-        this.props.load();
+      } else {
+        console.log(response)
       }
     }
     
@@ -75,7 +91,15 @@ class ModelForm extends React.Component {
         return (
             <div className="row">
             <div className="offset-3 col-6">
-              <div className="shadow p-4 mt-4">
+            <div className={this.state.showSuccess}>
+            <div className="alert alert-success mt-4" role="alert">
+                            {this.state.message}
+                        </div>
+                        <button className="btn btn-outline-success" onClick={this.handleReset}>
+                            Add another model
+                        </button>
+                    </div>
+                <div className={this.state.showForm}>
                 <h1>Add a vehicle model</h1>
                 <form onSubmit={this.handleSubmit} id="create-model-form">
                   <div className="form-floating mb-3">

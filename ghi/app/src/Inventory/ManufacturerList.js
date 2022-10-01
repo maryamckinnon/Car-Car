@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ManufacturerForm from "./ManufacturerForm";
 
 
 function ManufacturerList() {
 
-    const [data, setData] = React.useState([]);
+    const [data, setData] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       const url = 'http://localhost:8100/api/manufacturers/';
       fetch(url)
         .then((response) => response.json())
@@ -14,7 +14,7 @@ function ManufacturerList() {
         .catch((error) => console.log(error));
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
     }, [data]);
 
     return (

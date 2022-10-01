@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// import noimage from "./images/noimage.png";
 import ModelForm from './ModelForm';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-function ModelList(props) {
+function ModelList() {
+    const [data, setData] = useState([]);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        const url = 'http://localhost:8100/api/models/';
+        fetch(url)
+            .then((response) => response.json())
+            .then((json) => setData(json['models']))
+            .catch((error) => console.log(error));
+    }, []);
+
+    useEffect(() => {
+    }, [data]);
 
     return (
         <>
@@ -24,23 +33,22 @@ function ModelList(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.models && props.models.map(model => {
+                {data && data.map(model => {
                     return (
                         <tr key={ model.id }>
                             <td>{ model.name }</td>
                             <td>{ model.manufacturer.name }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
-                            <td><button className="btn btn-danger" onClick={() => props.delete(model)}>X</button></td>
+                            {/* <td><button className="btn btn-danger" onClick={() => props.delete(model)}>X</button></td> */}
                         </tr>
                     );
                 })}
             </tbody>
         </table>
-        <button className='btn btn-primary' style={{fontWeight:'bolder', marginLeft:'180px'}} onClick={() => (navigate('/models/new/'))}>Add Model</button>
+        <ModelForm />
+        {/* <button className='btn btn-primary' style={{fontWeight:'bolder', marginLeft:'180px'}} onClick={() => (navigate('/models/new/'))}>Add Model</button> */}
         </>
     );
-
-
 }
 
 export default ModelList;
