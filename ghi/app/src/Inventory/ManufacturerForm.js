@@ -64,19 +64,15 @@ class ManufacturerForm extends React.Component {
                             Add another manufacturer
                         </button>
                     </div>
-            <div className={this.state.showForm}>
-              <h1>Add a manufacturer</h1>
-              <form onSubmit={this.handleSubmit} id='create-location-form'>
-                <div className='form-floating mb-3'>
-                  <input onChange={this.handleNameChange} placeholder='Name' required type='text'
-                  name='name' id='name' className='form-control' value={this.state.name}/>
-                  <label htmlFor='name'>Name</label>
-                </div>
-                <button className='btn btn-primary'>Create</button>
+            {/* <div className={this.state.showForm}> */}
+              <form onSubmit={this.handleSubmit} id='create-manufacturer-form'>
+                  <input onChange={this.handleNameChange} placeholder='Add manufacturer' required type='text'
+                  name='name' id='name' value={this.state.name}/>
+                  <label htmlFor='name'><button className='btn btn-primary'>Add</button></label>
               </form>
             </div>
           </div>
-        </div>
+        // </div>
       );
   }
 }
