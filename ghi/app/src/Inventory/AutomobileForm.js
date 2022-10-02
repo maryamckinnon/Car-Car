@@ -1,4 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function Redirect() {
+  const navigate = useNavigate();
+  function handleClick() {
+      navigate('/automobiles/')
+  }
+  return (
+      <div>
+          <button className='btn btn-primary' onClick={handleClick}>Create</button>
+      </div>
+  )
+}
 
 class AutomobileForm extends React.Component {
     constructor(props) {
@@ -151,10 +164,11 @@ class AutomobileForm extends React.Component {
                       })}
                       </select>
                   </div>
-                  <button className="btn btn-primary">Create</button>
+                  <button className="btn btn-primary"><Redirect />Create</button>
                 </form>
           </div>
           </div>
+          
       </div>
         );
     }
