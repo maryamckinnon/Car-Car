@@ -19,6 +19,19 @@ function ModelList() {
         )
     }
 
+    // async function deleteModel(id) {
+    //     const fetchConfig = {
+    //         method: 'DELETE'
+    //     }
+    //     const url = `http://localhost:8100/api/models/${id}`
+    //     const response = await fetch(url, fetchConfig);
+    //     if (response.ok) {
+    //         setData(
+    //             data.filter((model) => model.id !== id)
+    //         )
+    //     }
+    // }
+
     useEffect(() => {
         const url = 'http://localhost:8100/api/models/';
         fetch(url)
@@ -50,14 +63,13 @@ function ModelList() {
                             <td>{ model.name }</td>
                             <td>{ model.manufacturer.name }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
-                            {/* <td><button className="btn btn-danger" onClick={() => props.delete(model)}>X</button></td> */}
+                            {/* <td><button className="btn btn-danger" onClick={deleteModel}>X</button></td> */}
                         </tr>
                     );
                 })}
             </tbody>
         </table>
         <Redirect />
-        {/* <button className='btn btn-primary' style={{fontWeight:'bolder', marginLeft:'180px'}} onClick={() => (navigate('/models/new/'))}>Add Model</button> */}
         </>
     );
 }
