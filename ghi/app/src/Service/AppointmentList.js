@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 function AppointmentList() {
 
     const [data, setData] = useState([]);
+
+    function Redirect() {
+        const navigate = useNavigate();
+        function handleClick() {
+            navigate('/appointments/new')
+        }
+        return (
+            <div>
+                <button className='btn btn-primary' onClick={handleClick}>Add new appointment</button>
+            </div>
+        )
+    }
 
     useEffect(() => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -57,6 +70,7 @@ function AppointmentList() {
                         })}
                     </tbody>
                 </table>
+                <Redirect />
         </div>
     );
 
