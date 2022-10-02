@@ -39,7 +39,9 @@ function ManufacturerList() {
                 })}
             </tbody>
         </table>
-        <ManufacturerForm />
+        <div className='manufacturer-form'>
+            <ManufacturerForm />
+        </div>
         </>
     );
 }

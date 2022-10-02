@@ -8,6 +8,7 @@ import logo from "../images/logo.png";
 
 function Footer() {
   return (
+    <div className='footer'>
     <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-3 border-top">
       <ul className="nav col-md-4 justify-content-start">
         <li className="nav-item">
@@ -80,6 +81,7 @@ function Footer() {
         </div>
       </NavLink>
     </footer>
+    </div>
   );
 }
 

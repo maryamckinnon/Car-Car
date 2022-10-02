@@ -54,7 +54,7 @@ class ManufacturerForm extends React.Component {
               <div className='manufacturer-form'>
               <form onSubmit={this.handleSubmit} id='create-manufacturer-form'>
                   <input onChange={this.handleNameChange} placeholder='Add manufacturer' required type='text'
-                  name='name' id='name' value={this.state.name}/><button className='btn btn-primary'>Add</button>
+                  name='name' id='name' value={this.state.name}/><button className='btn-add'>+</button>
                   <label htmlFor='name'></label>
               </form>
               </div>
