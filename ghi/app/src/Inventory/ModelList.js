@@ -2,10 +2,22 @@ import React, { useEffect, useState } from 'react';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import ModelForm from './ModelForm';
+import { useNavigate } from 'react-router-dom';
 
 function ModelList() {
     const [data, setData] = useState([]);
+
+    function Redirect() {
+        const navigate = useNavigate();
+        function handleClick() {
+            navigate('/models/new')
+        }
+        return (
+            <div>
+                <button className='btn btn-primary' onClick={handleClick}>Add new model</button>
+            </div>
+        )
+    }
 
     useEffect(() => {
         const url = 'http://localhost:8100/api/models/';
@@ -44,7 +56,7 @@ function ModelList() {
                 })}
             </tbody>
         </table>
-        <ModelForm />
+        <Redirect />
         {/* <button className='btn btn-primary' style={{fontWeight:'bolder', marginLeft:'180px'}} onClick={() => (navigate('/models/new/'))}>Add Model</button> */}
         </>
     );

@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import AutomobileForm from './AutomobileForm';
+import { useNavigate } from "react-router-dom";
 
 function AutomobileList() {
 
     const [data, setData] = useState([]);
+    
+    function Redirect() {
+        const navigate = useNavigate();
+        function handleClick() {
+            navigate('/automobiles/new')
+        }
+        return (
+            <div>
+                <button className='btn btn-primary' onClick={handleClick}>Add new automobile</button>
+            </div>
+        )
+    }
 
     useEffect(() => {
       const url = 'http://localhost:8100/api/automobiles/';
@@ -45,7 +57,7 @@ function AutomobileList() {
                 })}
             </tbody>
         </table>
-        <AutomobileForm />
+        <Redirect />
         </div>
     );
 }

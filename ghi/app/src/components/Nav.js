@@ -24,6 +24,7 @@ function Nav() {
                 <NavLink className="dropdown-item" aria-current="page" to="/models/">Vehicle models</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/models/new/">Add vehicle models</NavLink>
                 <NavLink className="dropdown-item" aria-current="page" to="/automobiles/">Automobiles</NavLink>
+                <NavLink className="dropdown-item" aria-current="page" to="/automobiles/new/">Add automobiles</NavLink>
               </ul>              
             </li>
             <li className="nav-item dropdown">
