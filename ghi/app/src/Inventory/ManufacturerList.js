@@ -17,18 +17,17 @@ function ManufacturerList() {
     useEffect(() => {
     }, [data]);
 
+    const sortedData = [...data].sort((a,b) => a.name.localeCompare(b.name));
+
     return (
         <>
         <h1> Manufacturers </h1>
-        <table className="table" style={{width:'400px', textAlign:'centered'}}>
+        <table className="table table-hover" style={{width:'400px', textAlign:'centered'}}>
             <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                </tr>
+                <tr></tr>
             </thead>
             <tbody>
-                {data.map(manufacturer => {
+                {sortedData.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>
                             <td>{ manufacturer.name }</td>

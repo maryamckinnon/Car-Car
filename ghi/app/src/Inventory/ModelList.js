@@ -33,7 +33,7 @@ function ModelList() {
     return (
         <>
         <h1>Vehicle Models</h1>
-        <table className="table table-striped">
+        <table className="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
