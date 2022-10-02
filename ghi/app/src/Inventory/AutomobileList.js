@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import AutomobileForm from './AutomobileForm';
 
 function AutomobileList() {
 
-    const [data, setData] = React.useState([]);
+    const [data, setData] = useState([]);
 
-    React.useEffect(() => {
-      const url = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`;
+    useEffect(() => {
+      const url = 'http://localhost:8100/api/automobiles/';
 
       fetch(url)
         .then((response) => response.json())
@@ -13,7 +14,7 @@ function AutomobileList() {
         .catch((error) => console.log(error));
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
     }, [data]);
 
     return (
@@ -44,6 +45,7 @@ function AutomobileList() {
                 })}
             </tbody>
         </table>
+        <AutomobileForm />
         </div>
     );
 }

@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ModelForm from './ModelForm';
-// import { useNavigate } from 'react-router-dom';
 
 function ModelList() {
     const [data, setData] = useState([]);
