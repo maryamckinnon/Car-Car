@@ -53,7 +53,6 @@ class ModelForm extends React.Component {
     }
 
     async handleSubmit(event) {
-      event.preventDefault();
       const data = {...this.state};
       data.picture_url = data.pictureUrl;
       data.manufacturer_id = data.manufacturerId;
@@ -89,33 +88,30 @@ class ModelForm extends React.Component {
     
     render() {
         return (
-            <div className="row">
-            <div className="offset-3 col-6">
-            <div className={this.state.showSuccess}>
-            <div className="alert alert-success mt-4" role="alert">
-                            {this.state.message}
-                        </div>
-                        <button className="btn btn-outline-success" onClick={this.handleReset}>
-                            Add another model
-                        </button>
-                    </div>
-                <div className={this.state.showForm}>
-                <h1>Add a vehicle model</h1>
-                <form onSubmit={this.handleSubmit} id="create-model-form">
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handleNameChange} placeholder="Name" required type="text" 
-                    name="name" id="name" className="form-control" value={this.state.name}/>
-                    <label htmlFor="name">Name</label>
-                  </div>
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handlePictureUrlChange} placeholder="picture url" 
-                    required type="url" name="picture url" 
-                    id="picture url" className="form-control" value={this.state.picture_url}/>
-                    <label htmlFor="picture url">Picture URL</label>
-                  </div>
-                  <div className="mb-3">
-                    <select required id="manufacturer" className="form-select" name="manufacturer" 
-                    onChange={this.handleManufacturerIdChange} value={this.state.manufacturer_id}>
+          <div className='row'>
+              <form 
+                onSubmit={this.handleSubmit} 
+                id="model-form"
+              >
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                  <input 
+                    onChange={this.handleNameChange} 
+                    placeholder="Name" 
+                    required type="text" 
+                    name="name" 
+                    id="name" 
+                    className="form-control" 
+                    value={this.state.name}
+                  />
+                </div>                  
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <select 
+                      required id="manufacturer" 
+                      className="form-select" 
+                      name="manufacturer" 
+                      onChange={this.handleManufacturerIdChange} 
+                      value={this.state.manufacturer_id}
+                    >
                       <option value="">Choose a manufacturer</option>
                       {this.state.manufacturers.map(manufacturer => {
                         return (
@@ -125,12 +121,21 @@ class ModelForm extends React.Component {
                         );
                       })}
                     </select>
+                </div>
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input 
+                      onChange={this.handlePictureUrlChange} 
+                      placeholder="Picture URL" 
+                      required type="url" 
+                      name="picture url" 
+                      id="picture url" 
+                      className="form-control" 
+                      value={this.state.picture_url}
+                    />
                   </div>
-                  <button className="btn btn-primary">Create</button>
+                  <button className="btn btn-primary">Add</button>
                 </form>
               </div>
-            </div>
-          </div>
         );
     }
 }

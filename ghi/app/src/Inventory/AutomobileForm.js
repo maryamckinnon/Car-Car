@@ -8,7 +8,7 @@ class AutomobileForm extends React.Component {
         this.state = {
             models: [],
             color: '',
-            year: '2023',
+            year: '',
             vin: '',
         };
 
@@ -20,7 +20,6 @@ class AutomobileForm extends React.Component {
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
         const data = {...this.state};
         delete data.models
 
@@ -83,71 +82,72 @@ class AutomobileForm extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="offset-3 col-6">
-                        <h4>Add an automobile</h4>
-                        <form onSubmit={this.handleSubmit} id="newAutomobileForm">
-                            <div className='form-outline mb-2'>
-                                <input
-                                    className="form-control" required type="text"
-                                    onChange={this.handleColorChange} id="color"
-                                    name="color" value={this.state.color}
-                                    placeholder="Color"
-                                />
-                                <label htmlFor="Color"></label>
-                            </div>
-                            <div className='form-outline mb-2'>
-                                <input
-                                    className="form-control form-control-md" 
-                                    required type="number"
-                                    max="2023" 
-                                    min="1900"
-                                    placeholder='Year'
-                                    onChange={this.handleYearChange}
-                                    id="year" 
-                                    name="year"
-                                    value={this.state.year}
-                                />
-                                <label htmlFor="year"></label>
-                            </div>
-                            <div className="form-outline mb-2">
-                                <input
-                                    className="form-control form-control-md" 
-                                    required type="text"
-                                    minLength={17}
-                                    maxLength={17} 
-                                    id="vin" 
-                                    name="vin"
-                                    onChange={this.handleVinChange} 
-                                    placeholder="VIN"
-                                    value={this.state.vin}
-                                />
-                                <label htmlFor="vin"></label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <select
-                                    className="form-select" 
-                                    required id="model"
-                                    name="model" 
-                                    value={this.state.model_id}
-                                    onChange={this.handleModelChange}
-                                >
-                                    <option value="">Choose one</option>
-                                    {this.state.models
-                                    .map(model => {
-                                        return (
-                                            <option key={model.id} value={model.id}>
-                                                {model.name}
-                                            </option>
-                                        )
-                                    })}
-                                </select>
-                                <label htmlFor="model">Model</label>
-                            </div>
-                            <button className="btn btn-primary">Add</button>
-                        </form>
-                    </div>
+          <div className="row">
+          <div className="form-group col-xs-6">
+            <form onSubmit={this.handleSubmit} id="add-auto-form">
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input
+                        className="form-control" 
+                        required type="text"
+                        minLength={17}
+                        maxLength={17} 
+                        id="vin" 
+                        name="vin"
+                        onChange={this.handleVinChange} 
+                        placeholder="VIN"
+                        value={this.state.vin}
+                    />
                 </div>
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input
+                        className="form-control input-group-lg" 
+                        required type="text"
+                        onChange={this.handleColorChange} 
+                        id="color"
+                        name="color" 
+                        value={this.state.color}
+                        placeholder="Color"
+                    />
+                    <label htmlFor="Color"></label>
+                </div>
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input
+                        className="form-control" 
+                        required type="number"
+                        max="2023" 
+                        min="1900"
+                        placeholder='Year'
+                        onChange={this.handleYearChange}
+                        id="year" 
+                        name="year"
+                        value={this.state.year}
+                    />
+                    <label htmlFor="year"></label>
+                </div>
+
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <select
+                        className="form-select" 
+                        required id="model"
+                        name="model" 
+                        value={this.state.model_id}
+                        onChange={this.handleModelChange}
+                    >
+                        <option value="">Choose model</option>
+                        {this.state.models
+                        .map(model => {
+                            return (
+                                <option key={model.id} value={model.id}>
+                                    {model.name}
+                                </option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <button className="btn btn-primary">Add</button>
+            </form>
+            </div>
+            </div>
         );
     }
 }
