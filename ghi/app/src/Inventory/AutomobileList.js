@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AutomobileForm from './AutomobileForm';
 
 function AutomobileList() {
 
@@ -57,7 +58,7 @@ function AutomobileList() {
                 })}
             </tbody>
         </table>
-        <Redirect />
+        <AutomobileForm />
         </div>
     );
 }
