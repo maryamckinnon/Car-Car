@@ -2,23 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useNavigate } from 'react-router-dom';
 import ModelForm from './ModelForm';
 
 function ModelList() {
     const [data, setData] = useState([]);
-
-    function Redirect() {
-        const navigate = useNavigate();
-        function handleClick() {
-            navigate('/models/new')
-        }
-        return (
-            <div>
-                <button className='btn btn-primary' onClick={handleClick}>Add new model</button>
-            </div>
-        )
-    }
 
     // async function deleteModel(id) {
     //     const fetchConfig = {
@@ -50,8 +37,8 @@ function ModelList() {
         <table className="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Manufacturer</th>
+                    <th style={{textAlign:'left'}}>Name</th>
+                    <th style={{textAlign:'left'}}>Manufacturer</th>
                     <th>Picture</th>
                     <th></th>
                     <th></th>
@@ -61,8 +48,8 @@ function ModelList() {
                 {data && data.map(model => {
                     return (
                         <tr key={ model.id }>
-                            <td>{ model.name }</td>
-                            <td>{ model.manufacturer.name }</td>
+                            <td style={{textAlign:'left'}}>{ model.name }</td>
+                            <td style={{textAlign:'left'}}>{ model.manufacturer.name }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
                             {/* <td><button className="btn btn-danger" onClick={deleteModel}>X</button></td> */}
                         </tr>

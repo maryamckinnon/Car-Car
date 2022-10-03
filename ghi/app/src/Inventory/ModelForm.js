@@ -89,11 +89,16 @@ class ModelForm extends React.Component {
     render() {
         return (
           <div className='row'>
+              
               <form 
                 onSubmit={this.handleSubmit} 
                 id="model-form"
+                style={{textAlign:'center'}}
               >
-                <div className="input-group d-inline-flex align-items-center w-auto">
+                <h3 className="input-group d-inline-flex align-items-center w-auto"
+                style={{fontSize:'16px', fontWeight:'bold', fontStyle:'italic', color:'blue', marginRight:'20px'}}
+                >Add Model</h3>
+                <div className="input-group d-inline-flex align-items-center w-auto" >
                   <input 
                     onChange={this.handleNameChange} 
                     placeholder="Name" 
@@ -102,6 +107,7 @@ class ModelForm extends React.Component {
                     id="name" 
                     className="form-control" 
                     value={this.state.name}
+                    style={{width:'400px', marginTop:'15px'}}
                   />
                 </div>                  
                 <div className="input-group d-inline-flex align-items-center w-auto">
@@ -111,8 +117,9 @@ class ModelForm extends React.Component {
                       name="manufacturer" 
                       onChange={this.handleManufacturerIdChange} 
                       value={this.state.manufacturer_id}
+                      style={{width:'300px'}}
                     >
-                      <option value="">Choose a manufacturer</option>
+                      <option value="">Choose manufacturer</option>
                       {this.state.manufacturers.map(manufacturer => {
                         return (
                           <option key={manufacturer.id} value={manufacturer.id}>
@@ -131,9 +138,10 @@ class ModelForm extends React.Component {
                       id="picture url" 
                       className="form-control" 
                       value={this.state.picture_url}
+                      style={{width:'400px'}}
                     />
                   </div>
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary" style={{fontWeight:'bolder'}}>+</button>
                 </form>
               </div>
         );

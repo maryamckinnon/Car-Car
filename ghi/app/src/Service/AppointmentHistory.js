@@ -41,7 +41,6 @@ class AppointmentHistory extends React.Component {
         }
         }
       }
-
       
     render() {
       return (
@@ -60,16 +59,16 @@ class AppointmentHistory extends React.Component {
             </div>
           <div className="appointment-list">
             
-                <table className="table" style={{marginTop: 75, marginBottom:'200px'}}>
+                <table className="table table-hover" style={{marginTop: 75, marginBottom:'200px'}}>
                   <thead>
                     <tr>
                       <th>VIN</th>
-                      <th>CUSTOMER</th>
-                      <th>DATE</th>
-                      <th>TIME</th>
-                      <th>TECHNICIAN</th>
-                      <th>REASON</th>
-                      <th>STATUS</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Technician</th>
+                      <th>Reason</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
