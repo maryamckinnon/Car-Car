@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from 'react-router-dom';
+import ModelForm from './ModelForm';
 
 function ModelList() {
     const [data, setData] = useState([]);
@@ -69,7 +70,7 @@ function ModelList() {
                 })}
             </tbody>
         </table>
-        <Redirect />
+        <ModelForm />
         </>
     );
 }
