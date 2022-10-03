@@ -74,12 +74,13 @@ class AppointmentHistory extends React.Component {
                   </thead>
                   <tbody>
                   {this.state.appointments.map(appointment => {
+                    const date = new Date(appointment.date)
                   return (
                     <tr key={ appointment.id }>
                       <td>{ appointment.vin }</td>
                       <td>{ appointment.customer_name }</td>
-                      <td>{ new Date(appointment.date).toLocaleDateString('en-US') }</td>
-                      <td>{ appointment.time }</td>
+                      <td>{ date.toLocaleDateString('en-US') }</td>
+                      <td>{ date.toLocaleTimeString() }</td>
                       <td>{ appointment.technician.name }</td>
                       <td>{ appointment.reason }</td>
                       <td>{ appointment.status.name }</td>
