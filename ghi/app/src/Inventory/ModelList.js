@@ -34,12 +34,12 @@ function ModelList() {
     return (
         <>
         <h1>Vehicle Models</h1>
-        <table className="table table-striped table-hover">
+        <table className="table">
             <thead>
                 <tr>
                     <th style={{textAlign:'left'}}>Name</th>
                     <th style={{textAlign:'left'}}>Manufacturer</th>
-                    <th>Picture</th>
+                    <th>Starting MSRP</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -50,6 +50,7 @@ function ModelList() {
                         <tr key={ model.id }>
                             <td style={{textAlign:'left'}}>{ model.name }</td>
                             <td style={{textAlign:'left'}}>{ model.manufacturer.name }</td>
+                            <td>{ model.price }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
                             {/* <td><button className="btn btn-danger" onClick={deleteModel}>X</button></td> */}
                         </tr>

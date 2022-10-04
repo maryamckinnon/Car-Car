@@ -8,11 +8,12 @@ class ModelForm extends React.Component {
         showForm: "shadow p-4 mt-4",
         name: '',
         pictureUrl: '',
+        price: '',
         manufacturers: [],
       };
-      this.handleReset = this.handleReset.bind(this);
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this);
+      this.handlePriceChange = this.handlePriceChange.bind(this);
       this.handleManufacturerIdChange = this.handleManufacturerIdChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -30,21 +31,19 @@ class ModelForm extends React.Component {
         }
     }
 
-    handleReset(event) {
-      this.setState({
-          showSuccess: "d-none",
-          showForm: "shadow p-4 mt-4",
-      });
-    }
-
     handleNameChange(event) {
       const value = event.target.value;
       this.setState({name: value})
     }
 
     handlePictureUrlChange(event) {
-        const value = event.target.value;
-        this.setState({pictureUrl: value})
+      const value = event.target.value;
+      this.setState({pictureUrl: value})
+    }
+
+    handlePriceChange(event) {
+      const value = event.target.value;
+      this.setState({price: value})
     }
 
     handleManufacturerIdChange(event) {
@@ -53,6 +52,7 @@ class ModelForm extends React.Component {
     }
 
     async handleSubmit(event) {
+      event.preventDefault();
       const data = {...this.state};
       data.picture_url = data.pictureUrl;
       data.manufacturer_id = data.manufacturerId;
@@ -76,8 +76,7 @@ class ModelForm extends React.Component {
           name: '',
           picture_url: '',
           manufacturer_id: '',
-          showForm: 'shadow p-4 mt-4 d-none',
-          showSuccess: '',
+          price: '',
           message: 'Model has been added'
         }
         this.setState(cleared);
@@ -129,6 +128,18 @@ class ModelForm extends React.Component {
                       })}
                     </select>
                 </div>
+                <div className="input-group d-inline-flex align-items-center w-auto" >
+                  <input 
+                    onChange={this.handlePriceChange} 
+                    placeholder="Price" 
+                    required type="text" 
+                    name="price" 
+                    id="price" 
+                    className="form-control" 
+                    value={this.state.price}
+                    style={{width:'200px', marginTop:'15px'}}
+                  />
+                </div>     
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <input 
                       onChange={this.handlePictureUrlChange} 

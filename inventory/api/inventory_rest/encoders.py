@@ -17,6 +17,7 @@ class VehicleModelEncoder(ModelEncoder):
         "id",
         "name",
         "picture_url",
+        "price",
         "manufacturer",
     ]
     encoders = {

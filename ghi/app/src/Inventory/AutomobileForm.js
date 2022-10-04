@@ -1,12 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 
 class AutomobileForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             models: [],
+            manufacturers: [],
             color: '',
             year: '',
             vin: '',
@@ -17,11 +16,14 @@ class AutomobileForm extends React.Component {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleModelChange = this.handleModelChange.bind(this);
+        this.handleManufacturerChange = this.handleManufacturerChange.bind(this);
     }
 
     async handleSubmit(event) {
+        event.preventDefault();
         const data = {...this.state};
         delete data.models
+        delete data.manufacturers
 
         const url = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
@@ -66,14 +68,23 @@ class AutomobileForm extends React.Component {
         this.setState({model_id: value});
     }
 
+    handleManufacturerChange(event) {
+        const value = event.target.value;
+        this.setState({manufacturer_id: value})
+    }
+
     async componentDidMount() {
         const modelUrl = 'http://localhost:8100/api/models/';
-        const response = await fetch(modelUrl);
+        const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
+        const modelResponse = await fetch(modelUrl);
+        const manufacturerResponse = await fetch(manufacturerUrl);
 
-        if (response.ok) {
-            const models = await response.json();
+        if (modelResponse.ok && manufacturerResponse.ok) {
+            const models = await modelResponse.json();
+            const manufacturers = await manufacturerResponse.json();
             this.setState({
                 models: models.models,
+                manufacturers: manufacturers.manufacturers,
             });
         } else {
             console.error("invalid request")
@@ -84,32 +95,12 @@ class AutomobileForm extends React.Component {
         return (
           <div className="row">
           <div className="form-group col-xs-6">
-            <form onSubmit={this.handleSubmit} id="add-auto-form">
-                <div className="input-group d-inline-flex align-items-center w-auto">
-                    <input
-                        className="form-control" 
-                        required type="text"
-                        minLength={17}
-                        maxLength={17} 
-                        id="vin" 
-                        name="vin"
-                        onChange={this.handleVinChange} 
-                        placeholder="VIN"
-                        value={this.state.vin}
-                    />
-                </div>
-                <div className="input-group d-inline-flex align-items-center w-auto">
-                    <input
-                        className="form-control input-group-lg" 
-                        required type="text"
-                        onChange={this.handleColorChange} 
-                        id="color"
-                        name="color" 
-                        value={this.state.color}
-                        placeholder="Color"
-                    />
-                    <label htmlFor="Color"></label>
-                </div>
+            <form 
+                onSubmit={this.handleSubmit} 
+                id="add-auto-form"
+                style={{paddingLeft:'130px', marginTop: '15px'}}
+            >
+
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <input
                         className="form-control" 
@@ -121,6 +112,7 @@ class AutomobileForm extends React.Component {
                         id="year" 
                         name="year"
                         value={this.state.year}
+                        style={{width:'100px'}}
                     />
                     <label htmlFor="year"></label>
                 </div>
@@ -128,10 +120,32 @@ class AutomobileForm extends React.Component {
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <select
                         className="form-select" 
+                        required id="manufacturer"
+                        name="manufacturer" 
+                        value={this.state.manufacturer}
+                        onChange={this.handleManufacturerChange}
+                        style={{width:'220px'}}
+                    >
+                        <option value="">Choose manufacturer</option>
+                        {this.state.manufacturers
+                        .map(manufacturer => {
+                            return (
+                                <option key={manufacturer.id} value={manufacturer.id}>
+                                    {manufacturer.name}
+                                </option>
+                            )
+                        })}
+                    </select>
+                </div>
+                
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <select
+                        className="form-select" 
                         required id="model"
                         name="model" 
                         value={this.state.model_id}
                         onChange={this.handleModelChange}
+                        style={{width:'550px', textAlign:'center'}}
                     >
                         <option value="">Choose model</option>
                         {this.state.models
@@ -144,7 +158,37 @@ class AutomobileForm extends React.Component {
                         })}
                     </select>
                 </div>
-                <button className="btn btn-primary">Add</button>
+
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input
+                        className="form-control input-group-lg" 
+                        required type="text"
+                        onChange={this.handleColorChange} 
+                        id="color"
+                        name="color" 
+                        value={this.state.color}
+                        placeholder="Color"
+                        style={{width:'150px'}}
+                    />
+                    <label htmlFor="Color"></label>
+                </div>
+
+                <div className="input-group d-inline-flex align-items-center w-auto">
+                    <input
+                        className="form-control" 
+                        required type="text"
+                        minLength={17}
+                        maxLength={17} 
+                        id="vin" 
+                        name="vin"
+                        onChange={this.handleVinChange} 
+                        placeholder="VIN"
+                        value={this.state.vin}
+                        style={{width:'250px'}}
+                    />
+                </div>
+
+                <button className="btn btn-primary" style={{fontWeight:'bolder'}}>+</button>
             </form>
             </div>
             </div>
