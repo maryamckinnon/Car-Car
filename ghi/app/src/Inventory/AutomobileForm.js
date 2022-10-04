@@ -5,7 +5,7 @@ class AutomobileForm extends React.Component {
         super(props);
         this.state = {
             models: [],
-            manufacturers: [],
+            // manufacturers: [],
             color: '',
             year: '',
             vin: '',
@@ -16,11 +16,10 @@ class AutomobileForm extends React.Component {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleModelChange = this.handleModelChange.bind(this);
-        this.handleManufacturerChange = this.handleManufacturerChange.bind(this);
+        // this.handleManufacturerChange = this.handleManufacturerChange.bind(this);
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
         const data = {...this.state};
         delete data.models
         delete data.manufacturers
@@ -68,10 +67,10 @@ class AutomobileForm extends React.Component {
         this.setState({model_id: value});
     }
 
-    handleManufacturerChange(event) {
-        const value = event.target.value;
-        this.setState({manufacturer_id: value})
-    }
+    // handleManufacturerChange(event) {
+    //     const value = event.target.value;
+    //     this.setState({manufacturer_id: value})
+    // }
 
     async componentDidMount() {
         const modelUrl = 'http://localhost:8100/api/models/';
@@ -117,7 +116,7 @@ class AutomobileForm extends React.Component {
                     <label htmlFor="year"></label>
                 </div>
 
-                <div className="input-group d-inline-flex align-items-center w-auto">
+                {/* <div className="input-group d-inline-flex align-items-center w-auto">
                     <select
                         className="form-select" 
                         required id="manufacturer"
@@ -136,7 +135,7 @@ class AutomobileForm extends React.Component {
                             )
                         })}
                     </select>
-                </div>
+                </div> */}
                 
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <select
