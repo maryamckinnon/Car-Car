@@ -19,6 +19,7 @@ import SalesRecordList from './Sales/SalesRecordList';
 import SalesRecordFiltered from './Sales/SalesRecordFiltered';
 import Footer from "./components/Footer";
 import './index.css';
+import ModelListCustomer from './Inventory/ModelListCustomer';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         </Route>
         <Route path="models">
           <Route path="" element={<ModelList />} />
+          <Route path="customer" element={<ModelListCustomer />} />
           <Route path="new" element={<ModelForm />} />
         </Route>
         <Route path="automobiles">

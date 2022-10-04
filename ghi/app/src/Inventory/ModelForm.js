@@ -95,8 +95,8 @@ class ModelForm extends React.Component {
                 style={{textAlign:'center'}}
               >
                 <h3 className="input-group d-inline-flex align-items-center w-auto"
-                style={{fontSize:'16px', fontWeight:'bold', fontStyle:'italic', color:'blue', marginRight:'20px', marginTop:'200px'}}
-                >Add New Model</h3>
+                style={{fontSize:'16px', fontWeight:'bold', fontStyle:'italic', color:'blue', marginRight:'20px', marginTop:'50px'}}
+                >Add Model</h3>
                 <div className="input-group d-inline-flex align-items-center w-auto" >
                   <input 
                     onChange={this.handleNameChange} 
