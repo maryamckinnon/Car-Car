@@ -18,6 +18,10 @@ function AppointmentList() {
         )
     }
 
+    function finishAppointment() {
+        
+    }
+
     useEffect(() => {
         const url = 'http://localhost:8080/api/appointments/';
 
@@ -53,7 +57,7 @@ function AppointmentList() {
                             return (
                                 <tr key={ appointment.id }>
                                     <td>
-                                        {/* <button className="btn btn-success" onClick={() => props.finish(appointment)}>✔</button> */}
+                                        <button className="btn btn-success" onClick={finishAppointment}>✔</button>
                                     </td>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
