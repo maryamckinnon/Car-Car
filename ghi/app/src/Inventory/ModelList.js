@@ -5,18 +5,16 @@ import ModelForm from './ModelForm';
 function ModelList() {
     const [data, setData] = useState([]);
 
-    // async function deleteModel(id) {
-    //     const fetchConfig = {
-    //         method: 'DELETE'
-    //     }
-    //     const url = `http://localhost:8100/api/models/${id}`
-    //     const response = await fetch(url, fetchConfig);
-    //     if (response.ok) {
-    //         setData(
-    //             data.filter((model) => model.id !== id)
-    //         )
-    //     }
-    // }
+    async function deleteModel(id) {
+        const fetchConfig = {
+            method: "DELETE",
+        }
+        const url = `http://localhost:8100/api/models/${id}`
+        const response = fetch(url, fetchConfig);
+        if (response.ok) {
+            setData(data.filter((model) => model.id !== id))
+        } window.location.reload();
+    }
 
     useEffect(() => {
         const url = 'http://localhost:8100/api/models/';
@@ -29,6 +27,7 @@ function ModelList() {
     useEffect(() => {
     }, [data]);
     console.log(data)
+
 
     return (
         <>
@@ -51,7 +50,7 @@ function ModelList() {
                             <td style={{textAlign:'left'}}>{ model.manufacturer.name }</td>
                             <td>${ new Intl.NumberFormat().format(model.price) }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
-                            {/* <td><button className="btn btn-danger" onClick={deleteModel}>X</button></td> */}
+                            <td><button className="btn btn-danger" onClick={() => deleteModel(model.id)}>X</button></td>
                         </tr>
                     );
                 })}

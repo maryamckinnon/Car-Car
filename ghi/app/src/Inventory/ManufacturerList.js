@@ -17,6 +17,17 @@ function ManufacturerList() {
     useEffect(() => {
     }, [data]);
 
+    async function deleteManufacturer(id) {
+        const fetchConfig = {
+            method: "DELETE",
+        }
+        const url = `http://localhost:8100/api/manufacturers/${id}`
+        const response = fetch(url, fetchConfig);
+        if (response.ok) {
+            setData(data.filter((manufacturer) => manufacturer.id !== id))
+        } window.location.reload();
+    }
+
     const sortedData = [...data].sort((a,b) => a.name.localeCompare(b.name));
 
     return (
@@ -31,7 +42,7 @@ function ManufacturerList() {
                     return (
                         <tr key={ manufacturer.id }>
                             <td>{ manufacturer.name }</td>
-                            {/* <td><button className="btn btn-danger" onClick={() => data.delete(manufacturer)}>X</button></td> */}
+                            <td><button className="btn btn-danger" onClick={() => deleteManufacturer(manufacturer.id)}>X</button></td>
                         </tr>
                         
                     );

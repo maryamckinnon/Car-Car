@@ -18,9 +18,20 @@ function AppointmentList() {
         )
     }
 
-    function finishAppointment() {
-        
-    }
+    // async function finishAppointment() {
+    //     if (window.confirm("Confirm appointment is finished")) {
+    //       const appointmentUrl = `http://localhost:8080/api/appointments/${appointment.id}/finished/`
+    //       const fetchConfig = {
+    //         method: "PUT",
+    //       }
+    //     const response = await fetch(appointmentUrl, fetchConfig);
+    //     if (response.ok) {
+    //       const newAppointments = this.state.appointments.filter((app) => appointment.id !== app.id)
+    //       this.setState({appointments: newAppointments})
+    //     }
+    //     }
+    //   }
+    
 
     useEffect(() => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -56,9 +67,9 @@ function AppointmentList() {
                             const date = new Date(appointment.date)
                             return (
                                 <tr key={ appointment.id }>
-                                    <td>
+                                    {/* <td>
                                         <button className="btn btn-success" onClick={finishAppointment}>✔</button>
-                                    </td>
+                                    </td> */}
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
                                     <td>{ date.toLocaleDateString('en-US') }</td>
