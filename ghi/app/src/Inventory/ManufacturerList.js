@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ManufacturerForm from "./ManufacturerForm";
+import Button from '@mui/material/Button';
 
 
 function ManufacturerList() {
@@ -41,8 +42,8 @@ function ManufacturerList() {
                 {sortedData.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>
-                            <td>{ manufacturer.name }</td>
-                            <td><button className="btn btn-danger" onClick={() => deleteManufacturer(manufacturer.id)}>X</button></td>
+                            <td style={{textAlign:'right'}}>{ manufacturer.name }</td>
+                            <td><Button variant="outlined" color="error" onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
                         </tr>
                         
                     );

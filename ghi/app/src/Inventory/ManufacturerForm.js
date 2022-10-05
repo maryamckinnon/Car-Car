@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 class ManufacturerForm extends React.Component {
     constructor(props) {
@@ -35,7 +36,6 @@ class ManufacturerForm extends React.Component {
         if (response.ok) {
           const cleared = {
             name: '',
-            showSuccess: '',
           };
           this.setState(cleared);
         } else {
@@ -64,7 +64,7 @@ class ManufacturerForm extends React.Component {
                     id='name' 
                     value={this.state.name}
                   />
-                  <button className='btn-add'>+</button>
+                  <Button variant="contained" color="success" style={{fontSize:'16px', fontWeight:'bolder'}}>+</Button>
                   <label htmlFor='name'></label>
               </form>
               </div>
