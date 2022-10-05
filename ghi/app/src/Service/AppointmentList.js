@@ -31,6 +31,19 @@ function AppointmentList() {
     //     }
     //     }
     //   }
+
+    async function appointmentFinished(id) {
+        if (window.confirm("Confirm appointment is finished")) {
+            const fetchConfig = {
+                method: "PUT",
+            }
+            const url = `http://localhost:8080/api/appointments/${id}/finished/`
+            const response = fetch(url, fetchConfig);
+            if (response.ok) {
+                setData(data.filter((appointment) => appointment.id !== id))
+            } window.location.reload();
+        }
+    }
     
 
     useEffect(() => {
@@ -48,7 +61,7 @@ function AppointmentList() {
     return (
         <div className="appointment-list">
             <h1>Service appointments</h1>
-                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px'}}>
+                <table className="table table-striped table-hover" style={{marginBottom:'200px', marginTop:'50px'}}>
                     <thead>
                         <tr>
                             <th></th>
@@ -67,9 +80,9 @@ function AppointmentList() {
                             const date = new Date(appointment.date)
                             return (
                                 <tr key={ appointment.id }>
-                                    {/* <td>
-                                        <button className="btn btn-success" onClick={finishAppointment}>✔</button>
-                                    </td> */}
+                                    <td>
+                                        <button className="btn btn-success" onClick={() => appointmentFinished(appointment.id)}>✔</button>
+                                    </td>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
                                     <td>{ date.toLocaleDateString('en-US') }</td>
@@ -78,7 +91,7 @@ function AppointmentList() {
                                     <td>{ appointment.reason }</td>
                                     <td>{ (appointment.vip)? "👑" :"" }</td>
                                     <td>
-                                        {/* <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => props.cancel(appointment)}>X</button> */}
+                                        <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => appointmentFinished(appointment.id)}>CANCEL</button>
                                     </td>
                                 </tr>
                             );
