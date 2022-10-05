@@ -44,10 +44,10 @@ class ModelListCustomer extends React.Component {
               </div>
             </div>
             <Container>
-              <Row>
+              <Row style={{paddingTop:'20px'}}>
                 {this.state.modelColumns.map((list, key) => {
                   return (
-                    <Col key={key}>
+                    <Col key={key} style={{paddingTop:'20px'}}>
                     {list.map(model => {
                       return (
                         <div key={model.id}>
@@ -55,7 +55,7 @@ class ModelListCustomer extends React.Component {
                             <Card.Title
                                 style={{paddingLeft:'10px', paddingTop:'10px', fontWeight:'bold'}}
                             >
-                                {model.name}
+                                {model.manufacturer.name}{" "}{model.name}
                             </Card.Title>
                             <Card.Img
                                 src={model.picture_url}

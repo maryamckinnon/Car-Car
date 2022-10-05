@@ -52,7 +52,6 @@ class ModelForm extends React.Component {
     }
 
     async handleSubmit(event) {
-      event.preventDefault();
       const data = {...this.state};
       data.picture_url = data.pictureUrl;
       data.manufacturer_id = data.manufacturerId;
