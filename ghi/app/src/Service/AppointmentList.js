@@ -18,19 +18,18 @@ function AppointmentList() {
         )
     }
 
-    // async function finishAppointment() {
-    //     if (window.confirm("Confirm appointment is finished")) {
-    //       const appointmentUrl = `http://localhost:8080/api/appointments/${appointment.id}/finished/`
-    //       const fetchConfig = {
-    //         method: "PUT",
-    //       }
-    //     const response = await fetch(appointmentUrl, fetchConfig);
-    //     if (response.ok) {
-    //       const newAppointments = this.state.appointments.filter((app) => appointment.id !== app.id)
-    //       this.setState({appointments: newAppointments})
-    //     }
-    //     }
-    //   }
+    async function appointmentCanceled(id) {
+        if (window.confirm("Confirm appointment is canceled")) {
+            const fetchConfig = {
+                method: "PUT",
+            }
+            const url = `http://localhost:8080/api/appointments/${id}/canceled/`
+            const response = fetch(url, fetchConfig);
+            if (response.ok) {
+                setData(data.filter((appointment) => appointment.id !== id))
+            } window.location.reload();
+        }
+    }
 
     async function appointmentFinished(id) {
         if (window.confirm("Confirm appointment is finished")) {
@@ -91,7 +90,7 @@ function AppointmentList() {
                                     <td>{ appointment.reason }</td>
                                     <td>{ (appointment.vip)? "👑" :"" }</td>
                                     <td>
-                                        <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => appointmentFinished(appointment.id)}>CANCEL</button>
+                                        <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => appointmentCanceled(appointment.id)}>CANCEL</button>
                                     </td>
                                 </tr>
                             );
