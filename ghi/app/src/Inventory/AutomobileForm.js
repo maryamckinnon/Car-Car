@@ -67,11 +67,6 @@ class AutomobileForm extends React.Component {
         this.setState({model_id: value});
     }
 
-    // handleManufacturerChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({manufacturer_id: value})
-    // }
-
     async componentDidMount() {
         const modelUrl = 'http://localhost:8100/api/models/';
         const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
@@ -99,7 +94,9 @@ class AutomobileForm extends React.Component {
                 id="add-auto-form"
                 style={{paddingLeft:'130px', marginTop: '15px'}}
             >
-
+                <h3 className="input-group d-inline-flex align-items-center w-auto"
+                style={{fontSize:'16px', fontWeight:'bold', fontStyle:'italic', color:'blue', marginRight:'20px', marginTop:'50px'}}
+                >Add Automobile</h3>
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <input
                         className="form-control" 
@@ -111,31 +108,10 @@ class AutomobileForm extends React.Component {
                         id="year" 
                         name="year"
                         value={this.state.year}
-                        style={{width:'100px'}}
+                        style={{width:'180px'}}
                     />
                     <label htmlFor="year"></label>
                 </div>
-
-                {/* <div className="input-group d-inline-flex align-items-center w-auto">
-                    <select
-                        className="form-select" 
-                        required id="manufacturer"
-                        name="manufacturer" 
-                        value={this.state.manufacturer}
-                        onChange={this.handleManufacturerChange}
-                        style={{width:'220px'}}
-                    >
-                        <option value="">Choose manufacturer</option>
-                        {this.state.manufacturers
-                        .map(manufacturer => {
-                            return (
-                                <option key={manufacturer.id} value={manufacturer.id}>
-                                    {manufacturer.name}
-                                </option>
-                            )
-                        })}
-                    </select>
-                </div> */}
                 
                 <div className="input-group d-inline-flex align-items-center w-auto">
                     <select
@@ -144,7 +120,7 @@ class AutomobileForm extends React.Component {
                         name="model" 
                         value={this.state.model_id}
                         onChange={this.handleModelChange}
-                        style={{width:'550px', textAlign:'center'}}
+                        style={{width:'480px', textAlign:'center'}}
                     >
                         <option value="">Choose model</option>
                         {this.state.models
@@ -167,7 +143,7 @@ class AutomobileForm extends React.Component {
                         name="color" 
                         value={this.state.color}
                         placeholder="Color"
-                        style={{width:'150px'}}
+                        style={{width:'180px'}}
                     />
                     <label htmlFor="Color"></label>
                 </div>
@@ -183,14 +159,14 @@ class AutomobileForm extends React.Component {
                         onChange={this.handleVinChange} 
                         placeholder="VIN"
                         value={this.state.vin}
-                        style={{width:'250px'}}
+                        style={{width:'280px'}}
                     />
                 </div>
 
                 <button className="btn btn-primary" style={{fontWeight:'bolder'}}>+</button>
             </form>
             </div>
-            </div>
+            // </div>
         );
     }
 }

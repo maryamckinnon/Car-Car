@@ -4,6 +4,16 @@ import AutomobileForm from './AutomobileForm';
 function AutomobileList() {
 
     const [data, setData] = useState([]);
+    let sortedData = [...data];
+    sortedData.sort((a, b) => {
+        if (a.name < b.name) {
+            return -1
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
+    });
 
     useEffect(() => {
       const url = 'http://localhost:8100/api/automobiles/';
