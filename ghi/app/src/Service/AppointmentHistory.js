@@ -75,7 +75,7 @@ class AppointmentHistory extends React.Component {
                   {this.state.appointments.map(appointment => {
                     const date = new Date(appointment.date)
                   return (
-                    <tr key={ appointment.id } style={{backgroundColor: !!(appointment.status.name === "SCHEDULED") ? '#99ee99': '#ff8886'}}>
+                    <tr key={ appointment.id } style={{backgroundColor: !!(appointment.status.name === "SCHEDULED") ? '#FFFFE0': '#FBD9D3'}}>
                       <td>{ appointment.vin }</td>
                       <td>{ appointment.customer_name }</td>
                       <td>{ date.toLocaleDateString('en-US') }</td>

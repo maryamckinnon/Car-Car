@@ -83,7 +83,7 @@ class AppointmentForm extends React.Component {
         console.log(newAppointment)
 
         this.setState({...this.initialState});
-      }
+      } window.location.reload();
     }
 
     
