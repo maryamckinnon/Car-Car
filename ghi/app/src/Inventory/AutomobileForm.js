@@ -5,7 +5,6 @@ class AutomobileForm extends React.Component {
         super(props);
         this.state = {
             models: [],
-            // manufacturers: [],
             color: '',
             year: '',
             vin: '',
@@ -16,7 +15,6 @@ class AutomobileForm extends React.Component {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleModelChange = this.handleModelChange.bind(this);
-        // this.handleManufacturerChange = this.handleManufacturerChange.bind(this);
     }
 
     async handleSubmit(event) {
