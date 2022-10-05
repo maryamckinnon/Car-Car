@@ -51,7 +51,7 @@ class ModelListCustomer extends React.Component {
                     {list.map(model => {
                       return (
                         <div key={model.id}>
-                        <Card>
+                        <Card style={{marginBottom:'20px'}}>
                             <Card.Title
                                 style={{paddingLeft:'10px', paddingTop:'10px', fontWeight:'bold'}}
                             >
