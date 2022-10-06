@@ -6,6 +6,7 @@ from .views import (
     customer_list,
     customer_delete,
     sales_record_list,
+    delete_sales_record
 )
 
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path('customers/', customer_list, name="customer_list"),
     path('customers/<int:pk>/', customer_delete, name="customer_delete"),
     path('sales-records/', sales_record_list, name="sales_record_list"),
+    path('sales-records/<int:pk>/', delete_sales_record, name="delete_sales_record")
 ]

@@ -10,6 +10,7 @@ class AutomobileVOEncoder(ModelEncoder):
     properties = [
         "vin",
         "id",
+        'import_href'
     ]
 
 
@@ -38,7 +39,7 @@ class SalesRecordEncoder(ModelEncoder):
         "automobile",
         "sales_person",
         "customer",
-        "sales_price",
+        "price",
         "id",
     ]
     encoders = {
@@ -49,9 +50,11 @@ class SalesRecordEncoder(ModelEncoder):
 
 
 @require_http_methods(["GET"])
-def automobile_vo_list(request):
+def automobile_vo_list(request, pk):
     if request.method == "GET":
-        automobiles = AutomobileVO.objects.all()
+        content = json.loads(request.body)
+        automobile_id = content['automobile']
+        automobiles = AutomobileVO.objects.filter(pk=automobile_id)
         return JsonResponse(
             {"automobiles": automobiles},
             encoder=AutomobileVOEncoder,
@@ -81,14 +84,22 @@ def sales_person_list(request):
 def sales_person_details(request, pk):
     if request.method == "GET":
         sales_person = SalesPerson.objects.get(id=pk)
-        return JsonResponse(
-            sales_person,
-            encoder=SalesPersonEncoder,
-            safe=False,
-        )
+        try:
+            return JsonResponse(
+                sales_person,
+                encoder=SalesPersonEncoder,
+                safe=False,
+            )
+        except SalesPerson.DoesNotExist:
+            response = JsonResponse({'message': 'Invalid sales person'})
+            response.status_code = 404
+            return response
     else:
-        count, _ = SalesPerson.objects.filter(id=pk).delete()
-        return JsonResponse({"deleted": count > 0})
+        try:
+            count, _ = SalesPerson.objects.filter(id=pk).delete()
+            return JsonResponse({"deleted": count > 0})
+        except SalesPerson.DoesNotExist:
+            return JsonResponse({'message': 'Invalid sales person'})
 
 
 @require_http_methods(["GET", "POST"])
@@ -128,15 +139,34 @@ def sales_record_list(request):
         )
     else:
         content = json.loads(request.body)
-        content = {
-            **content,
-            "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-            "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
-            "customer": Customer.objects.get(pk=content["customer"])
-        }
+        
+        automobile_id = content['automobile']
+        automobile = AutomobileVO.objects.get(id=automobile_id)
+        content['automobile'] = automobile
+        
+        sales_person_id = content['sales_person']
+        sales_person = SalesPerson.objects.get(id=sales_person_id)
+        content['sales_person'] = sales_person
+
+        customer_id = content['customer']
+        customer = Customer.objects.get(id=customer_id)
+        content['customer'] = customer
+
+        # content = {
+        #     **content,
+        #     "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
+        #     "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
+        #     "customer": Customer.objects.get(pk=content["customer"])
+        # }
         sales_record = SalesRecord.objects.create(**content)
         return JsonResponse(
             sales_record,
             encoder=SalesRecordEncoder,
             safe=False,
         )
+
+@require_http_methods(["DELETE"])
+def delete_sales_record(request, pk):
+    if request.method == "DELETE":
+        count, _ = SalesRecord.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})

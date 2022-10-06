@@ -7,12 +7,12 @@ class SalesRecordForm extends React.Component {
             automobiles: [],
             salesPeople: [],
             customers: [],
-            salesPrice: '',
+            price: '',
         };
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
         this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
-        this.handleSalesPriceChange = this.handleSalesPriceChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -43,18 +43,16 @@ class SalesRecordForm extends React.Component {
         this.setState({customer: value})
     }
 
-    handleSalesPriceChange(event) {
+    handlePriceChange(event) {
         const value = event.target.value;
-        this.setState({salesPrice: value})
+        this.setState({price: value})
     }
     
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        data.sales_price = data.salesPrice;
         data.sales_person = data.salesPerson;
         delete data.salesPerson;
-        delete data.salesPrice;
         delete data.automobiles;
         delete data.salesPeople;
         delete data.customers;
@@ -124,8 +122,8 @@ class SalesRecordForm extends React.Component {
                       </select>
                   </div>
                   <div className="form-floating mb-3">
-                      <input onChange={this.handleSalesPriceChange} placeholder="salesPrice" required 
-                      type="text" name="salesPrice" id="salesPrice" className="form-control" value={this.state.salesPrice}/>
+                      <input onChange={this.handlePriceChange} placeholder="salesPrice" required 
+                      type="text" name="salesPrice" id="salesPrice" className="form-control" value={this.state.price}/>
                       <label htmlFor="salesPrice">Sales Price</label>
                   </div>
                   <button className="btn btn-primary">Create</button>

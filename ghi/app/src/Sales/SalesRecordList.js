@@ -9,7 +9,7 @@ function SalesRecordList() {
 
         fetch(url)
             .then((response) => response.json())
-            .then((json) => setData(json['sales_record']))
+            .then((json) => setData(json['sales_records']))
             .catch((error) => console.log(error));
     }, []);
 
@@ -30,13 +30,13 @@ function SalesRecordList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(sale => {
+                        {data.map(sales_record => {
                             return (
-                                <tr key={sale.id}>
-                                <td>{sale.sales_person.name}</td>
-                                <td>{sale.customer.name}</td>
-                                <td>{sale.automobile.vin}</td>
-                                <td>{sale.sales_price}</td>
+                                <tr key={sales_record.id}>
+                                <td>{sales_record.sales_person.name}</td>
+                                <td>{sales_record.customer.name}</td>
+                                <td>{sales_record.automobile.vin}</td>
+                                <td>{sales_record.price}</td>
                             </tr>
                             );
                         })}

@@ -3,13 +3,18 @@ from django.core.validators import (
     MaxValueValidator,
     MinValueValidator,
 )
+from django.urls import reverse
     
+
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
-    sold = models.BooleanField(default=False)
+    import_href = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.vin}"
+
+    def get_api_url(self):
+        return reverse("api_automobile", kwargs={"vin": self.vin})
 
 
 class SalesPerson(models.Model):
