@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 
 class ManufacturerForm extends React.Component {
     constructor(props) {
@@ -49,27 +48,33 @@ class ManufacturerForm extends React.Component {
     
     render() {
       return (
+        <div className='container'>
           <div className='row'>
           <div className='offset-3 col-6'>
               <div className='manufacturer-form'>
               <form 
-                onSubmit={this.handleSubmit} 
-                id='create-manufacturer-form'
+                className="form-inline"
+                onSubmit={this.handleSubmit}
+                style={{display:'flex', justifyContent:'center'}}
               >
-                  <input 
-                    onChange={this.handleNameChange} 
-                    placeholder='Add manufacturer' 
-                    required type='text'
-                    name='name' 
-                    id='name' 
-                    value={this.state.name}
-                  />
-                  <Button variant="contained" color="success" style={{fontSize:'16px', fontWeight:'bolder'}}>+</Button>
-                  <label htmlFor='name'></label>
+                <input
+                  onChange={this.handleNameChange}
+                  className="form-control mr-sm-2" 
+                  type="search" 
+                  placeholder="Add manufacturer" 
+                  aria-label="Add manufacturer"
+                  style={{width:'200px'}}
+                />
+                <button 
+                  className="btn btn-success" 
+                  type="submit"
+                >Add
+                </button>
               </form>
               </div>
             </div>
           </div>
+        </div>
       );
   }
 }

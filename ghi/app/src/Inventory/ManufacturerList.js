@@ -34,7 +34,7 @@ function ManufacturerList() {
     return (
         <>
         <h1> Manufacturers </h1>
-        <table className="table table-hover" style={{width:'400px', textAlign:'centered'}}>
+        <table className="table" style={{width:'400px', textAlign:'center'}}>
             <thead>
                 <tr></tr>
             </thead>
@@ -42,8 +42,8 @@ function ManufacturerList() {
                 {sortedData.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>
-                            <td style={{textAlign:'right'}}>{ manufacturer.name }</td>
-                            <td><Button variant="outlined" color="error" onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
+                            <td style={{textAlign:'left', paddingLeft:'20px'}}>{ manufacturer.name }</td>
+                            <td><Button variant="outlined" color="error" size="small" onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
                         </tr>
                         
                     );
