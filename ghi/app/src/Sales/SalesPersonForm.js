@@ -27,9 +27,9 @@ class SalesPersonForm extends React.Component {
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
 
-        const salesPersonUrl = `${process.env.REACT_APP_SALES_API}/api/sales-people/`;
+        const salesPersonUrl = 'http://localhost:8090/api/sales-people/';
         const fetchConfig = {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",

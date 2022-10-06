@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function SalesRecordList({ sales_records }) {
+function SalesRecordList() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const url = 'http://localhost:8090/api/sales-records/';
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((json) => setData(json['sales_record']))
+            .catch((error) => console.log(error));
+    }, []);
+
+    useEffect(() => {
+    }, [data]);
+
     return (
         <>
         <div className="appointment-list">
@@ -10,18 +25,18 @@ export default function SalesRecordList({ sales_records }) {
                         <tr>
                             <th>Sales Person</th>
                             <th>Customer</th>
-                            <th>Automobile VIN</th>
+                            <th>VIN</th>
                             <th>Sales Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {sales_records?.map(record => {
+                        {data.map(sale => {
                             return (
-                                <tr key={record.id}>
-                                <td>{record.sales_person.name}</td>
-                                <td>{record.customer.name}</td>
-                                <td>{record.automobile.vin}</td>
-                                <td>{record.sales_price}</td>
+                                <tr key={sale.id}>
+                                <td>{sale.sales_person.name}</td>
+                                <td>{sale.customer.name}</td>
+                                <td>{sale.automobile.vin}</td>
+                                <td>{sale.sales_price}</td>
                             </tr>
                             );
                         })}
@@ -31,3 +46,5 @@ export default function SalesRecordList({ sales_records }) {
         </>
     )
 }
+
+export default SalesRecordList;

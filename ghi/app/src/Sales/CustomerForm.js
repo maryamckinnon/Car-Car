@@ -34,9 +34,9 @@ class CustomerForm extends React.Component {
         data.phone_number = data.phoneNumber;
         delete data.phoneNumber;
 
-        const customerUrl = `${process.env.REACT_APP_SALES_API}/api/customers/`;
+        const customerUrl = 'http://localhost:8090/api/customers/';
         const fetchConfig = {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"

@@ -28,6 +28,7 @@ DEBUG = not os.environ.get("DEBUG")
 
 INSTALLED_APPS = [
     'sales_rest.apps.SalesRestConfig',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

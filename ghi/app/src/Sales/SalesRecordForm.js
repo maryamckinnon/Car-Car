@@ -17,13 +17,13 @@ class SalesRecordForm extends React.Component {
     }
 
     async componentDidMount() {
-        fetch(`${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`)
+        fetch('http://localhost:8100/api/automobiles/')
             .then(response => response.json())
             .then(response => this.setState({automobiles: response.autos}))
-        fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
+        fetch('http://localhost:8090/api/sales-people/')
             .then(response => response.json())
             .then(response => this.setState({salesPeople: response.sales_people}))
-        fetch(`${process.env.REACT_APP_SALES_API}/api/customers/`)
+        fetch('http://localhost:8090/api/customers/')
             .then(response => response.json())
             .then(response => this.setState({customers: response.customers}))
     }

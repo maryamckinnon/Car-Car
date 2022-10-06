@@ -15,5 +15,5 @@ urlpatterns = [
     path('sales-people/<int:pk>/', sales_person_details, name="sales_person_details"),
     path('customers/', customer_list, name="customer_list"),
     path('customers/<int:pk>/', customer_delete, name="customer_delete"),
-    path('sales-records/', sales_record_list, name="sales_record_list")
+    path('sales-records/', sales_record_list, name="sales_record_list"),
 ]
