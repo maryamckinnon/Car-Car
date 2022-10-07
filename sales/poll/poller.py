@@ -18,6 +18,7 @@ def get_automobiles():
             import_href=automobile['href'],
             defaults={
                 'vin': automobile['vin'],
+                "sold": automobile["sold"]
             },
         )
         

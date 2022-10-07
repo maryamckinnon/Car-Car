@@ -43,8 +43,9 @@ function AutomobileList() {
             </thead>
             <tbody>
                 {data.map(automobile => {
-                    return (
-                        <tr key={automobile.id}>
+                    if (automobile.sold === false) {
+                        return (
+                            <tr key={automobile.id}>
                             <td>{ automobile.year }</td>
                             <td>{ automobile.model.manufacturer.name }</td>
                             <td>{ automobile.model.name }</td>
@@ -52,6 +53,9 @@ function AutomobileList() {
                             <td>{ automobile.vin }</td>
                         </tr>
                         );
+                    } else {
+                        return null;
+                    }
                 })}
             </tbody>
         </table>

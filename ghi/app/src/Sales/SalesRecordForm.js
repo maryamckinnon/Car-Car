@@ -59,7 +59,7 @@ class SalesRecordForm extends React.Component {
 
         const salesRecordUrl = 'http://localhost:8090/api/sales-records/'
         const fetchConfig = {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
@@ -68,13 +68,24 @@ class SalesRecordForm extends React.Component {
 
         const response = await fetch(salesRecordUrl, fetchConfig);
         if (response.ok) {
-            const newSalesRecord = await response.json();
+            const autoUrl = `http://localhost:8100/api/automobiles/${this.state.automobile}/`
+            const autoFetchConfig = {
+                method: "PUT",
+                body: JSON.stringify({sold: true}),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+            const autoResponse = await fetch(autoUrl, autoFetchConfig)
+            if (!autoResponse.ok) {
+                console.error(autoResponse)
+            }
 
             const cleared = {
                 automobile: '',
                 salesPerson: '',
                 customer: '',
-                salesPrice: '',
+                price: '',
             }
             this.setState(cleared)
         }
@@ -93,9 +104,13 @@ class SalesRecordForm extends React.Component {
                       className="form-select" name="automobile" value={this.state.automobile}>
                       <option value="">Automobile</option>
                       {this.state.automobiles.map(automobile => {
-                          return (
+                        if (automobile.sold === false) {
+                            return (
                               <option key={automobile.id} value={automobile.id}> {automobile.vin} </option>
                           );
+                        } else {
+                            return null;
+                        }
                       })}
                       </select>
                   </div>
@@ -113,7 +128,7 @@ class SalesRecordForm extends React.Component {
                   <div className="mb-3">
                       <select onChange={this.handleCustomerChange} required id="customer" 
                       className="form-select" name="customer" value={this.state.customer}>
-                      <option value="">Cutomer</option>
+                      <option value="">Customer</option>
                       {this.state.customers.map(customer => {
                           return (
                               <option key={customer.id} value={customer.id}> {customer.name} </option>
