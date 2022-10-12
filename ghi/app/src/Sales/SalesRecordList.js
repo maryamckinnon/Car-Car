@@ -16,11 +16,12 @@ function SalesRecordList() {
     useEffect(() => {
     }, [data]);
 
+    console.log(data)
     return (
         <>
         <div className="appointment-list">
             <h1>Sales Records</h1>
-                <table className="table table-striped">
+                <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Sales Person</th>
@@ -36,7 +37,7 @@ function SalesRecordList() {
                                 <td>{sales_record.sales_person.name}</td>
                                 <td>{sales_record.customer.name}</td>
                                 <td>{sales_record.automobile.vin}</td>
-                                <td>{sales_record.price}</td>
+                                <td>$ { new Intl.NumberFormat().format(sales_record.price) }</td>
                             </tr>
                             );
                         })}
