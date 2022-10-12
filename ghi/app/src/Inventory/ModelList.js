@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 
 import ModelForm from './ModelForm';
 
@@ -50,7 +51,7 @@ function ModelList() {
                             <td style={{textAlign:'left'}}>{ model.manufacturer.name }</td>
                             <td>${ new Intl.NumberFormat().format(model.price) }</td>
                             <td><img src={ model.picture_url } height={100}></img></td>
-                            <td><button className="btn btn-danger" onClick={() => deleteModel(model.id)}>X</button></td>
+                            <td><Button variant="outlined" color="error" size="small" onClick={() => deleteModel(model.id)}>X</Button></td>
                         </tr>
                     );
                 })}

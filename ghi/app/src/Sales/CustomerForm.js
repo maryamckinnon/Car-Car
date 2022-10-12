@@ -62,7 +62,7 @@ class CustomerForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Enter a customer</h1>
+                    <h1>Add customer</h1>
                     <form onSubmit={this.handleSubmit} id="create-hat-form">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleNameChange} placeholder="Name" 
