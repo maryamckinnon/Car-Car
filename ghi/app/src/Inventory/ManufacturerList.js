@@ -42,8 +42,8 @@ function ManufacturerList() {
                 {sortedData.map(manufacturer => {
                     return (
                         <tr key={ manufacturer.id }>
-                            <td style={{textAlign:'left', paddingLeft:'20px'}}>{ manufacturer.name }</td>
-                            <td><Button variant="outlined" color="error" size="small" onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
+                            <td style={{textAlign:'center', paddingLeft:'20px'}}>{ manufacturer.name }</td>
+                            <td style={{textAlign:'center'}}><Button variant="outlined" color="error" size="small"  onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
                         </tr>
                         
                     );

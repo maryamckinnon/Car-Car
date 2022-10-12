@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 
 function AppointmentList() {
@@ -60,7 +61,7 @@ function AppointmentList() {
     return (
         <div className="appointment-list">
             <h1>Service appointments</h1>
-                <table className="table table-striped table-hover" style={{marginBottom:'200px', marginTop:'50px'}}>
+                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px'}}>
                     <thead>
                         <tr>
                             <th></th>
@@ -80,7 +81,7 @@ function AppointmentList() {
                             return (
                                 <tr key={ appointment.id }>
                                     <td>
-                                        <button className="btn btn-success" onClick={() => appointmentFinished(appointment.id)}>✔</button>
+                                        <Button style={{fontWeight:'bold'}} variant="outlined" color="success" size="small" onClick={() => appointmentFinished(appointment.id)}>COMPLETE</Button>
                                     </td>
                                     <td>{ appointment.vin }</td>
                                     <td>{ appointment.customer_name }</td>
@@ -90,7 +91,7 @@ function AppointmentList() {
                                     <td>{ appointment.reason }</td>
                                     <td>{ (appointment.vip)? "👑" :"" }</td>
                                     <td>
-                                        <button className="btn btn-danger" style={{fontWeight:"bolder"}} onClick={() => appointmentCanceled(appointment.id)}>CANCEL</button>
+                                        <Button style={{fontWeight:'bold'}} variant="outlined" color="error" size="small" onClick={() => appointmentCanceled(appointment.id)}>CANCEL</Button>
                                     </td>
                                 </tr>
                             );
