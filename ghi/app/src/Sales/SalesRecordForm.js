@@ -97,46 +97,76 @@ class SalesRecordForm extends React.Component {
                 <h1>Create a new sales record</h1>
                   <form onSubmit={this.handleSubmit} id="create-auto-form">
                   <div className="mb-3">
-                      <select onChange={this.handleAutomobileChange} required id="automobile" 
-                      className="form-select" name="automobile" value={this.state.automobile}>
-                      <option value="">Automobile</option>
-                      {this.state.automobiles.map(automobile => {
-                        if (automobile.sold === false) {
-                          return (
-                              <option key={automobile.vin} value={automobile.id}> {automobile.vin} </option>
-                          );
-                          } else {
-                            return null;
-                          }
-                      })}
+                      <select 
+                        onChange={this.handleAutomobileChange} 
+                        required id="automobile" 
+                        className="form-select" 
+                        name="automobile" 
+                        value={this.state.automobile}
+                        >
+                        <option value="">Automobile</option>
+                        {this.state.automobiles.map(automobile => {
+                            if (automobile.sold === false) {
+                            return (
+                                <option key={automobile.vin} value={automobile.id}> 
+                                    {automobile.vin} 
+                                </option>
+                                );
+                            } else {
+                                return null
+                            }
+                        })}
                       </select>
                   </div>
                   <div className="mb-3">
-                      <select onChange={this.handleSalesPersonChange} required id="sales_person" 
-                      className="form-select" name="sales_person" value={this.state.salesPerson}>
-                      <option value="">Sales Person</option>
-                      {this.state.salesPeople.map(salesPerson => {
-                          return (
-                              <option key={salesPerson.id} value={salesPerson.id}> {salesPerson.name} </option>
-                          );
-                      })}
+                      <select 
+                        onChange={this.handleSalesPersonChange} 
+                        required id="sales_person" 
+                        className="form-select" 
+                        name="sales_person" 
+                        value={this.state.salesPerson}
+                        >
+                        <option value="">Sales Person</option>
+                        {this.state.salesPeople.map(salesPerson => {
+                            return (
+                                <option key={salesPerson.id} value={salesPerson.id}> 
+                                    {salesPerson.name} 
+                                </option>
+                            );
+                        })}
                       </select>
                   </div>
                   <div className="mb-3">
-                      <select onChange={this.handleCustomerChange} required id="customer" 
-                      className="form-select" name="customer" value={this.state.customer}>
-                      <option value="">Customer</option>
-                      {this.state.customers.map(customer => {
-                          return (
-                              <option key={customer.id} value={customer.id}> {customer.name} </option>
-                          );
-                      })}
+                      <select 
+                        onChange={this.handleCustomerChange} 
+                        required id="customer" 
+                        className="form-select" 
+                        name="customer" 
+                        value={this.state.customer}
+                        >
+                        <option value="">Customer</option>
+                        {this.state.customers.map(customer => {
+                            return (
+                                <option key={customer.id} value={customer.id}> 
+                                    {customer.name} 
+                                </option>
+                            );
+                        })}
                       </select>
                   </div>
                   <div className="form-floating mb-3">
-                      <input onChange={this.handlePriceChange} placeholder="price" required 
-                      type="number" name="price" id="price" className="form-control" value={this.state.price}/>
-                      <label htmlFor="price">Sales Price</label>
+                      <input 
+                        onChange={this.handlePriceChange} 
+                        placeholder="price" 
+                        required type="number" 
+                        name="price" 
+                        id="price" 
+                        className="form-control" 
+                        value={this.state.price}
+                        />
+                        <label htmlFor="price">
+                            Sales Price
+                        </label>
                   </div>
                   <button className="btn btn-primary">Create</button>
                 </form>
