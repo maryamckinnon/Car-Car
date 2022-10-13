@@ -77,7 +77,7 @@ class AppointmentHistory extends React.Component {
                   return (
                     <tr key={ appointment.id } 
                       style={{
-                        backgroundColor: !!(appointment.status.name === "SCHEDULED") ? '#FFFFE0': !!(appointment.status.name === "CANCELED") ? '#FBD9D3':'#CEFAD0',
+                        backgroundColor: !!(appointment.status.name === "SCHEDULED") ? '#FFFFE0': !!(appointment.status.name === "CANCELED") ? '#fdedea':'#e4fce6',
                       }}
                     >
                       <td>{ appointment.vin }</td>

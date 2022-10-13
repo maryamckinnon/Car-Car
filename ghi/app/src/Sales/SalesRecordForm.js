@@ -48,7 +48,7 @@ class SalesRecordForm extends React.Component {
         const value = event.target.value;
         this.setState({price: value})
     }
-    
+
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
@@ -69,7 +69,9 @@ class SalesRecordForm extends React.Component {
         };
         const response = await fetch(salesRecordUrl, fetchConfig);
         if (response.ok) {
-            const autoUrl = `http://localhost:8100/api/automobiles/${this.state.automobile}/`
+            const automobile = this.state.automobile;
+            console.log('automobile', automobile)
+            const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`
             const autoFetchConfig = {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
@@ -110,7 +112,7 @@ class SalesRecordForm extends React.Component {
                         {this.state.automobiles.map(automobile => {
                             if (automobile.sold === false) {
                             return (
-                                <option key={automobile.vin} value={automobile.id}> 
+                                <option key={automobile.vin} value={automobile.vin}> 
                                     {automobile.vin} 
                                 </option>
                                 );
@@ -131,7 +133,7 @@ class SalesRecordForm extends React.Component {
                         <option value="">Sales Person</option>
                         {this.state.salesPeople.map(salesPerson => {
                             return (
-                                <option key={salesPerson.id} value={salesPerson.id}> 
+                                <option key={salesPerson.id} value={salesPerson.name}> 
                                     {salesPerson.name} 
                                 </option>
                             );

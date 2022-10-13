@@ -129,20 +129,50 @@ def sales_record_list(request):
         )
     else:
         content = json.loads(request.body)
-        content = {
-            **content,
-            "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-            "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
-            "customer": Customer.objects.get(pk=content["customer"])
-        }
+        try:
+            automobile = AutomobileVO.objects.get(vin=content['automobile'])
+            content['automobile'] = automobile
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {'message': 'Invalid automobile vin'},
+                status = 400,
+            )
+        try:
+            salesperson = content['sales_person']
+            content['sales_person'] = SalesPerson.objects.get(name=salesperson)
+        except SalesPerson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid salesperson ID"},
+                status = 400,
+            )
+        try:
+            customer = Customer.objects.get(id=content['customer'])
+            content['customer'] = customer
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {'message': 'Invalid customer name'}
+            )
+        
         sales_record = SalesRecord.objects.create(**content)
         return JsonResponse(
             sales_record,
-            encoder=SalesRecordEncoder,
+            encoder = SalesRecordEncoder,
             safe=False,
         )
+        # content = {
+        #     **content,
+        #     "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
+        #     "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
+        #     "customer": Customer.objects.get(pk=content["customer"])
+        # }
+        # sales_record = SalesRecord.objects.create(**content)
+        # return JsonResponse(
+        #     sales_record,
+        #     encoder=SalesRecordEncoder,
+        #     safe=False,
+        # )
 
-@require_http_methods(["DELETE"])
+@require_http_methods(["DELETE", "PUT"])
 def delete_sales_record(request, pk):
     if request.method == "DELETE":
         count, _ = SalesRecord.objects.filter(id=pk).delete()
