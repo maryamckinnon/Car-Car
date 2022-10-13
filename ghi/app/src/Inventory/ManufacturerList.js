@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ManufacturerForm from "./ManufacturerForm";
 import Button from '@mui/material/Button';
+import { Container } from 'react-bootstrap';
 
 
 function ManufacturerList() {
@@ -34,25 +35,23 @@ function ManufacturerList() {
     return (
         <>
         <h1> Manufacturers </h1>
-        <table className="table" style={{width:'400px', textAlign:'center'}}>
-            <thead>
-                <tr></tr>
-            </thead>
-            <tbody>
-                {sortedData.map(manufacturer => {
-                    return (
-                        <tr key={ manufacturer.id }>
-                            <td style={{textAlign:'center', paddingLeft:'20px'}}>{ manufacturer.name }</td>
-                            <td style={{textAlign:'center'}}><Button variant="outlined" color="error" size="small"  onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
-                        </tr>
-                        
-                    );
-                })}
-            </tbody>
-            </table>
-        <div className='manufacturer-form'>
-            <ManufacturerForm />
-        </div>
+            <table className="table" style={{ width:'400px', textAlign:'center' }}>
+                <thead>
+                </thead>
+                <tbody>
+                    {sortedData.map(manufacturer => {
+                        return (
+                            <tr key={ manufacturer.id }>
+                                <td style={{textAlign:'left', paddingLeft:'60px', borderBottom:'none'}}>{ manufacturer.name }</td>
+                                <td style={{textAlign:'center', borderBottom:'none'}}><Button variant="outlined" color="error" size="small"  onClick={() => deleteManufacturer(manufacturer.id)}>x</Button></td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+                </table>
+            <div className='manufacturer-form'>
+                <ManufacturerForm />
+            </div>
         </>
     );
 }
