@@ -159,18 +159,7 @@ def sales_record_list(request):
             encoder = SalesRecordEncoder,
             safe=False,
         )
-        # content = {
-        #     **content,
-        #     "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-        #     "automobile": AutomobileVO.objects.get(pk=content["automobile"]),
-        #     "customer": Customer.objects.get(pk=content["customer"])
-        # }
-        # sales_record = SalesRecord.objects.create(**content)
-        # return JsonResponse(
-        #     sales_record,
-        #     encoder=SalesRecordEncoder,
-        #     safe=False,
-        # )
+
 
 @require_http_methods(["DELETE", "PUT"])
 def delete_sales_record(request, pk):
