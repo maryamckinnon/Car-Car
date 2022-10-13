@@ -27,6 +27,7 @@ class SalesRecordForm extends React.Component {
             .then(response => response.json())
             .then(response => this.setState({customers: response.customers}))
     }
+    
 
     handleAutomobileChange(event) {
         const value = event.target.value;
@@ -88,6 +89,7 @@ class SalesRecordForm extends React.Component {
         };
     }
 
+    
 
     render() {
         return (

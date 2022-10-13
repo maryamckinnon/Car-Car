@@ -27,7 +27,7 @@ class AppointmentHistory extends React.Component {
       const vin = this.state.vin
       const appointmentUrl = `http://localhost:8080/api/appointments/${vin}`;
         const fetchConfig = {
-          method: "get",
+          method: "GET",
           headers: {
             'Content-Type': 'application/json',
           },

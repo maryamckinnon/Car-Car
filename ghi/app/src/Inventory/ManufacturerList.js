@@ -49,7 +49,7 @@ function ManufacturerList() {
                     })}
                 </tbody>
                 </table>
-            <div className='manufacturer-form'>
+            <div className='manufacturer-form' style={{paddingTop:'30px'}}>
                 <ManufacturerForm />
             </div>
         </>

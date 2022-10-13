@@ -30,7 +30,6 @@ function AutomobileList() {
     return (
         <div>
         <h1>Automobile Inventory</h1>
-        <p>Inventory Count: {data.length}</p>
         <table className="table table-striped table-hover">
             <thead>
                 <tr>
