@@ -39,7 +39,7 @@ class ModelListCustomer extends React.Component {
         return (
           <>
             <div>
-              <h2 className="display-6 fw-bold">Vehicle Models</h2>
+              <h1>Vehicle Models</h1>
               <div>
               </div>
             </div>
