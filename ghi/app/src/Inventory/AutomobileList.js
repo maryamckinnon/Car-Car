@@ -16,7 +16,7 @@ function AutomobileList() {
     });
 
     useEffect(() => {
-      const url = 'http://localhost:8100/api/automobiles/';
+      const url = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`;
 
       fetch(url)
         .then((response) => response.json())
