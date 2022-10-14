@@ -27,7 +27,7 @@ class TechnicianForm extends React.Component {
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
 
-        const technicianUrl = "http://localhost:8080/api/technicians/";
+        const technicianUrl = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
