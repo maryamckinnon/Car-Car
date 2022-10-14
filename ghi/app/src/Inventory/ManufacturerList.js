@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ManufacturerForm from "./ManufacturerForm";
 import Button from '@mui/material/Button';
-import { Container } from 'react-bootstrap';
 
 
 function ManufacturerList() {
@@ -9,7 +8,7 @@ function ManufacturerList() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      const url = 'http://localhost:8100/api/manufacturers/';
+      const url = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/`;
       fetch(url)
         .then((response) => response.json())
         .then((json) => setData(json['manufacturers']))
@@ -23,7 +22,7 @@ function ManufacturerList() {
         const fetchConfig = {
             method: "DELETE",
         }
-        const url = `http://localhost:8100/api/manufacturers/${id}`
+        const url = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/${id}`
         const response = fetch(url, fetchConfig);
         if (response.ok) {
             setData(data.filter((manufacturer) => manufacturer.id !== id))
