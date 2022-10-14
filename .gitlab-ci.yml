@@ -87,7 +87,7 @@ build-front-end-job:
   stage: build
   image: node:lts-bullseye
   variables:
-    PUBLIC_URL: https://car-car.gitlab.io/car-car
+    PUBLIC_URL: https://maryamckinnon.gitlab.io/project-beta
   script:
     - cd ghi/app
     - npm install

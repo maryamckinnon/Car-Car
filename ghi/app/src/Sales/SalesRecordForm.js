@@ -17,13 +17,13 @@ class SalesRecordForm extends React.Component {
     }
 
     async componentDidMount() {
-        fetch('http://localhost:8100/api/automobiles/')
+        fetch(`${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`)
             .then(response => response.json())
             .then(response => this.setState({automobiles: response.autos}))
-        fetch('http://localhost:8090/api/sales-people/')
+        fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
             .then(response => response.json())
             .then(response => this.setState({salesPeople: response.sales_people}))
-        fetch('http://localhost:8090/api/customers/')
+        fetch(`${process.env.REACT_APP_SALES_API}/api/customers/`)
             .then(response => response.json())
             .then(response => this.setState({customers: response.customers}))
     }
@@ -59,7 +59,7 @@ class SalesRecordForm extends React.Component {
         delete data.salesPeople;
         delete data.customers;
 
-        const salesRecordUrl = 'http://localhost:8090/api/sales-records/'
+        const salesRecordUrl = `${process.env.REACT_APP_SALES_API}/api/sales-records/`
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
@@ -71,7 +71,7 @@ class SalesRecordForm extends React.Component {
         if (response.ok) {
             const automobile = this.state.automobile;
             console.log('automobile', automobile)
-            const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`
+            const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${automobile}/`
             const autoFetchConfig = {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
