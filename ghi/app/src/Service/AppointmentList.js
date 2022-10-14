@@ -24,7 +24,7 @@ function AppointmentList() {
             const fetchConfig = {
                 method: "PUT",
             }
-            const url = `http://localhost:8080/api/appointments/${id}/canceled/`
+            const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/${id}/canceled/`
             const response = fetch(url, fetchConfig);
             if (response.ok) {
                 setData(data.filter((appointment) => appointment.id !== id))
@@ -37,7 +37,7 @@ function AppointmentList() {
             const fetchConfig = {
                 method: "PUT",
             }
-            const url = `http://localhost:8080/api/appointments/${id}/finished/`
+            const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/${id}/finished/`
             const response = fetch(url, fetchConfig);
             if (response.ok) {
                 setData(data.filter((appointment) => appointment.id !== id))
@@ -47,7 +47,7 @@ function AppointmentList() {
     
 
     useEffect(() => {
-        const url = 'http://localhost:8080/api/appointments/';
+        const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
 
         fetch(url)
             .then((response) => response.json())
