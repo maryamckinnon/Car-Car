@@ -16,10 +16,12 @@ class Manufacturer(models.Model):
 class VehicleModel(models.Model):
     name = models.CharField(max_length=100)
     picture_url = models.URLField()
-    price = models.FloatField(validators=(
-        MaxValueValidator(1000000),
-        MinValueValidator(1),
-    ), null=True
+    price = models.FloatField(
+        validators=(
+            MaxValueValidator(1000000),
+            MinValueValidator(1),
+        ),
+        null=True,
     )
     manufacturer = models.ForeignKey(
         Manufacturer,

@@ -4,7 +4,7 @@ from django.core.validators import (
     MinValueValidator,
 )
 from django.urls import reverse
-    
+
 
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
@@ -51,10 +51,12 @@ class SalesRecord(models.Model):
         related_name="sales_records",
         on_delete=models.PROTECT,
     )
-    price = models.FloatField(validators=(
-        MaxValueValidator(1000000),
-        MinValueValidator(1),
-    ), null=True
+    price = models.FloatField(
+        validators=(
+            MaxValueValidator(1000000),
+            MinValueValidator(1),
+        ),
+        null=True,
     )
 
     def __str__(self):

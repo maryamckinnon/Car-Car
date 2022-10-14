@@ -3,7 +3,6 @@ import os
 import sys
 import time
 import json
-import requests
 
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
@@ -11,8 +10,10 @@ django.setup()
 INVENTORY_API = os.environ["INVENTORY_API"]
 
 from service_rest.models import AutomobileVO
+
 # Import models from service_rest, here.
 # from service_rest.models import Something
+
 
 def get_auto():
     response = f"{INVENTORY_API}/api/automobiles/"
@@ -22,13 +23,13 @@ def get_auto():
             import_href=auto["href"],
             defaults={
                 "vin": auto["vin"],
-            }
+            },
         )
 
 
 def poll():
     while True:
-        print('Service poller polling for data')
+        print("Service poller polling for data")
         try:
             get_auto()
             pass

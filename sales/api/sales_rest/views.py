@@ -45,7 +45,7 @@ class SalesRecordEncoder(ModelEncoder):
     encoders = {
         "automobile": AutomobileVOEncoder(),
         "sales_person": SalesPersonEncoder(),
-        "customer": CustomerEncoder()
+        "customer": CustomerEncoder(),
     }
 
 
@@ -64,10 +64,7 @@ def automobile_vo_list(request):
 def sales_person_list(request):
     if request.method == "GET":
         sales_people = SalesPerson.objects.all()
-        return JsonResponse(
-            {"sales_people": sales_people},
-            encoder=SalesPersonEncoder
-        )
+        return JsonResponse({"sales_people": sales_people}, encoder=SalesPersonEncoder)
     else:
         content = json.loads(request.body)
         sales_person = SalesPerson.objects.create(**content)
@@ -130,33 +127,31 @@ def sales_record_list(request):
     else:
         content = json.loads(request.body)
         try:
-            automobile = AutomobileVO.objects.get(vin=content['automobile'])
-            content['automobile'] = automobile
+            automobile = AutomobileVO.objects.get(vin=content["automobile"])
+            content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
-                {'message': 'Invalid automobile vin'},
-                status = 400,
+                {"message": "Invalid automobile vin"},
+                status=400,
             )
         try:
-            salesperson = content['sales_person']
-            content['sales_person'] = SalesPerson.objects.get(name=salesperson)
+            salesperson = content["sales_person"]
+            content["sales_person"] = SalesPerson.objects.get(name=salesperson)
         except SalesPerson.DoesNotExist:
             return JsonResponse(
                 {"message": "Invalid salesperson ID"},
-                status = 400,
+                status=400,
             )
         try:
-            customer = Customer.objects.get(id=content['customer'])
-            content['customer'] = customer
+            customer = Customer.objects.get(id=content["customer"])
+            content["customer"] = customer
         except Customer.DoesNotExist:
-            return JsonResponse(
-                {'message': 'Invalid customer name'}
-            )
-        
+            return JsonResponse({"message": "Invalid customer name"})
+
         sales_record = SalesRecord.objects.create(**content)
         return JsonResponse(
             sales_record,
-            encoder = SalesRecordEncoder,
+            encoder=SalesRecordEncoder,
             safe=False,
         )
 

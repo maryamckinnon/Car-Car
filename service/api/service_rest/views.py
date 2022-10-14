@@ -1,34 +1,26 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from common.json import ModelEncoder
 from .models import AutomobileVO, Technician, Appointment, Status
 import json
+
 # Create your views here.
+
 
 class StatusEncoder(ModelEncoder):
     model = Status
-    properties = [
-        "id",
-        "name"
-    ]
+    properties = ["id", "name"]
+
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = [
-        "id",
-        "import_href",
-        "vin"
-    ]
+    properties = ["id", "import_href", "vin"]
 
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
-    properties = [
-        "id",
-        "name",
-        "employee_number"
-    ]
+    properties = ["id", "name", "employee_number"]
+
 
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
@@ -39,12 +31,9 @@ class AppointmentEncoder(ModelEncoder):
         "date",
         "technician",
         "reason",
-        "status"
+        "status",
     ]
-    encoders = {
-        "technician": TechnicianEncoder(),
-        "status": StatusEncoder()
-    }
+    encoders = {"technician": TechnicianEncoder(), "status": StatusEncoder()}
 
     def get_extra_data(self, o):
         count = AutomobileVO.objects.filter(vin=o.vin).count()
@@ -55,10 +44,7 @@ class AppointmentEncoder(ModelEncoder):
 def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all().order_by("date")
-        return JsonResponse(
-            {"appointments": appointments},
-            encoder=AppointmentEncoder
-        )
+        return JsonResponse({"appointments": appointments}, encoder=AppointmentEncoder)
     else:
         content = json.loads(request.body)
         try:
@@ -69,14 +55,14 @@ def api_list_appointments(request):
         except Appointment.DoesNotExist:
             return JsonResponse(
                 {"message": "Could not create the appointment"},
-                status = 400,
+                status=400,
             )
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
-                appointment,
-                encoder=AppointmentEncoder,
-                safe=False,
-            )
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )
 
 
 @require_http_methods(["PUT"])
@@ -94,15 +80,11 @@ def api_finish_appointment(request, pk):
 def api_cancel_appointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
     appointment.cancel()
-    return JsonResponse(
-        appointment,
-        encoder=AppointmentEncoder,
-        safe=False
-    )
+    return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
 
 
 @require_http_methods(["GET"])
-def api_show_appointments(request, vin):
+def api_show_appointments(vin):
     appointment = Appointment.objects.filter(vin=vin)
     return JsonResponse(
         appointment,
@@ -128,9 +110,7 @@ def api_list_technicians(request):
                 encoder=TechnicianEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not input technician"}
-            )
+        except Technician.DoesNotExist:
+            response = JsonResponse({"message": "Could not input technician"})
             response.status_code = 400
             return response

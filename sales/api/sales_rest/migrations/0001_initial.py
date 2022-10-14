@@ -9,44 +9,105 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AutomobileVO',
+            name="AutomobileVO",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('vin', models.CharField(max_length=17, unique=True)),
-                ('import_href', models.CharField(max_length=100)),
-                ('sold', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("vin", models.CharField(max_length=17, unique=True)),
+                ("import_href", models.CharField(max_length=100)),
+                ("sold", models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('address', models.CharField(max_length=200)),
-                ('phone_number', models.CharField(max_length=12)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("address", models.CharField(max_length=200)),
+                ("phone_number", models.CharField(max_length=12)),
             ],
         ),
         migrations.CreateModel(
-            name='SalesPerson',
+            name="SalesPerson",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('employee_number', models.PositiveSmallIntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("employee_number", models.PositiveSmallIntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='SalesRecord',
+            name="SalesRecord",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.FloatField(null=True, validators=[django.core.validators.MaxValueValidator(1000000), django.core.validators.MinValueValidator(1)])),
-                ('automobile', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='sales_records', to='sales_rest.automobilevo')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='sales_records', to='sales_rest.customer')),
-                ('sales_person', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='sales_records', to='sales_rest.salesperson')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "price",
+                    models.FloatField(
+                        null=True,
+                        validators=[
+                            django.core.validators.MaxValueValidator(1000000),
+                            django.core.validators.MinValueValidator(1),
+                        ],
+                    ),
+                ),
+                (
+                    "automobile",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="sales_records",
+                        to="sales_rest.automobilevo",
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="sales_records",
+                        to="sales_rest.customer",
+                    ),
+                ),
+                (
+                    "sales_person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="sales_records",
+                        to="sales_rest.salesperson",
+                    ),
+                ),
             ],
         ),
     ]
