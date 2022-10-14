@@ -17,7 +17,7 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Manage Inventory</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/">Manufacturers</NavLink>
@@ -27,7 +27,7 @@ function Nav() {
               </ul>              
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Manage Services</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" aria-current="page" to="/technicians/new/">Add technician</NavLink>
@@ -37,7 +37,7 @@ function Nav() {
               </ul>              
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
               aria-expanded="false">Manage Sales</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" aria-current="page" to="/sales-person/new">Add sales person</NavLink>
