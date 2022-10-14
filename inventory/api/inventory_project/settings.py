@@ -56,7 +56,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "inventory-api",
     "[::1]",
-    os.environ.get("localhost"),
+    os.environ.get("DEPLOYED_HOST", "localhost"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
