@@ -22,7 +22,7 @@ class AutomobileForm extends React.Component {
         delete data.models
         delete data.manufacturers
 
-        const url = 'http://localhost:8100/api/automobiles/';
+        const url = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
@@ -66,8 +66,8 @@ class AutomobileForm extends React.Component {
     }
 
     async componentDidMount() {
-        const modelUrl = 'http://localhost:8100/api/models/';
-        const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
+        const modelUrl = `${process.env.REACT_APP_INVENTORY_API}/api/models/`;
+        const manufacturerUrl = `${process.env.REACT_APP_INVENTORY_API}/api/manufacturers/`;
         const modelResponse = await fetch(modelUrl);
         const manufacturerResponse = await fetch(manufacturerUrl);
 

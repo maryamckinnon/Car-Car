@@ -19,9 +19,7 @@ export default function SalesRecordFiltered() {
 
     return (
         <>
-            <h1>
-                Sales Record History
-            </h1>
+            <h1>Sales Record History</h1>
                 <form 
                     id="form_search" 
                     name="form_search" 
