@@ -98,7 +98,7 @@ class SalesRecordForm extends React.Component {
           <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
-                <h1>Create a new sales record</h1>
+                <h1>Add a new sales record</h1>
                   <form onSubmit={this.handleSubmit} id="create-auto-form">
                   <div className="mb-3">
                       <select 

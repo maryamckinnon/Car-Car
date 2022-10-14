@@ -14,7 +14,7 @@ function AppointmentList() {
         }
         return (
             <div>
-                <button className='btn btn-primary' onClick={handleClick}>Add new appointment</button>
+                <button className='btn btn-primary' style={{ marginLeft:'7em', marginBottom:'50px' }} onClick={handleClick}>Add new appointment</button>
             </div>
         )
     }
@@ -61,7 +61,7 @@ function AppointmentList() {
     return (
         <div className="appointment-list">
             <h1>Service appointments</h1>
-                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px'}}>
+                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px', backgroundColor:'#d4f0f7', marginBottom:'50px', borderRadius:10}}>
                     <thead>
                         <tr>
                             <th></th>

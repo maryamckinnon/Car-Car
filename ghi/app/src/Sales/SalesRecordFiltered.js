@@ -20,7 +20,7 @@ export default function SalesRecordFiltered() {
     return (
         <>
             <h1>
-                Sales Filtered By Sales Person
+                Sales Record History
             </h1>
                 <form 
                     id="form_search" 
@@ -35,12 +35,12 @@ export default function SalesRecordFiltered() {
                             onChange={event => setSearch(event.target.value)} 
                             className="form-control" 
                             type="text" 
-                            placeholder="Search by Sales Person" 
+                            placeholder="Enter sales person" 
                         />
                     </div>
                 </div>
                 </form>
-                <table className="table table-striped table-hover table-info bdr">
+                <table className="table table-striped table-hover" style={{backgroundColor:'#f5f5f5', marginBottom:'50px', borderRadius:8}}>
                     <thead>
                         <tr>
                             <th>Sales Person</th>
@@ -57,7 +57,7 @@ export default function SalesRecordFiltered() {
                                         <td>{sales_record.sales_person.name}</td>
                                         <td>{sales_record.customer.name}</td>
                                         <td>{sales_record.automobile.vin}</td>
-                                        <td>{sales_record.price}</td>
+                                        <td>$ { new Intl.NumberFormat().format(sales_record.price) }</td>
                                     </tr>
                                 );
                             })}
