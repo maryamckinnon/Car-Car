@@ -68,10 +68,11 @@ class AppointmentForm extends React.Component {
 
     const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
     const fetchConfig = {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': "*"
       },
     };
 

@@ -64,10 +64,11 @@ class ModelForm extends React.Component {
 
     const modelUrl = `${process.env.REACT_APP_INVENTORY_API}/api/models/`;
     const fetchConfig = {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': "*"
       },
     };
     const response = await fetch(modelUrl, fetchConfig);

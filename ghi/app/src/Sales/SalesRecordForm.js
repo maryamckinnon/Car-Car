@@ -75,7 +75,10 @@ class SalesRecordForm extends React.Component {
       const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${automobile}/`;
       const autoFetchConfig = {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': "*"
+        },
         body: JSON.stringify({ sold: true }),
       };
       const autoResponse = await fetch(autoUrl, autoFetchConfig);
