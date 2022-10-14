@@ -10,7 +10,7 @@ function ModelList() {
         const fetchConfig = {
             method: "DELETE",
         }
-        const url = `http://localhost:8100/api/models/${id}`
+        const url = `${process.env.REACT_APP_INVENTORY_API}/api/models/${id}/`
         const response = fetch(url, fetchConfig);
         if (response.ok) {
             setData(data.filter((model) => model.id !== id))
@@ -18,7 +18,7 @@ function ModelList() {
     }
 
     useEffect(() => {
-        const url = 'http://localhost:8100/api/models/';
+        const url = `${process.env.REACT_APP_INVENTORY_API}/api/models/`;
         fetch(url)
             .then((response) => response.json())
             .then((json) => setData(json['models']))
