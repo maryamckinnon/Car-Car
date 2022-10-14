@@ -61,7 +61,7 @@ function AppointmentList() {
     return (
         <div className="appointment-list">
             <h1>Service appointments</h1>
-                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px', backgroundColor:'#d4f0f7', marginBottom:'50px', borderRadius:10}}>
+                <table className="table table-striped" style={{marginBottom:'200px', marginTop:'50px', backgroundColor:'#f5f5f5', marginBottom:'50px', borderRadius:10}}>
                     <thead>
                         <tr>
                             <th></th>

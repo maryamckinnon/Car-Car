@@ -21,7 +21,7 @@ function SalesRecordList() {
         <>
         <div className="appointment-list">
             <h1>Sales Records</h1>
-                <table className="table table-striped table-hover" style={{backgroundColor:'#d4f0f7', marginBottom:'50px', borderRadius:10}}>
+                <table className="table table-striped table-hover" style={{backgroundColor:'#f5f5f5', marginBottom:'50px', borderRadius:10}}>
                     <thead>
                         <tr>
                             <th>Sales Person</th>
