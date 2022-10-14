@@ -17,7 +17,7 @@ build-inventory-api-image-job:
     - docker:20.10.16-dind
   script:
     - cd inventory/api
-    - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
+    - docker build --pull -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
@@ -33,7 +33,7 @@ build-sales-api-image-job:
     - docker:20.10.16-dind
   script:
     - cd sales/api
-    - docker build -t ${CI_REGISTRY_IMAGE}/sales_api .
+    - docker build --pull -t ${CI_REGISTRY_IMAGE}/sales_api .
     - docker tag ${CI_REGISTRY_IMAGE}/sales_api:latest ${CI_REGISTRY_IMAGE}/sales_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/sales_api:$CI_JOB_ID
@@ -49,7 +49,7 @@ build-sales-poll-image-job:
     - docker:dind
   script:
     - cd sales
-    - docker build -t ${CI_REGISTRY_IMAGE}/sales_poller:latest .
+    - docker build -pull -t ${CI_REGISTRY_IMAGE}/sales_poller:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/sales_poller:latest ${CI_REGISTRY_IMAGE}/sales_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/sales_poller:$CI_JOB_ID
@@ -65,7 +65,7 @@ build-service-api-image-job:
     - docker:dind
   script:
     - cd service/api
-    - docker build -t ${CI_REGISTRY_IMAGE}/service_api:latest .
+    - docker build -pull -t ${CI_REGISTRY_IMAGE}/service_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/service_api:latest ${CI_REGISTRY_IMAGE}/service_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/service_api:$CI_JOB_ID
@@ -81,7 +81,7 @@ build-service-poll-image-job:
     - docker:dind
   script:
     - cd service
-    - docker build -t ${CI_REGISTRY_IMAGE}/service_poller:latest .
+    - docker build -pull -t ${CI_REGISTRY_IMAGE}/service_poller:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/service_poller:latest ${CI_REGISTRY_IMAGE}/service_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/service_poller:$CI_JOB_ID
