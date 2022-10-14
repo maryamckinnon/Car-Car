@@ -2,9 +2,6 @@ stages:
   - build
   - deploy
 
-services:
-  - postgres:14.2-bullseye
-
 variables:
   REACT_APP_INVENTORY_API: https://${HEROKU_INVENTORY_API_APP}.herokuapp.com
   REACT_APP_SALES_API: https://${HEROKU_SALES_API_APP}.herokuapp.com
