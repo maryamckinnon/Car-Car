@@ -5,12 +5,15 @@ import silver from "../images/silver.jpg";
 
 function CarouselFade() {
   return (
-    <Carousel fade className="carousel" interval={6000} >
+    <Carousel fade className="carousel" interval={6000}>
       <Carousel.Item style={{ zIndex: -1 }}>
         <Carousel.Caption>
           <div className="text-center">
-            <h1 className="display-5 fw-bold text-on-image" style={{fontSize: "25px"}}>
-            The premiere solution for automobile dealership management
+            <h1
+              className="display-5 fw-bold text-on-image"
+              style={{ fontSize: "25px" }}
+            >
+              The premiere solution for automobile dealership management
             </h1>
           </div>
         </Carousel.Caption>
@@ -25,8 +28,11 @@ function CarouselFade() {
       <Carousel.Item style={{ zIndex: -1 }}>
         <Carousel.Caption>
           <div className="text-center">
-            <h1 className="display-5 fw-bold text-on-image" style={{fontSize: "25px"}}>
-            The premiere solution for automobile dealership management
+            <h1
+              className="display-5 fw-bold text-on-image"
+              style={{ fontSize: "25px" }}
+            >
+              The premiere solution for automobile dealership management
             </h1>
           </div>
         </Carousel.Caption>
@@ -41,8 +47,11 @@ function CarouselFade() {
       <Carousel.Item style={{ zIndex: -1 }}>
         <Carousel.Caption>
           <div className="text-center">
-            <h1 className="display-5 fw-bold text-on-image" style={{fontSize: "25px"}}>
-            The premiere solution for automobile dealership management
+            <h1
+              className="display-5 fw-bold text-on-image"
+              style={{ fontSize: "25px" }}
+            >
+              The premiere solution for automobile dealership management
             </h1>
           </div>
         </Carousel.Caption>
