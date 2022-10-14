@@ -71,7 +71,6 @@ function AppointmentList() {
           marginBottom: "200px",
           marginTop: "50px",
           backgroundColor: "#f5f5f5",
-          marginBottom: "50px",
           borderRadius: 10,
         }}
       >

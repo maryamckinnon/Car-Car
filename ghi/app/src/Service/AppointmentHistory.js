@@ -19,7 +19,6 @@ class AppointmentHistory extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const data = { ...this.state };
 
     const vin = this.state.vin;
     const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/${vin}/`;

@@ -8,16 +8,11 @@ class ManufacturerForm extends React.Component {
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleNameChange(event) {
     const value = event.target.value;
     this.setState({ name: value });
-  }
-
-  handleDelete(event) {
-    const data = { ...this.state };
   }
 
   async handleSubmit(event) {
