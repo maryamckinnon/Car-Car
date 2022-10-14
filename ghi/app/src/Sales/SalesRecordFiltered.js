@@ -6,7 +6,7 @@ export default function SalesRecordFiltered() {
     const [data, setData] = useState("");
 
     useEffect(() => {
-        const url = 'http://localhost:8090/api/sales-records/';
+        const url = `${process.env.REACT_APP_SALES_API}/api/sales-records/`;
 
         fetch(url)
             .then((response) => response.json())
