@@ -72,7 +72,6 @@ class AppointmentForm extends React.Component {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': "*"
       },
     };
 

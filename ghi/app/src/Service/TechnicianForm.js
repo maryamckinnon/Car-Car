@@ -28,19 +28,18 @@ class TechnicianForm extends React.Component {
     data.employee_number = data.employeeNumber;
     delete data.employeeNumber;
 
-    const technicianUrl = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
+    
     const fetchConfig = {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': "*"
       },
     };
 
+    const technicianUrl = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
     const response = await fetch(technicianUrl, fetchConfig);
     if (response.ok) {
-      await response.json();
 
       const cleared = {
         name: "",
