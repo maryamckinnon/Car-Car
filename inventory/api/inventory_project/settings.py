@@ -52,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-    "localhost",
+    ".localhost",
     "127.0.0.1",
     "inventory-api",
     "[::1]",
