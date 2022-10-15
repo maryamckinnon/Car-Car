@@ -54,7 +54,7 @@ ALLOWED_HOSTS = [
     ".localhost",
     "127.0.0.1",
     "[::1]",
-    os.environ.get("DEPLOYED_HOST", "localhost", ".herokuapp.com"),
+    os.environ.get("DEPLOYED_HOST", "localhost"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
