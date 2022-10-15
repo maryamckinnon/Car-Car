@@ -84,10 +84,10 @@ def api_cancel_appointment(request, pk):
 
 
 @require_http_methods(["GET"])
-def api_show_appointments(vin):
-    appointment = Appointment.objects.filter(vin=vin)
+def api_show_appointments(request, vin):
+    appointments = Appointment.objects.filter(vin=vin)
     return JsonResponse(
-        appointment,
+        appointments,
         encoder=AppointmentEncoder,
         safe=False,
     )
