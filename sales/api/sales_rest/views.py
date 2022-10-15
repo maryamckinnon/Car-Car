@@ -126,9 +126,12 @@ def sales_record_list(request):
         )
     else:
         content = json.loads(request.body)
+        print(content, "content before try")
         try:
             automobile = AutomobileVO.objects.get(vin=content["automobile"])
+            print(automobile, "automobile")
             content["automobile"] = automobile
+            print(content, 'content printed')
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
                 {"message": "Invalid automobile vin"},
@@ -148,7 +151,7 @@ def sales_record_list(request):
             content["customer"] = customer
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Invalid customer name"})
-
+        print(content, 'content')
         sales_record = SalesRecord.objects.create(**content)
         return JsonResponse(
             sales_record,

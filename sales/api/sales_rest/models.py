@@ -12,10 +12,10 @@ class AutomobileVO(models.Model):
     sold = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.vin}"
+        return self.vin
 
-    def get_api_url(self):
-        return reverse("api_automobile", kwargs={"vin": self.vin})
+    # def get_api_url(self):
+    #     return reverse("api_automobile", kwargs={"vin": self.vin})
 
 
 class SalesPerson(models.Model):
@@ -23,7 +23,7 @@ class SalesPerson(models.Model):
     employee_number = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 
 class Customer(models.Model):
@@ -32,7 +32,7 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=12)
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 
 class SalesRecord(models.Model):
@@ -60,4 +60,4 @@ class SalesRecord(models.Model):
     )
 
     def __str__(self):
-        return f"{self.sales_person}"
+        return self.sales_person
