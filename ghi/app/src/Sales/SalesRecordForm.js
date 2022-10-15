@@ -53,7 +53,6 @@ class SalesRecordForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     const data = { ...this.state };
-    data.sales_price = data.salesPrice;
     data.sales_person = data.salesPerson;
     delete data.salesPerson;
     delete data.automobiles;
@@ -70,20 +69,16 @@ class SalesRecordForm extends React.Component {
     };
     const response = await fetch(salesRecordUrl, fetchConfig);
     if (response.ok) {
-      const automobile = this.state.automobile;
-      console.log("automobile", automobile);
-      const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${automobile}/`;
-      const autoFetchConfig = {
-        method: "PUT",
-        headers: { 
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ sold: true }),
+      const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${this.state.automobile}/`;
+        const autoFetchConfig = {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sold: true }),
       };
-      const autoResponse = await fetch(autoUrl, autoFetchConfig);
-      if (!autoResponse.ok) {
-        console.error(autoResponse);
-      }
+        const autoResponse = await fetch(autoUrl, autoFetchConfig);
+        if (!autoResponse.ok) {
+          console.error(autoResponse);
+        }
       const cleared = {
         price: "",
         automobile: "",

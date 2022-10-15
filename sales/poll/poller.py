@@ -13,7 +13,7 @@ from sales_rest.models import AutomobileVO
 
 
 def get_automobiles():
-    response = f"{INVENTORY_API}/api/automobiles/"
+    response = requests.get(f"{INVENTORY_API}/api/automobiles/")
     content = json.loads(response.content)
     for automobile in content["autos"]:
         AutomobileVO.objects.update_or_create(
