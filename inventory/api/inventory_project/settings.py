@@ -56,7 +56,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "inventory-api",
     "[::1]",
-    os.environ.get("DEPLOYED_HOST", "localhost"),
+    os.environ.get("DEPLOYED_HOST", "localhost", ".herokuapp.com"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
