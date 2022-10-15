@@ -133,6 +133,7 @@ def sales_record_list(request):
             return JsonResponse(
                 {"message": "Invalid automobile vin"},
                 status=400,
+                safe=False,
             )
         try:
             salesperson = content["sales_person"]
