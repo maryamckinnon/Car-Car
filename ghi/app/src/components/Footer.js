@@ -4,7 +4,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
-import logo from "../Images/logo.png";
+import logo from "../images/logo.png";
 
 function Footer() {
   return (

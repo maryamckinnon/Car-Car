@@ -1,7 +1,7 @@
 import { Carousel } from "react-bootstrap";
-import red from "../Images/red.jpg";
-import white from "../Images/white.jpg";
-import silver from "../Images/silver.jpg";
+import red from "../images/red.jpg";
+import white from "../images/white.jpg";
+import silver from "../images/silver.jpg";
 
 function CarouselFade() {
   return (
