@@ -11,13 +11,13 @@ import AppointmentForm from "./Service/AppointmentForm";
 import AppointmentHistory from "./Service/AppointmentHistory";
 import TechnicianForm from "./Service/TechnicianForm";
 import ModelForm from "./Inventory/ModelForm";
-import Nav from "./components/Nav";
+import Nav from "./Components/Nav";
 import SalesPersonForm from "./Sales/SalesPersonForm";
 import CustomerForm from "./Sales/CustomerForm";
 import SalesRecordForm from "./Sales/SalesRecordForm";
 import SalesRecordList from "./Sales/SalesRecordList";
 import SalesRecordFiltered from "./Sales/SalesRecordFiltered";
-import Footer from "./components/Footer";
+import Footer from "./Components/Footer";
 import "./index.css";
 import ModelListCustomer from "./Inventory/ModelListCustomer";
 
