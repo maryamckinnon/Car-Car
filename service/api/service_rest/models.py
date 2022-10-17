@@ -27,13 +27,6 @@ class Technician(models.Model):
 
 
 class Appointment(models.Model):
-    @classmethod
-    def create(cls, **kwargs):
-        kwargs["status"] = Status.objects.get(name="SCHEDULED")
-        appointment = cls(**kwargs)
-        appointment.save()
-        return appointment
-
     date = models.DateTimeField(default=timezone.now)
     reason = models.CharField(max_length=200)
     customer_name = models.CharField(max_length=200)
@@ -50,12 +43,24 @@ class Appointment(models.Model):
         default=1,
     )
 
+    @classmethod
+    def create(cls, **kwargs):
+        appointment = cls(**kwargs)
+        appointment.save()
+        return appointment
+
     def finish(self):
-        status = Status.objects.get(name="FINISHED")
+        try:
+            status = Status.objects.get(id=2)
+        except Status.DoesNotExist:
+            status = Status.objects.create(id=2, name='FINISHED') 
         self.status = status
         self.save()
 
     def cancel(self):
-        status = Status.objects.get(name="CANCELED")
+        try:
+            status = Status.objects.get(id=3)
+        except Status.DoesNotExist:
+            status = Status.objects.create(id=3, name='CANCELED') 
         self.status = status
         self.save()

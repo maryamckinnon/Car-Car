@@ -51,7 +51,12 @@ def api_list_appointments(request):
             id = content["technician"]
             technician = Technician.objects.get(pk=id)
             content["technician"] = technician
-
+            try:
+                status = Status.objects.get(id=1)
+            except Status.DoesNotExist:
+                status = Status.objects.create(id=1, name='SCHEDULED') 
+            print(status, 'status')
+            content["status"] = status
         except Appointment.DoesNotExist:
             return JsonResponse(
                 {"message": "Could not create the appointment"},

@@ -74,6 +74,7 @@ class AppointmentForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
+    console.log(data)
 
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
@@ -82,7 +83,7 @@ class AppointmentForm extends React.Component {
 
       this.setState({ ...this.initialState });
     }
-    window.location.reload();
+    // window.location.reload();
   }
 
   render() {
