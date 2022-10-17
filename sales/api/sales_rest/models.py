@@ -14,9 +14,6 @@ class AutomobileVO(models.Model):
     def __str__(self):
         return self.vin
 
-    # def get_api_url(self):
-    #     return reverse("api_automobile", kwargs={"vin": self.vin})
-
 
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)

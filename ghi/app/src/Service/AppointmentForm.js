@@ -22,9 +22,7 @@ class AppointmentForm extends React.Component {
 
   async componentDidMount() {
     const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
-
     const response = await fetch(url);
-
     if (response.ok) {
       const data = await response.json();
       this.setState({ technicians: data.technicians });
@@ -74,16 +72,13 @@ class AppointmentForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
-    console.log(data)
-
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
       console.log(newAppointment);
-
       this.setState({ ...this.initialState });
     }
-    // window.location.reload();
+    window.location.reload();
   }
 
   render() {

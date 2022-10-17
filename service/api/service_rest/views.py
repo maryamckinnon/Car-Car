@@ -55,7 +55,6 @@ def api_list_appointments(request):
                 status = Status.objects.get(id=1)
             except Status.DoesNotExist:
                 status = Status.objects.create(id=1, name='SCHEDULED') 
-            print(status, 'status')
             content["status"] = status
         except Appointment.DoesNotExist:
             return JsonResponse(

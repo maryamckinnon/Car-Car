@@ -58,7 +58,6 @@ class SalesRecordForm extends React.Component {
     delete data.automobiles;
     delete data.salesPeople;
     delete data.customers;
-    console.log(data)
 
     const salesRecordUrl = `${process.env.REACT_APP_SALES_API}/api/sales-records/`;
     const fetchConfig = {
