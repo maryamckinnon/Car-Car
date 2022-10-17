@@ -40,6 +40,7 @@ class AutomobileForm extends React.Component {
       };
       this.setState(cleared);
     } else {
+      window.alert("That VIN number has already been used")
       console.error("invalid request");
     }
   }
