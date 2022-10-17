@@ -65,7 +65,6 @@ class SalesRecordForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
-
     const response = await fetch(salesRecordUrl, fetchConfig);
     if (response.ok) {
       const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${this.state.automobile}/`;

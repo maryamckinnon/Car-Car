@@ -31,7 +31,7 @@ def poll():
             pass
         except Exception as e:
             print(e, file=sys.stderr)
-        time.sleep(1)
+        time.sleep(30)
 
 
 if __name__ == "__main__":
