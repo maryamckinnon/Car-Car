@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SalesRecordList() {
   const [data, setData] = useState([]);
+
+  function Redirect() {
+    const navigate = useNavigate();
+    function handleClick() {
+      navigate("/sales-records/new");
+    }
+    return (
+      <div>
+        <button
+          className="btn btn-primary"
+          style={{ marginLeft: "7em", marginBottom: "50px" }}
+          onClick={handleClick}
+        >
+          Add sales record
+        </button>
+      </div>
+    );
+  }
 
   useEffect(() => {
     const url = `${process.env.REACT_APP_SALES_API}/api/sales-records/`;
@@ -50,6 +69,7 @@ function SalesRecordList() {
             })}
           </tbody>
         </table>
+        <Redirect />
       </div>
     </>
   );

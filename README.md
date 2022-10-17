@@ -1,8 +1,5 @@
 # CarCar
 
-NOTE: Status default is set to 1 for appointments. 1 = "SCHEDULED", 2 = "FINISHED", 3 = CANCELED"
-
-
 ## Intended market
 
 The expected intended market is car dealerships looking for a program to assist in managing automobile inventory, service appointments, and sales.

@@ -28,7 +28,6 @@ class SalesRecordForm extends React.Component {
       .then(customerData => this.setState({ customers: customerData.customers }));
   }
 
-
   handleAutomobileChange(event) {
     const value = event.target.value;
     this.setState({ automobile: value });
@@ -66,6 +65,8 @@ class SalesRecordForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
+    console.log(JSON.stringify(data))
+
     const response = await fetch(salesRecordUrl, fetchConfig);
     if (response.ok) {
       const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${this.state.automobile}/`;
@@ -73,7 +74,7 @@ class SalesRecordForm extends React.Component {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sold: true }),
-      };
+        };
         const autoResponse = await fetch(autoUrl, autoFetchConfig);
         if (!autoResponse.ok) {
           console.error(autoResponse);
@@ -85,6 +86,7 @@ class SalesRecordForm extends React.Component {
         customer: "",
       };
       this.setState(cleared);
+      window.location.reload();
     }
   }
 
