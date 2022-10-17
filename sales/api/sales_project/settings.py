@@ -47,10 +47,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# CRONJOBS = [
-#     ("* * * * *", "sales.poll.poll"),
-# ]
-
 ALLOWED_HOSTS = [
     ".localhost",
     "127.0.0.1",
