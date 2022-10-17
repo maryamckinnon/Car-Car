@@ -18,17 +18,16 @@ class SalesRecordForm extends React.Component {
 
   async componentDidMount() {
     fetch(`${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`)
-      .then((response) => response.json())
-      .then((response) => this.setState({ automobiles: response.autos }));
+      .then(res => res.json())
+      .then(automobileData => this.setState({ automobiles: automobileData.autos }));
     fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
-      .then((response) => response.json())
-      .then((response) =>
-        this.setState({ salesPeople: response.sales_people })
-      );
+      .then(res => res.json())
+      .then(salesPeopleData => this.setState({ salesPeople: salesPeopleData.sales_people }));
     fetch(`${process.env.REACT_APP_SALES_API}/api/customers/`)
-      .then((response) => response.json())
-      .then((response) => this.setState({ customers: response.customers }));
+      .then(res => res.json())
+      .then(customerData => this.setState({ customers: customerData.customers }));
   }
+
 
   handleAutomobileChange(event) {
     const value = event.target.value;
@@ -109,7 +108,7 @@ class SalesRecordForm extends React.Component {
                   {this.state.automobiles.map((automobile) => {
                     if (automobile.sold === false) {
                       return (
-                        <option key={automobile.vin} value={automobile.vin}>
+                        <option key={automobile.id} value={automobile.vin}>
                           {automobile.vin}
                         </option>
                       );
