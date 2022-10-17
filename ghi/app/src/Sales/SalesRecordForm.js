@@ -19,7 +19,7 @@ class SalesRecordForm extends React.Component {
   async componentDidMount() {
     fetch(`${process.env.REACT_APP_SALES_API}/api/automobileVO/`)
       .then(res => res.json())
-      .then(automobiles => this.setState( automobiles));
+      .then(automobileData => this.setState({ automobiles: automobileData.automobiles}));
     fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
       .then(res => res.json())
       .then(salesPeopleData => this.setState({ salesPeople: salesPeopleData.sales_people }));
