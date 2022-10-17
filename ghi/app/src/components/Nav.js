@@ -71,6 +71,7 @@ function Nav() {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                href="/#"
               >
                 Manage Services
               </a>
@@ -112,6 +113,7 @@ function Nav() {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                href="/#"
               >
                 Manage Sales
               </a>
