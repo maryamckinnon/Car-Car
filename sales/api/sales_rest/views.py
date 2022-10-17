@@ -60,6 +60,18 @@ def automobile_vo_list(request):
         )
 
 
+@require_http_methods(["PUT"])
+def update_automobile_vo(request, vin):
+    if request.method == "PUT":
+        automobile = AutomobileVO.objects.filter(vin=vin).update(sold=True)
+        automobile.save()
+        return JsonResponse(
+                automobile,
+                encoder=AutomobileVOEncoder,
+                safe=False,
+            )
+
+
 @require_http_methods(["GET", "POST"])
 def sales_person_list(request):
     if request.method == "GET":
@@ -126,12 +138,9 @@ def sales_record_list(request):
         )
     else:
         content = json.loads(request.body)
-        print(content, "content before try")
         try:
             automobile = AutomobileVO.objects.get(vin=content["automobile"])
-            print(automobile, "automobile")
             content["automobile"] = automobile
-            print(content, 'content printed')
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
                 {"message": "Invalid automobile vin"},
@@ -151,7 +160,6 @@ def sales_record_list(request):
             content["customer"] = customer
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Invalid customer name"})
-        print(content, 'content')
         sales_record = SalesRecord.objects.create(**content)
         return JsonResponse(
             sales_record,

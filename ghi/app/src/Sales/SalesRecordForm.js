@@ -85,7 +85,7 @@ class SalesRecordForm extends React.Component {
         customer: "",
       };
       this.setState(cleared);
-      window.location.reload();
+      window.alert("Your sales record has been saved successfully!")
     }
   }
 
