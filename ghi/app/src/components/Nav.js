@@ -37,28 +37,28 @@ function Nav() {
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/manufacturers/"
+                  to="/project-beta/manufacturers/"
                 >
                   Manufacturers
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/models/"
+                  to="/project-beta/models/"
                 >
                   Vehicle models
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/models/customer/"
+                  to="/project-beta/models/customer/"
                 >
                   Vehicle models-customers
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/automobiles/"
+                  to="/project-beta/automobiles/"
                 >
                   Automobiles
                 </NavLink>
@@ -79,28 +79,28 @@ function Nav() {
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/technicians/new/"
+                  to="/project-beta/technicians/new/"
                 >
                   Add technician
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/appointments/"
+                  to="/project-beta/appointments/"
                 >
                   Service appointments
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/appointments/new/"
+                  to="/project-beta/appointments/new/"
                 >
                   Add service appointment
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/appointments/details/"
+                  to="/project-beta/appointments/details/"
                 >
                   Appointment history
                 </NavLink>
@@ -121,35 +121,35 @@ function Nav() {
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/sales-person/new"
+                  to="/project-beta/sales-person/new"
                 >
                   Add sales person
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/customers/new"
+                  to="/project-beta/customers/new"
                 >
                   Add customer
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/sales-records/"
+                  to="/project-beta/sales-records/"
                 >
                   All sales records
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/sales-records/new"
+                  to="/project-beta/sales-records/new"
                 >
                   Add sales record
                 </NavLink>
                 <NavLink
                   className="dropdown-item"
                   aria-current="page"
-                  to="/sales-records/filtered/"
+                  to="/project-beta/sales-records/filtered/"
                 >
                   Search sales records
                 </NavLink>
