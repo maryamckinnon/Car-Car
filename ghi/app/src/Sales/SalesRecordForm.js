@@ -17,9 +17,9 @@ class SalesRecordForm extends React.Component {
   }
 
   async componentDidMount() {
-    fetch(`${process.env.REACT_APP_INVENTORY_API}/api/automobiles/`)
+    fetch(`${process.env.REACT_APP_SALES_API}/api/automobileVO/`)
       .then(res => res.json())
-      .then(automobileData => this.setState({ automobiles: automobileData.autos }));
+      .then(automobiles => this.setState( automobiles));
     fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
       .then(res => res.json())
       .then(salesPeopleData => this.setState({ salesPeople: salesPeopleData.sales_people }));
@@ -65,7 +65,6 @@ class SalesRecordForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
-    console.log(JSON.stringify(data))
 
     const response = await fetch(salesRecordUrl, fetchConfig);
     if (response.ok) {
