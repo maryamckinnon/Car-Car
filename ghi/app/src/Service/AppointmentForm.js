@@ -78,7 +78,7 @@ class AppointmentForm extends React.Component {
       console.log(newAppointment);
       this.setState({ ...this.initialState });
     }
-    window.location.reload();
+    window.location.replace('/appointments/');
   }
 
   render() {
@@ -159,7 +159,19 @@ class AppointmentForm extends React.Component {
                 />
                 <label htmlFor="reason">Reason</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button
+                variant='contained'
+                size='medium'
+                style={{
+                  backgroundColor:'black',
+                  fontWeight:'bolder',
+                  color:'white',
+                  paddingTop:'4px',
+                  paddingBottom:'4px'
+                }}
+              >
+              CREATE
+              </button>
             </form>
           </div>
         </div>

@@ -19,7 +19,7 @@ function Footer() {
           <li className="nav-link px-2 text-muted">Connect: </li>
           <li className="nav-item">
             <a
-              href="mailto:carcar@gmail.com"
+              href="mailto:mam5675@gmail.com"
               className="nav-link px-2 text-muted"
             >
               <AiOutlineMail size="1.5em" />

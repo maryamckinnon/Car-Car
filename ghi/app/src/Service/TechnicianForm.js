@@ -84,7 +84,19 @@ class TechnicianForm extends React.Component {
                 />
                 <label htmlFor="employeeNumber">Employee Number</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button
+                variant='contained'
+                size='medium'
+                style={{
+                  backgroundColor:'black',
+                  fontWeight:'bolder',
+                  color:'white',
+                  paddingTop:'4px',
+                  paddingBottom:'4px'
+                }}
+              >
+              CREATE
+              </button>
             </form>
           </div>
         </div>

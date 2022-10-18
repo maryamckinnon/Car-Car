@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 function SalesRecordList() {
   const [data, setData] = useState([]);
@@ -11,13 +12,14 @@ function SalesRecordList() {
     }
     return (
       <div>
-        <button
-          className="btn btn-primary"
-          style={{ marginLeft: "7em", marginBottom: "50px" }}
+        <Button
+          variant='contained'
+          size='medium'
+          style={{backgroundColor:'black', fontWeight:'bolder', marginLeft:'7em'}}
           onClick={handleClick}
         >
           Add sales record
-        </button>
+        </Button>
       </div>
     );
   }

@@ -102,7 +102,19 @@ class CustomerForm extends React.Component {
                 />
                 <label htmlFor="phoneNumber">Phone Number</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button
+                variant='contained'
+                size='medium'
+                style={{
+                  backgroundColor:'black',
+                  fontWeight:'bolder',
+                  color:'white',
+                  paddingTop:'4px',
+                  paddingBottom:'4px'
+                }}
+              >
+              CREATE
+              </button>
             </form>
           </div>
         </div>

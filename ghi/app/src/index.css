@@ -103,3 +103,15 @@ table {
   justify-content: center;
   align-items: center;
 }
+
+.black-button {
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  padding: 5px;
+  border-radius: 5%;
+}
+
+.black-button:hover {
+  background-color: gray;
+}

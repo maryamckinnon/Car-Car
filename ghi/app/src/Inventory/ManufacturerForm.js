@@ -60,8 +60,12 @@ class ManufacturerForm extends React.Component {
                   aria-label="Add manufacturer"
                   style={{ width: "200px" }}
                 />
-                <button className="btn btn-success" type="submit">
-                  Add
+                <button
+                  variant='contained'
+                  size='medium'
+                  style={{backgroundColor:'black', fontWeight:'bolder', color:'white'}} type="submit"
+                >
+                  ADD
                 </button>
               </form>
             </div>

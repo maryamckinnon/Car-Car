@@ -165,8 +165,12 @@ class ModelForm extends React.Component {
               style={{ width: "400px" }}
             />
           </div>
-          <button className="btn btn-primary" style={{ fontWeight: "bolder" }}>
-            +
+          <button
+            variant='contained'
+            size='medium'
+            style={{backgroundColor:'black', fontWeight:'bolder', color:'white', paddingTop:'4px', paddingBottom:'4px'}}
+          >
+            ADD
           </button>
         </form>
       </div>

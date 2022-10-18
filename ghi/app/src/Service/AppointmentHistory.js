@@ -1,5 +1,6 @@
 import React from "react";
 import "../index.css";
+import Button from "@mui/material/Button";
 
 class AppointmentHistory extends React.Component {
   constructor(props) {
@@ -60,7 +61,12 @@ class AppointmentHistory extends React.Component {
                 aria-label="Search"
                 aria-describedby="search-addon"
               ></input>
-              <button className="btn btn-primary">Search</button>
+              <button
+                variant='contained'
+                size='medium'
+                style={{backgroundColor:'black', fontWeight:'bolder', color:'white'}}
+              >SEARCH
+              </button>
             </div>
           </form>
         </div>
