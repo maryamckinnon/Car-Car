@@ -11,32 +11,40 @@ function AppointmentList() {
       navigate("/appointments/new");
     }
     return (
-        <Button
-          variant='contained'
-          size='medium'
-          style={{backgroundColor:'black', fontWeight:'bolder', marginLeft:'8em'}}
-          onClick={handleNewClick}
-        >
-          Add appointment
-        </Button>
+      <Button
+        variant="contained"
+        size="medium"
+        style={{
+          backgroundColor: "black",
+          fontWeight: "bolder",
+          marginLeft: "8em",
+        }}
+        onClick={handleNewClick}
+      >
+        Add appointment
+      </Button>
     );
   }
 
   function Redirect2() {
     const navigate = useNavigate();
     function handleHistoryClick() {
-      navigate('/appointments/details');
+      navigate("/appointments/details");
     }
     return (
-        <Button
-          variant='contained'
-          size='medium'
-          style={{backgroundColor:'black', fontWeight:'bolder', marginLeft:'3em'}}
-          onClick={handleHistoryClick}
-        >
-          Appointment history
-        </Button>
-    )
+      <Button
+        variant="contained"
+        size="medium"
+        style={{
+          backgroundColor: "black",
+          fontWeight: "bolder",
+          marginLeft: "3em",
+        }}
+        onClick={handleHistoryClick}
+      >
+        Appointment history
+      </Button>
+    );
   }
 
   async function appointmentCanceled(id) {
@@ -146,8 +154,8 @@ function AppointmentList() {
         </tbody>
       </table>
       <container>
-          <Redirect />
-          <Redirect2 />
+        <Redirect />
+        <Redirect2 />
       </container>
     </div>
   );

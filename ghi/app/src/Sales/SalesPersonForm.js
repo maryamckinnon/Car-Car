@@ -83,17 +83,17 @@ class SalesPersonForm extends React.Component {
                 <label htmlFor="employeeNumber">Employee Number</label>
               </div>
               <button
-                variant='contained'
-                size='medium'
+                variant="contained"
+                size="medium"
                 style={{
-                  backgroundColor:'black',
-                  fontWeight:'bolder',
-                  color:'white',
-                  paddingTop:'4px',
-                  paddingBottom:'4px'
+                  backgroundColor: "black",
+                  fontWeight: "bolder",
+                  color: "white",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
                 }}
               >
-              CREATE
+                CREATE
               </button>
             </form>
           </div>

@@ -61,9 +61,14 @@ class ManufacturerForm extends React.Component {
                   style={{ width: "200px" }}
                 />
                 <button
-                  variant='contained'
-                  size='medium'
-                  style={{backgroundColor:'black', fontWeight:'bolder', color:'white'}} type="submit"
+                  variant="contained"
+                  size="medium"
+                  style={{
+                    backgroundColor: "black",
+                    fontWeight: "bolder",
+                    color: "white",
+                  }}
+                  type="submit"
                 >
                   ADD
                 </button>

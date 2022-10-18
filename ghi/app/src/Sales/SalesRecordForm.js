@@ -18,14 +18,20 @@ class SalesRecordForm extends React.Component {
 
   async componentDidMount() {
     fetch(`${process.env.REACT_APP_SALES_API}/api/automobileVO/`)
-      .then(res => res.json())
-      .then(automobileData => this.setState({ automobiles: automobileData.automobiles}));
+      .then((res) => res.json())
+      .then((automobileData) =>
+        this.setState({ automobiles: automobileData.automobiles })
+      );
     fetch(`${process.env.REACT_APP_SALES_API}/api/sales-people/`)
-      .then(res => res.json())
-      .then(salesPeopleData => this.setState({ salesPeople: salesPeopleData.sales_people }));
+      .then((res) => res.json())
+      .then((salesPeopleData) =>
+        this.setState({ salesPeople: salesPeopleData.sales_people })
+      );
     fetch(`${process.env.REACT_APP_SALES_API}/api/customers/`)
-      .then(res => res.json())
-      .then(customerData => this.setState({ customers: customerData.customers }));
+      .then((res) => res.json())
+      .then((customerData) =>
+        this.setState({ customers: customerData.customers })
+      );
   }
 
   handleAutomobileChange(event) {
@@ -68,15 +74,15 @@ class SalesRecordForm extends React.Component {
     const response = await fetch(salesRecordUrl, fetchConfig);
     if (response.ok) {
       const autoUrl = `${process.env.REACT_APP_INVENTORY_API}/api/automobiles/${this.state.automobile}/`;
-        const autoFetchConfig = {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sold: true }),
-        };
-        const autoResponse = await fetch(autoUrl, autoFetchConfig);
-        if (!autoResponse.ok) {
-          console.error(autoResponse);
-        }
+      const autoFetchConfig = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sold: true }),
+      };
+      const autoResponse = await fetch(autoUrl, autoFetchConfig);
+      if (!autoResponse.ok) {
+        console.error(autoResponse);
+      }
       const cleared = {
         price: "",
         automobile: "",
@@ -84,7 +90,7 @@ class SalesRecordForm extends React.Component {
         customer: "",
       };
       this.setState(cleared);
-      window.alert("Your sales record has been saved successfully!")
+      window.alert("Your sales record has been saved successfully!");
     }
   }
 
@@ -170,17 +176,17 @@ class SalesRecordForm extends React.Component {
                 <label htmlFor="price">Sales Price</label>
               </div>
               <button
-                variant='contained'
-                size='medium'
+                variant="contained"
+                size="medium"
                 style={{
-                  backgroundColor:'black',
-                  fontWeight:'bolder',
-                  color:'white',
-                  paddingTop:'4px',
-                  paddingBottom:'4px'
+                  backgroundColor: "black",
+                  fontWeight: "bolder",
+                  color: "white",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
                 }}
               >
-              CREATE
+                CREATE
               </button>
             </form>
           </div>

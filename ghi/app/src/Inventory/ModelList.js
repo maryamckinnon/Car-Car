@@ -53,7 +53,11 @@ function ModelList() {
                   </td>
                   <td>${new Intl.NumberFormat().format(model.price)}</td>
                   <td>
-                    <img src={model.picture_url} height={100} alt="vehicle model"></img>
+                    <img
+                      src={model.picture_url}
+                      height={100}
+                      alt="vehicle model"
+                    ></img>
                   </td>
                   <td>
                     <Button

@@ -28,7 +28,6 @@ class TechnicianForm extends React.Component {
     data.employee_number = data.employeeNumber;
     delete data.employeeNumber;
 
-    
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(data),
@@ -40,7 +39,6 @@ class TechnicianForm extends React.Component {
     const technicianUrl = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
     const response = await fetch(technicianUrl, fetchConfig);
     if (response.ok) {
-
       const cleared = {
         name: "",
         employeeNumber: "",
@@ -85,17 +83,17 @@ class TechnicianForm extends React.Component {
                 <label htmlFor="employeeNumber">Employee Number</label>
               </div>
               <button
-                variant='contained'
-                size='medium'
+                variant="contained"
+                size="medium"
                 style={{
-                  backgroundColor:'black',
-                  fontWeight:'bolder',
-                  color:'white',
-                  paddingTop:'4px',
-                  paddingBottom:'4px'
+                  backgroundColor: "black",
+                  fontWeight: "bolder",
+                  color: "white",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
                 }}
               >
-              CREATE
+                CREATE
               </button>
             </form>
           </div>

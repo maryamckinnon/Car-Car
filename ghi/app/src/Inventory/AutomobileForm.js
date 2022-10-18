@@ -173,18 +173,18 @@ class AutomobileForm extends React.Component {
               />
             </div>
             <button
-              variant='contained'
-              size='medium'
+              variant="contained"
+              size="medium"
               style={{
-                backgroundColor:'black',
-                fontWeight:'bolder',
-                color:'white',
-                paddingTop:'4px',
-                paddingBottom:'4px'
+                backgroundColor: "black",
+                fontWeight: "bolder",
+                color: "white",
+                paddingTop: "4px",
+                paddingBottom: "4px",
               }}
             >
-            ADD
-          </button>
+              ADD
+            </button>
           </form>
         </div>
       </div>
