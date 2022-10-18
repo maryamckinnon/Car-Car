@@ -89,7 +89,7 @@ class AutomobileForm extends React.Component {
           <form
             onSubmit={this.handleSubmit}
             id="add-auto-form"
-            style={{ paddingLeft: "130px", marginTop: "15px" }}
+            style={{ paddingLeft: "130px", marginTop: "15px", marginBottom:'80px' }}
           >
             <h3
               className="input-group d-inline-flex align-items-center w-auto"

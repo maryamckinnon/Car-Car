@@ -5,6 +5,17 @@ import Button from "@mui/material/Button";
 function AppointmentList() {
   const [data, setData] = useState([]);
 
+  let sortedData = [...data];
+  sortedData.sort((a, b) => {
+    if (a.date < b.date) {
+      return -1;
+    }
+    if (a.date > b.date) {
+      return 1;
+    }
+    return 0;
+  });
+
   function Redirect() {
     const navigate = useNavigate();
     function handleNewClick() {
@@ -18,6 +29,7 @@ function AppointmentList() {
           backgroundColor: "black",
           fontWeight: "bolder",
           marginLeft: "8em",
+          marginBottom: '50px'
         }}
         onClick={handleNewClick}
       >
@@ -39,6 +51,7 @@ function AppointmentList() {
           backgroundColor: "black",
           fontWeight: "bolder",
           marginLeft: "3em",
+          marginBottom: '50px'
         }}
         onClick={handleHistoryClick}
       >
@@ -92,7 +105,7 @@ function AppointmentList() {
       <table
         className="table table-striped"
         style={{
-          marginBottom: "200px",
+          marginBottom: "80px",
           marginTop: "50px",
           backgroundColor: "#f5f5f5",
           borderRadius: 10,

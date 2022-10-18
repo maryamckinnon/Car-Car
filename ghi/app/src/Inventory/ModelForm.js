@@ -91,7 +91,7 @@ class ModelForm extends React.Component {
         <form
           onSubmit={this.handleSubmit}
           id="model-form"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", paddingBottom:'80px', paddingTop:'60px' }}
         >
           <h3
             className="input-group d-inline-flex align-items-center w-auto"

@@ -21,6 +21,30 @@ This is the home page that users will see when they get to the website. The user
 ![home page](docs/wireframes/homepage.png)
 
 
+## Manufacturers
+
+This is where employees can add or remove manufacturers that are currently or have been in inventory.
+
+![manufacturers](docs/wireframes/manufacturers.png)
+
+
+## Vehicle Models
+
+This is where employees can add or remove vehicle models that are currently or have been in inventory.
+
+![vehicle models](docs/wireframes/vehiclemodellistform.png)
+
+This is the customer view of the vehicle models. My stretch goal in the future is to add a customer signup and login page so customers will have the ability to favorite/save vehicle models that they like/are thinking of purchasing.
+
+![model cards](docs/wireframes/vehiclemodelcards.png)
+
+
+## Automobile Inventory
+This is where employees can input automobiles that are currently in inventory. When the automobile is sold by a sales person, the automobile no longer appears in the inventory.
+
+![automobile inventory](docs/wireframes/automobileinventory.png)
+
+
 ## Add Appointment
 
 This is the page where a service appointment can be created and added to the database.
@@ -28,25 +52,32 @@ This is the page where a service appointment can be created and added to the dat
 ![add appointment](docs/wireframes/addappointment.png)
 
 
-## Search Service History
-
-On this page, an employee can search for all service history related to a specific VIN.
-
-![search service history](docs/wireframes/searchservicehistory.png)
-
-
 ## List of all Upcoming Service Appointments
 
-This is the page where all upcoming service appointments are listed. The technician can mark an appointment complete or can cancel an appointment, which will remove that appointment from the list.
+This is the page where all upcoming service appointments are listed (sorted in chronological order). The technician can mark an appointment complete or can cancel an appointment, which will remove that appointment from the list. The status of each appointment (scheduled, completed, and caneled) are tracked.
 
 ![service appointments list](docs/wireframes/serviceappointments.png)
 
 
-## Add Automobile
+## Search Service History
 
-This is where an employee can add an automobile to the inventory database.
+On this page, an employee can search for all service history related to a specific VIN. The table rows are color-coded based on the status of the appointment (canceled=red, scheduled=yellow, completed=green).
 
-![add automobile](docs/wireframes/addautomobile.png)
+![search service history](docs/wireframes/searchservicehistory.png)
+
+
+## Sales Records
+
+On this page, all sales records are listed.
+![sales records](docs/wireframes/salesrecords.png)
+
+
+## Filtered Sales Records
+
+On this page, a name of a salesperson can be inputted and a list of all of that salesperson's sales records are listed.
+![filtered sales records](docs/wireframes/salessearch.png)
+
+
 
 
 # More About Design
@@ -64,9 +95,6 @@ The AutomobileVO model represents the Automobile model from "Inventory," but is 
 
 
 ## Sales microservice
-Explain your models and integration with the inventory
-microservice, here.
-The models I usesd for the Sales microservice are AutomobileVO, SalesPerson, Customer, and SalesRecord. All of my models are relatively simple other than SalesRecord which has three foreign keys, one for each of the other models. AutomobileVO has a one to one relationship with SalesRecord. Customer has a one to many relationship with SalesRecord. SalesPerson has a one to many relationship with SalesRecord. 
+The models usesd for the Sales microservice are AutomobileVO, SalesPerson, Customer, and SalesRecord. All of my models are relatively simple other than SalesRecord which has three foreign keys, one for each of the other models. AutomobileVO has a one to one relationship with SalesRecord. Customer has a one to many relationship with SalesRecord. SalesPerson has a one to many relationship with SalesRecord. 
 
 The AutomobileVO represents the Automobile model from the Inventory microservice, and it is a value object which means it's immutable. We pull the automobiles from inventory using our poller.
-

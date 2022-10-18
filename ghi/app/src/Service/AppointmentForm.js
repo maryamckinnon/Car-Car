@@ -87,7 +87,10 @@ class AppointmentForm extends React.Component {
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Add a service appointment</h1>
-            <form onSubmit={this.handleSubmit} id="create-conference-form">
+            <form 
+              onSubmit={this.handleSubmit}
+              id="create-conference-form"
+            >
               <div className="form-floating mb-3">
                 <input
                   onChange={this.handleVinChange}
